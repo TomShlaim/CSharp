@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex01_01
 {
@@ -26,36 +21,36 @@ namespace Ex01_01
             const bool v_CountZeros = true;
 
             Console.WriteLine("Please enter 3 binary numbers with 8 digits each:");
-            binaryNumber1 = setToValidInput(Console.ReadLine());
-            binaryNumber2 = setToValidInput(Console.ReadLine());
-            binaryNumber3 = setToValidInput(Console.ReadLine());
+            setToValidInput(out binaryNumber1);
+            setToValidInput(out binaryNumber2);
+            setToValidInput(out binaryNumber3);
 
             decimalNumber1 = convertBinaryToDecimal(binaryNumber1);
             decimalNumber2 = convertBinaryToDecimal(binaryNumber2);
             decimalNumber3 = convertBinaryToDecimal(binaryNumber3);
 
-            decimalNumbersInDescendingOrder = getDecimalNumbersInDescendingOrder(decimalNumber1, decimalNumber2, decimalNumber3);
-            numberOfPowersOfTwo = getNumberOfPowersOfTwo(decimalNumber1, decimalNumber2, decimalNumber3);
-            numberOfMultiplesOfFour = getNumberOfMultiplesOfFour(decimalNumber1, decimalNumber2, decimalNumber3);
-            numberOfStrictlyDescendingByDigit = getNumberOfStrictlyDescendingByDigit(decimalNumber1, decimalNumber2, decimalNumber3);
-            numberOfPalindromes = getNumberOfPalindromes(decimalNumber1, decimalNumber2, decimalNumber3);
+            setDecimalNumbersInDescendingOrder(decimalNumber1, decimalNumber2, decimalNumber3, out decimalNumbersInDescendingOrder);
+            setNumberOfPowersOfTwo(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfPowersOfTwo);
+            setNumberOfMultiplesOfFour(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfMultiplesOfFour);
+            setNumberOfStrictlyDescendingByDigit(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfStrictlyDescendingByDigit);
+            setNumberOfPalindromes(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfPalindromes);
             sumOfZeros = sumOfOnesOrZeros(binaryNumber1, v_CountZeros) +
                          sumOfOnesOrZeros(binaryNumber2, v_CountZeros) + 
                          sumOfOnesOrZeros(binaryNumber3, v_CountZeros);
             sumOfOnes = sumOfOnesOrZeros(binaryNumber1, !v_CountZeros) +
                          sumOfOnesOrZeros(binaryNumber2, !v_CountZeros) +
                          sumOfOnesOrZeros(binaryNumber3, !v_CountZeros);
-            averageNumberOfZeros = getAverageNumberOfOnesOrZeros(sumOfZeros, 3);
-            averageNumberOfOnes = getAverageNumberOfOnesOrZeros(sumOfOnes, 3);
+            setAverageNumberOfOnesOrZeros(sumOfZeros, 3, out averageNumberOfZeros);
+            setAverageNumberOfOnesOrZeros(sumOfOnes, 3, out averageNumberOfOnes);
 
             statisticsMessage = string.Format(
-                  @"The decimal numbers in descending order corresponding to the binary numbers entered are: {0}
-                  There are {1} numbers that are a power of two.
-                  The average number of zeros in the entered numbers are: {2} 
-                  The average number of ones in the entered numbers are: {3}
-                  There are {4} numbers that are a multiple of four.
-                  There are {5} numbers that their digits form a strictly descending series.
-                  There are {6} numbers that are palindromes."
+@"The decimal numbers in descending order corresponding to the binary numbers entered are: {0}
+There are {1} numbers that are a power of two.
+The average number of zeros in the entered numbers are: {2} 
+The average number of ones in the entered numbers are: {3}
+There are {4} numbers that are a multiple of four.
+There are {5} numbers that their digits form a strictly descending series.
+There are {6} numbers that are palindromes."
                 , decimalNumbersInDescendingOrder
                 , numberOfPowersOfTwo
                 , averageNumberOfZeros
@@ -69,32 +64,43 @@ namespace Ex01_01
             Console.ReadLine();
         }
 
-        private static string getDecimalNumbersInDescendingOrder(float i_Decimal1, float i_Decimal2, float i_Decimal3)
+        private static void setToValidInput(out string o_CurrentUserInput)
         {
-            float smallestNumber = i_Decimal1, middleNumber = i_Decimal2, biggestNumber = i_Decimal3, temporaryNumber = 0;
+            o_CurrentUserInput = Console.ReadLine();
+            while (!isValidBinaryNumber(o_CurrentUserInput))
+            {
+                Console.WriteLine("The input you entered is invalid. Please try again.");
+                o_CurrentUserInput = Console.ReadLine();
+            }
+        }
+
+        private static void setDecimalNumbersInDescendingOrder(float i_Decimal1, float i_Decimal2, float i_Decimal3, out string o_DecimalNumbersInDescendingOrder)
+        {
+            float smallestNumber = i_Decimal1, middleNumber = i_Decimal2, biggestNumber = i_Decimal3;
 
             if (middleNumber < smallestNumber)
             {
-                temporaryNumber = smallestNumber;
-                smallestNumber = middleNumber;
-                middleNumber = temporaryNumber;
+                swap(ref middleNumber, ref smallestNumber);
             }
 
             if (biggestNumber < middleNumber)
             {
-                temporaryNumber = middleNumber;
-                middleNumber = biggestNumber;
-                biggestNumber = temporaryNumber;
+                swap(ref biggestNumber, ref middleNumber);
 
                 if (middleNumber < smallestNumber)
                 {
-                    temporaryNumber = smallestNumber;
-                    smallestNumber = middleNumber;
-                    middleNumber = temporaryNumber;
+                    swap(ref middleNumber, ref smallestNumber);
                 } 
             }
-            
-            return string.Format("{0}, {1}, {2}", biggestNumber, middleNumber, smallestNumber);
+
+            o_DecimalNumbersInDescendingOrder = string.Format("{0}, {1}, {2}", biggestNumber, middleNumber, smallestNumber);
+        }
+
+        private static void swap(ref float io_Num1, ref float io_Num2)
+        {
+            float temp = io_Num2;
+            io_Num2 = io_Num1;
+            io_Num1 = temp;
         }
 
         private static bool isValidBinaryNumber(string i_BinaryString)
@@ -117,17 +123,6 @@ namespace Ex01_01
             }
 
             return validBinaryNumber;
-        }
-
-        private static string setToValidInput(string io_CurrentInput)
-        {
-            while (!isValidBinaryNumber(io_CurrentInput))
-            {
-                Console.WriteLine("The input you entered is invalid. Please try again.");
-                io_CurrentInput = Console.ReadLine();
-            }
-
-            return io_CurrentInput;
         }
 
         private static float convertBinaryToDecimal(string i_BinaryString)
@@ -159,26 +154,24 @@ namespace Ex01_01
             return i_DecimalNumber == 1;
         }
 
-        private static int getNumberOfPowersOfTwo(float i_Decimal1, float i_Decimal2, float i_Decimal3)
+        private static void setNumberOfPowersOfTwo(float i_Decimal1, float i_Decimal2, float i_Decimal3, out int o_NumberOfPowersOfTwo)
         {
-            int numberOfPowersOfTwo = 0;
+            o_NumberOfPowersOfTwo = 0;
 
             if (isPowerOfTwo(i_Decimal1))
             {
-                numberOfPowersOfTwo++;
+                o_NumberOfPowersOfTwo++;
             }
 
             if (isPowerOfTwo(i_Decimal2))
             {
-                numberOfPowersOfTwo++;
+                o_NumberOfPowersOfTwo++;
             }
 
             if (isPowerOfTwo(i_Decimal3))
             {
-                numberOfPowersOfTwo++;
+                o_NumberOfPowersOfTwo++;
             }
-
-            return numberOfPowersOfTwo;
         }
 
         private static int sumOfOnesOrZeros(string i_BinaryString, bool i_CountZeros)
@@ -201,9 +194,9 @@ namespace Ex01_01
             return i_CountZeros ? zerosCounter : onesCounter;
         }
 
-        private static float getAverageNumberOfOnesOrZeros(int i_SumOfOnesOrZeros, int i_NumberOfInputs)
+        private static void setAverageNumberOfOnesOrZeros(int i_SumOfOnesOrZeros, int i_NumberOfInputs, out float o_AverageNumberOfOnesOrZeros)
         {
-            return (float)(i_SumOfOnesOrZeros / i_NumberOfInputs);
+            o_AverageNumberOfOnesOrZeros = (float)i_SumOfOnesOrZeros / i_NumberOfInputs;
         }
 
         private static bool isMultipleOfFour(float i_DecimalNumber)
@@ -211,37 +204,35 @@ namespace Ex01_01
             return i_DecimalNumber % 4 == 0;
         }
 
-        private static int getNumberOfMultiplesOfFour(float i_Decimal1, float i_Decimal2, float i_Decimal3)
+        private static void setNumberOfMultiplesOfFour(float i_Decimal1, float i_Decimal2, float i_Decimal3, out int o_NumberOfMultiplesOfFour)
         {
-            int numberOfMultiplesOfFour = 0;
+            o_NumberOfMultiplesOfFour = 0;
 
             if(isMultipleOfFour(i_Decimal1))
             {
-                numberOfMultiplesOfFour++;
+                o_NumberOfMultiplesOfFour++;
             }
 
             if (isMultipleOfFour(i_Decimal2))
             {
-                numberOfMultiplesOfFour++;
+                o_NumberOfMultiplesOfFour++;
             }
 
             if (isMultipleOfFour(i_Decimal3))
             {
-                numberOfMultiplesOfFour++;
+                o_NumberOfMultiplesOfFour++;
             }
-
-            return numberOfMultiplesOfFour;
         }
 
         private static bool areDigitsOfNumberStrictlyDescending(float i_DecimalNumber)
         {
             bool digitsOfNumberStrictlyDescending = true;
-            float previousDigit = i_DecimalNumber % 10;
+            int copyOfDecimal = (int)i_DecimalNumber; 
+            int previousDigit = -1;   // Start with a value smaller than any digit
 
-            i_DecimalNumber /= 10;
-            while (i_DecimalNumber != 0)
+            while (copyOfDecimal > 0)
             {
-                float currentDigit = i_DecimalNumber % 10;
+                int currentDigit = copyOfDecimal % 10;
 
                 if (currentDigit <= previousDigit)
                 {
@@ -250,81 +241,64 @@ namespace Ex01_01
                 }
 
                 previousDigit = currentDigit;
-                i_DecimalNumber /= 10;
+                copyOfDecimal /= 10;
             }
 
             return digitsOfNumberStrictlyDescending;
         }
 
-        private static int getNumberOfStrictlyDescendingByDigit(float i_Decimal1, float i_Decimal2, float i_Decimal3)
+        private static void setNumberOfStrictlyDescendingByDigit(float i_Decimal1, float i_Decimal2, float i_Decimal3, out int o_NumberOfStrictlyDescendingByDigit)
         {
-            int numberOfStrictlyDescendingByDigit = 0;
+            o_NumberOfStrictlyDescendingByDigit = 0;
 
             if (areDigitsOfNumberStrictlyDescending(i_Decimal1))
             {
-                numberOfStrictlyDescendingByDigit++;
+                o_NumberOfStrictlyDescendingByDigit++;
             }
 
-            if (areDigitsOfNumberStrictlyDescending(i_Decimal1))
+            if (areDigitsOfNumberStrictlyDescending(i_Decimal2))
             {
-                numberOfStrictlyDescendingByDigit++;
+                o_NumberOfStrictlyDescendingByDigit++;
             }
 
-            if (areDigitsOfNumberStrictlyDescending(i_Decimal1))
+            if (areDigitsOfNumberStrictlyDescending(i_Decimal3))
             {
-                numberOfStrictlyDescendingByDigit++;
+                o_NumberOfStrictlyDescendingByDigit++;
             }
-
-            return numberOfStrictlyDescendingByDigit;
         }
 
         private static bool isPalindrome(float i_DecimalNumber)
         {
-            bool palindrome = true;
-            string decimalString = ((int)i_DecimalNumber).ToString();
-            int currentLeftDigitIdx = 0;
-            int currentRightDigitIdx = decimalString.Length - 1;
+            int reversedNumber = 0, copyOfDecimal = (int)i_DecimalNumber;
 
-            while (currentLeftDigitIdx <= currentRightDigitIdx && decimalString[currentLeftDigitIdx] == decimalString[currentRightDigitIdx]) 
+            while (copyOfDecimal > 0)
             {
-                currentLeftDigitIdx++;
-                currentRightDigitIdx--;
+                reversedNumber = (reversedNumber * 10) + (copyOfDecimal % 10);
+                copyOfDecimal /= 10;
             }
 
-            if (currentLeftDigitIdx <= currentRightDigitIdx)
-            {
-                palindrome = false;
-            }
+            return reversedNumber == i_DecimalNumber;
 
-            return palindrome;
-            /*
-            while (i_DecimalNumber / 100 != 0)
-            {
-                int leastSignificantDigit = (int)(i_DecimalNumber % 10);
-                int mostSignificantDigit = (int)(i_DecimalNumber /)
-            }*/
         }
 
-        private static int getNumberOfPalindromes(float i_Decimal1, float i_Decimal2, float i_Decimal3)
+        private static void setNumberOfPalindromes(float i_Decimal1, float i_Decimal2, float i_Decimal3, out int o_NumberOfPalindromes)
         {
-            int numberOfPalindromes = 0;
+            o_NumberOfPalindromes = 0;
 
             if (isPalindrome(i_Decimal1))
             {
-                numberOfPalindromes++;
+                o_NumberOfPalindromes++;
             }
 
             if (isPalindrome(i_Decimal2))
             {
-                numberOfPalindromes++;
+                o_NumberOfPalindromes++;
             }
 
             if (isPalindrome(i_Decimal3))
             {
-                numberOfPalindromes++;
+                o_NumberOfPalindromes++;
             }
-
-            return numberOfPalindromes;
         }
 
     }
