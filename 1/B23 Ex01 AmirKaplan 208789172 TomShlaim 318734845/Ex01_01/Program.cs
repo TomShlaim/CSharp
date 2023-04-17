@@ -6,10 +6,10 @@ namespace Ex01_01
     {
         public static void Main()
         {
-            getStatisticsAboutBinaryStrings();
+            binaryStringsStatisticsProgram();
         }
         
-        private static void getStatisticsAboutBinaryStrings()
+        private static void binaryStringsStatisticsProgram()
         {
             string binaryNumber1, binaryNumber2, binaryNumber3,
                 decimalNumbersInDescendingOrder, statisticsMessage;
@@ -40,8 +40,8 @@ namespace Ex01_01
             sumOfOnes = sumOfOnesOrZeros(binaryNumber1, !v_CountZeros) +
                          sumOfOnesOrZeros(binaryNumber2, !v_CountZeros) +
                          sumOfOnesOrZeros(binaryNumber3, !v_CountZeros);
-            setAverageNumberOfOnesOrZeros(sumOfZeros, 3, out averageNumberOfZeros);
-            setAverageNumberOfOnesOrZeros(sumOfOnes, 3, out averageNumberOfOnes);
+            setAverageNumberOfOnesOrZeros(sumOfZeros, out averageNumberOfZeros);
+            setAverageNumberOfOnesOrZeros(sumOfOnes, out averageNumberOfOnes);
 
             statisticsMessage = string.Format(
 @"The decimal numbers in descending order corresponding to the binary numbers entered are: {0}
@@ -194,7 +194,7 @@ There are {6} numbers that are palindromes."
             return i_CountZeros ? zerosCounter : onesCounter;
         }
 
-        private static void setAverageNumberOfOnesOrZeros(int i_SumOfOnesOrZeros, int i_NumberOfInputs, out float o_AverageNumberOfOnesOrZeros)
+        private static void setAverageNumberOfOnesOrZeros(int i_SumOfOnesOrZeros, out float o_AverageNumberOfOnesOrZeros, int i_NumberOfInputs = 3)
         {
             o_AverageNumberOfOnesOrZeros = (float)i_SumOfOnesOrZeros / i_NumberOfInputs;
         }
