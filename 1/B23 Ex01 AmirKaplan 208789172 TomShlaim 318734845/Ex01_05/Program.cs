@@ -17,7 +17,7 @@ namespace Ex01_05
             float averageOfDigits;
 
             Console.WriteLine("Please enter a 6 digit integer.");
-            setToValidInput(out inputString, out inputInteger);
+            setValidUserInput(out inputString, out inputInteger);
 
             numOfDigitsBiggerThanLSD = getNumOfDigitsBiggerThanLSD(inputInteger);
             smallestDigit = getSmallestDigit(inputString);
@@ -39,7 +39,7 @@ The average of the digits in the number you entered is {3}."
             Console.ReadLine();
         }
 
-        private static void setToValidInput(out string o_CurrentInput, out int o_VaildInteger)
+        private static void setValidUserInput(out string o_CurrentInput, out int o_VaildInteger)
         {
             o_CurrentInput = Console.ReadLine();
             while (!isValidInput(o_CurrentInput, out o_VaildInteger))
@@ -52,6 +52,7 @@ The average of the digits in the number you entered is {3}."
         private static bool isValidInput(string i_CurrentInput, out int o_ValidInteger)
         {
             bool isValid = false;
+
             if (int.TryParse(i_CurrentInput, out o_ValidInteger) && (i_CurrentInput.Length == 7 || i_CurrentInput.Length == 6))
             {
                 isValid = true;    
@@ -63,6 +64,7 @@ The average of the digits in the number you entered is {3}."
         private static int getNumOfLeadingZeros(string i_inputString)
         {
             int i = 0, numOfLeadingZeros = 0;
+
             if (!char.IsDigit(i_inputString[i]))
             {
                 i++;
@@ -138,6 +140,7 @@ The average of the digits in the number you entered is {3}."
                 while (inputNumber != 0) 
                 {
                     int currentDigit = inputNumber % 10;
+
                     if (currentDigit % 3 == 0)
                     {
                         numOfMultiplesOfThree++;

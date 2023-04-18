@@ -21,9 +21,9 @@ namespace Ex01_01
             const bool v_CountZeros = true;
 
             Console.WriteLine("Please enter 3 binary numbers with 8 digits each:");
-            setToValidInput(out binaryNumber1);
-            setToValidInput(out binaryNumber2);
-            setToValidInput(out binaryNumber3);
+            setValidUserInput(out binaryNumber1);
+            setValidUserInput(out binaryNumber2);
+            setValidUserInput(out binaryNumber3);
 
             decimalNumber1 = convertBinaryToDecimal(binaryNumber1);
             decimalNumber2 = convertBinaryToDecimal(binaryNumber2);
@@ -64,7 +64,7 @@ There are {6} numbers that are palindromes."
             Console.ReadLine();
         }
 
-        private static void setToValidInput(out string o_CurrentUserInput)
+        private static void setValidUserInput(out string o_CurrentUserInput)
         {
             o_CurrentUserInput = Console.ReadLine();
             while (!isValidBinaryNumber(o_CurrentUserInput))
@@ -99,6 +99,7 @@ There are {6} numbers that are palindromes."
         private static void swap(ref float io_Num1, ref float io_Num2)
         {
             float temp = io_Num2;
+
             io_Num2 = io_Num1;
             io_Num1 = temp;
         }
@@ -106,6 +107,7 @@ There are {6} numbers that are palindromes."
         private static bool isValidBinaryNumber(string i_BinaryString)
         {
             bool validBinaryNumber = true;
+
             if (i_BinaryString.Length != 8)
             {
                 validBinaryNumber = false;
@@ -129,9 +131,11 @@ There are {6} numbers that are palindromes."
         {
             double decimalNumber = 0;
             double powerCounter = 0;
+
             for (int i = i_BinaryString.Length - 1; i >= 0; i--)
             {
                 double currentDigit = double.Parse(i_BinaryString[i].ToString());
+
                 if (powerCounter == 0 && currentDigit == 0)
                 {
                     powerCounter++;
