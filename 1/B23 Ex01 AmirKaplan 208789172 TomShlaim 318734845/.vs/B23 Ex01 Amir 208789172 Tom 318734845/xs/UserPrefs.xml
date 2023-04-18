@@ -1,25 +1,27 @@
 ﻿<Properties StartupConfiguration="{7B428B2E-7759-433F-9702-928911803741}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Ex01_01/Program.cs">
+  <MonoDevelop.Ide.ItemProperties.Ex01__01 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument=".gitignore">
     <Files>
-      <File FileName="Ex01_01/Program.cs" Line="12" Column="2" />
+      <File FileName=".gitignore" Line="5" Column="88" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="B23 Ex01 Amir 208789172 Tom 318734845" expanded="True">
-            <Node name="Ex01_01" expanded="True" />
+          <Node name="B23 Ex01 Amir 208789172 Tom 318734845" expanded="True" selected="True">
+            <Node name="Solution Items" expanded="True" />
             <Node name="Ex01_02" expanded="True" />
             <Node name="Ex01_03" expanded="True" />
+            <Node name="Ex01_04" expanded="True" />
+            <Node name="Ex01_05" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Ex01__01 PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
