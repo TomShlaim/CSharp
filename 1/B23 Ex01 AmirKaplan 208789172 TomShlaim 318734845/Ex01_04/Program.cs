@@ -86,6 +86,7 @@ namespace Ex01_04
                 if (!isCharAnEnglishLetter(inputStringCharacter))
                 {
                     isStringConsistedOfEnglishLettersOnly = false;
+                    break;
                 }
             }
 
@@ -117,7 +118,7 @@ namespace Ex01_04
         {
             int indexFromStringEnd = i_InputString.Length - 1 - i_IndexFromStringBegin;
 
-            if(i_IndexFromStringBegin == indexFromStringEnd || i_IndexFromStringBegin > indexFromStringEnd)
+            if(i_IndexFromStringBegin >= indexFromStringEnd)
             {
                 return true;
             }

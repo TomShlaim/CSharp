@@ -7,6 +7,7 @@ namespace Ex01_03
         public static void Main()
         {
             printAdvancedDiamond();
+            System.Console.ReadLine();
         }
         private static void printAdvancedDiamond()
         {
