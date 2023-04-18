@@ -32,11 +32,6 @@ namespace Ex01_03
                 }
             }
 
-            if(diamondHeightNumber % 2 == 0)
-            {
-                diamondHeightNumber += 1;
-            }
-
             System.Console.WriteLine("Here is your diamond : ");
             Ex01_02.Program.printDiamond(diamondHeightNumber);
         }
