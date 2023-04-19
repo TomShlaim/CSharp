@@ -1,0 +1,8 @@
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\bin\Debug\Ex01_01.exe.config
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\bin\Debug\Ex01_01.exe
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\bin\Debug\Ex01_01.pdb
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\obj\Debug\Ex01_01.csproj.AssemblyReference.cache
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\obj\Debug\Ex01_01.csproj.SuggestedBindingRedirects.cache
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\obj\Debug\Ex01_01.csproj.CoreCompileInputs.cache
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\obj\Debug\Ex01_01.exe
+C:\Users\amirkaplan\source\repos\B23 Ex01 AmirKaplan 208789172 TomShlaim 318734845\Ex01_01\obj\Debug\Ex01_01.pdb
