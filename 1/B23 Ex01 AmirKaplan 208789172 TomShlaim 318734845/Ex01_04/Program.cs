@@ -8,6 +8,8 @@ namespace Ex01_04
         public static void Main()
         {
             diagnoseString();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
         private static void diagnoseString()
         {
@@ -15,8 +17,8 @@ namespace Ex01_04
 
             while (!isGoodInput)
             {
-                System.Console.WriteLine("Please enter a string :");
-                string inputString = System.Console.ReadLine();
+                Console.WriteLine("Please enter a 6 characters string:");
+                string inputString = Console.ReadLine();
 
                 isGoodInput = validateInputString(inputString, 6);
 
@@ -64,7 +66,7 @@ namespace Ex01_04
                 if(!isStringConsistedOfEnglishLetters(i_InputString) && !isStringANumber(i_InputString))
                 {
                     isValidString = false;
-                    inputErrors.AppendLine("Input string must be consisted of digits or english letters only!");
+                    inputErrors.AppendLine("Input string must be consisted of digits only or english letters only!");
                 }
             }
 
@@ -110,25 +112,26 @@ namespace Ex01_04
 
             return isEnglishLetter;
         }
+       
         private static bool isPalindrome(string i_InputString)
         {
-            return isPalindromeRecursively(i_InputString, 0);
-        }
-        private static bool isPalindromeRecursively(string i_InputString, int i_IndexFromStringBegin)
-        {
-            int indexFromStringEnd = i_InputString.Length - 1 - i_IndexFromStringBegin;
+            bool inputIsPalindrome = true;
 
-            if(i_IndexFromStringBegin >= indexFromStringEnd)
+            if (!string.IsNullOrEmpty(i_InputString) && i_InputString.Length > 1)
             {
-                return true;
-            }
-            if (i_InputString[i_IndexFromStringBegin] != i_InputString[indexFromStringEnd])
-            {
-                return false;
+                if (i_InputString[0] != i_InputString[i_InputString.Length - 1])
+                {
+                    inputIsPalindrome = false;
+                }
+                else
+                {
+                    inputIsPalindrome = isPalindrome(i_InputString.Substring(1, i_InputString.Length - 2));
+                }
             }
 
-            return isPalindromeRecursively(i_InputString, i_IndexFromStringBegin + 1);
+            return inputIsPalindrome;
         }
+
         private static bool isMultipleOfThree(int i_DecimalNumber)
         {
             return i_DecimalNumber % 3 == 0;

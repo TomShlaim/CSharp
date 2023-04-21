@@ -7,6 +7,8 @@ namespace Ex01_01
         public static void Main()
         {
             binaryStringsStatisticsProgram();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
         
         private static void binaryStringsStatisticsProgram()
@@ -24,11 +26,9 @@ namespace Ex01_01
             setValidUserInput(out binaryNumber1);
             setValidUserInput(out binaryNumber2);
             setValidUserInput(out binaryNumber3);
-
             decimalNumber1 = convertBinaryToDecimal(binaryNumber1);
             decimalNumber2 = convertBinaryToDecimal(binaryNumber2);
             decimalNumber3 = convertBinaryToDecimal(binaryNumber3);
-
             setDecimalNumbersInDescendingOrder(decimalNumber1, decimalNumber2, decimalNumber3, out decimalNumbersInDescendingOrder);
             setNumberOfPowersOfTwo(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfPowersOfTwo);
             setNumberOfMultiplesOfFour(decimalNumber1, decimalNumber2, decimalNumber3, out numberOfMultiplesOfFour);
@@ -42,7 +42,6 @@ namespace Ex01_01
                          sumOfOnesOrZeros(binaryNumber3, !v_CountZeros);
             setAverageNumberOfOnesOrZeros(sumOfZeros, out averageNumberOfZeros);
             setAverageNumberOfOnesOrZeros(sumOfOnes, out averageNumberOfOnes);
-
             statisticsMessage = string.Format(
 @"The decimal numbers in descending order corresponding to the binary numbers entered are: {0}
 There are {1} numbers that are a power of two.
@@ -58,10 +57,7 @@ There are {6} numbers that are palindromes."
                 , numberOfMultiplesOfFour
                 , numberOfStrictlyDescendingByDigit
                 , numberOfPalindromes);
-
             Console.WriteLine(statisticsMessage);
-            Console.WriteLine("Please press 'Enter' to exit...");
-            Console.ReadLine();
         }
 
         private static void setValidUserInput(out string o_CurrentUserInput)

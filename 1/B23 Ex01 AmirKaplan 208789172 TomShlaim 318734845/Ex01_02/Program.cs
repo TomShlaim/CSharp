@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace Ex01_02
 {
@@ -7,7 +8,8 @@ namespace Ex01_02
         public static void Main()
         {
             printDiamond(9);
-            System.Console.ReadLine();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
         public static void printDiamond(int i_DiamondHeight)
         {
@@ -31,18 +33,18 @@ namespace Ex01_02
 
             if (i_DiamondHeight == 1)
             {
-                System.Console.WriteLine(diamondRow);
+                Console.WriteLine(diamondRow);
                 return;
             }
 
             printUpperDiamond(i_DiamondHeight - 2, i_NumberOfSpaces + 1);
-            System.Console.WriteLine(diamondRow);
+            Console.WriteLine(diamondRow);
         }
         private static void printLowerDiamond(int i_DiamondHeight, int i_NumberOfSpaces)
         {
             StringBuilder diamondRow = getDiamondRow(i_DiamondHeight, i_NumberOfSpaces);
 
-            System.Console.WriteLine(diamondRow);
+            Console.WriteLine(diamondRow);
             if (i_DiamondHeight == 1)
             {
                 return;

@@ -1,4 +1,5 @@
-﻿using Ex01_02;
+﻿using System;
+using Ex01_02;
 
 namespace Ex01_03
 {
@@ -7,7 +8,8 @@ namespace Ex01_03
         public static void Main()
         {
             printAdvancedDiamond();
-            System.Console.ReadLine();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
         private static void printAdvancedDiamond()
         {
@@ -16,23 +18,23 @@ namespace Ex01_03
 
             while (!isGoodInput)
             {
-                System.Console.WriteLine("Please enter the diamond height you would like to build :");
+                Console.WriteLine("Please enter the diamond height you would like to build :");
                 string diamondHeightString = System.Console.ReadLine();
 
                 isGoodInput = int.TryParse(diamondHeightString, out diamondHeightNumber);
 
                 if (!isGoodInput)
                 {
-                    System.Console.WriteLine("Invalid number! Please try again.");
+                    Console.WriteLine("Invalid number! Please try again.");
                 }
                 if(diamondHeightNumber < 0)
                 {
-                    System.Console.WriteLine("The diamond height can't be negative! Please try again.");
+                    Console.WriteLine("The diamond height can't be negative! Please try again.");
                     isGoodInput = false;
                 }
             }
 
-            System.Console.WriteLine("Here is your diamond : ");
+            Console.WriteLine("Here is your diamond : ");
             Ex01_02.Program.printDiamond(diamondHeightNumber);
         }
     }

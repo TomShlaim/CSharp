@@ -8,6 +8,8 @@ namespace Ex01_05
         public static void Main()
         {
             numberStatisticsProgram();
+            Console.WriteLine("Please press 'Enter' to exit...");
+            Console.ReadLine();
         }
 
         private static void numberStatisticsProgram()
@@ -18,12 +20,10 @@ namespace Ex01_05
 
             Console.WriteLine("Please enter a 6 digit integer.");
             setValidUserInput(out inputString, out inputInteger);
-
             numOfDigitsBiggerThanLSD = getNumOfDigitsBiggerThanLSD(inputInteger);
             smallestDigit = getSmallestDigit(inputString);
             numOfMultiplesOfThree = getNumOfMultiplesOfThree(inputString);
             averageOfDigits = getAverageOfDigits(inputInteger);
-
             statisticsMessage = string.Format(
 @"The integer you entered has {0} digits that are bigger than the least significant digit.
 The smallest digit in the integer you entered is {1}.
@@ -33,10 +33,7 @@ The average of the digits in the number you entered is {3}."
                , smallestDigit
                , numOfMultiplesOfThree
                , averageOfDigits);
-
             Console.WriteLine(statisticsMessage);
-            Console.WriteLine("Please press 'Enter' to exit...");
-            Console.ReadLine();
         }
 
         private static void setValidUserInput(out string o_CurrentInput, out int o_VaildInteger)
