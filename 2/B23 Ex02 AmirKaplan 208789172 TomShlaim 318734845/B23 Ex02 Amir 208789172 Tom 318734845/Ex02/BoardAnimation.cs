@@ -66,9 +66,9 @@ namespace Ex02
         }
         private static StringBuilder getLineSeparator(int i_boardNumOfColumns)
         {
-            StringBuilder lineSeparator = new StringBuilder(new string(' ', k_cellWidthSize - 3));
+            StringBuilder lineSeparator = new StringBuilder(new string(' ', k_cellWidthSize - 4));
 
-            lineSeparator.Append(k_lineSeparator, (i_boardNumOfColumns + 1) * k_cellWidthSize);
+            lineSeparator.Append(k_lineSeparator, (i_boardNumOfColumns) * (k_cellWidthSize + 1) + 1);
 
             return lineSeparator;
         }

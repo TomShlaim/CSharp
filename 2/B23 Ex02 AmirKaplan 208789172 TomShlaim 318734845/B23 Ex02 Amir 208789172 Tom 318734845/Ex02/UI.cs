@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ex02
 {
@@ -81,7 +82,7 @@ Those are the game instructions :
         {
 
         }
-        public static void displayTieGameMessage(Object[] players)
+        public static void displayTieGameMessage(List<Object> players)
         {
 
         }

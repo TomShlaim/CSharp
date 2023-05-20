@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 
 namespace Ex02
@@ -45,7 +46,120 @@ namespace Ex02
                 }
             }
         }
-        private static int parseCellLocation(string i_location, bool i_getRowIndex)
+        public bool hasSequence()
+        {
+            return getSequenceSymbol() != BoardSymbol.Blank;
+        }
+        public BoardSymbol getSequenceSymbol()
+        {
+            BoardSymbol sequenceSymbol = BoardSymbol.Blank;
+            int boardSize = m_boardMatrix.GetLength(0);
+
+            if (hasSequenceInPrimaryDiagonal() > -1)
+            {
+                sequenceSymbol = m_boardMatrix[0, 0];
+            }
+            else if (hasSequenceInSecondaryDiagonal() > -1)
+            {
+                sequenceSymbol = m_boardMatrix[0, boardSize - 1];
+            }
+            else
+            {
+                int rowSequenceIndex = hasSequenceInRow();
+
+                if(rowSequenceIndex > -1)
+                {
+                    sequenceSymbol = m_boardMatrix[rowSequenceIndex, 0];
+                }
+                else
+                {
+                    int columnSequenceIndex = hasSequenceInColumn();
+
+                    sequenceSymbol = m_boardMatrix[0, columnSequenceIndex];
+                }
+            }
+
+            return sequenceSymbol;
+        }
+        private int hasSequenceInPrimaryDiagonal()
+        {
+            int hasSequence = 1;
+            int boardSize = m_boardMatrix.GetLength(0);
+
+            for (int i = 0; i < boardSize - 1; i++)
+            {
+                if(m_boardMatrix[i, i] != m_boardMatrix[i + 1, i + 1])
+                {
+                    hasSequence = -1;
+                    break;
+                }
+            }
+
+            return hasSequence;
+        }
+        private int hasSequenceInSecondaryDiagonal()
+        {
+            int hasSequence =-1;
+            int boardSize = m_boardMatrix.GetLength(0);
+
+            for (int i = 0; i < boardSize - 1; i++)
+            {
+                if(m_boardMatrix[i, boardSize - 1 - i] != m_boardMatrix[i + 1, boardSize - 2 - i])
+                {
+                    hasSequence = -1;
+                    break;
+                }
+            }
+
+            return hasSequence;
+        }
+        private int hasSequenceInRow()
+        {
+            int hasSequence = -1;
+            int boardSize = m_boardMatrix.GetLength(0);
+
+            for (int i = 0; i < boardSize; i++)
+            {
+                bool hasSequenceInSpecificRow = true;
+                for (int j = 0; j < boardSize - 1; j++)
+                {
+                    if(m_boardMatrix[i, j] != m_boardMatrix[i, j + 1])
+                    {
+                        hasSequenceInSpecificRow = false;
+                    }
+                }
+                if(hasSequenceInSpecificRow)
+                {
+                    hasSequence = i;
+                }
+            }
+
+            return hasSequence;
+        }
+        private int hasSequenceInColumn()
+        {
+            int hasSequence = -1;
+            int boardSize = m_boardMatrix.GetLength(0);
+
+            for (int j = 0; j < boardSize; j++)
+            {
+                bool hasSequenceInSpecificColumn = true;
+                for (int i = 0; i < boardSize - 1; i++)
+                {
+                    if (m_boardMatrix[i, j] != m_boardMatrix[i + 1, j])
+                    {
+                        hasSequenceInSpecificColumn = false;
+                    }
+                }
+                if (hasSequenceInSpecificColumn)
+                {
+                    hasSequence = j;
+                }
+            }
+
+            return hasSequence;
+        }
+        public static int parseCellLocation(string i_location, bool i_getRowIndex)
         {
             List<string> locationIndexes = i_location.Split(',').ToList<string>();
 

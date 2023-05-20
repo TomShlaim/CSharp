@@ -6,11 +6,8 @@ namespace Ex02
     {
         public static void Main(string[] args) 
         {
-            Board board = new Board(5);
+            Board board = new Board(3);
             BoardAnimation.updateBoardDraw(board);
-            UI.queryBoardSize();
-            UI.displayGameInstructions();
-            UI.queryBoardSize();
         }
     }
 }
