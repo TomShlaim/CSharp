@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ex02
 {
@@ -7,16 +9,10 @@ namespace Ex02
         private BoardSymbol[,] m_boardMatrix;
         private int m_numOfOccupuiedCells = 0;
 
-        Board(int i_boardSize)
+        public Board(int i_boardSize)
         {
             m_boardMatrix = new BoardSymbol[i_boardSize, i_boardSize];
-            for (int i = 0; i < m_boardMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < m_boardMatrix.GetLength(1); j++)
-                {
-                    m_boardMatrix[i, j] = BoardSymbol.Blank;
-                }
-            }
+            resetMatrix();
         }
         public BoardSymbol[,] BoardMatrix
         {
@@ -31,13 +27,29 @@ namespace Ex02
         }
         public void updateBoard(int i_rowIndex, int i_columnIndex, BoardSymbol i_boardSymbol)
         {
-
+            m_boardMatrix[i_rowIndex,i_columnIndex] = i_boardSymbol;
+            m_numOfOccupuiedCells++;
         }
         public void resetBoard()
         {
-
+            resetMatrix();
+            m_numOfOccupuiedCells = 0;
         }
-        //parseLocation?
+        private void resetMatrix()
+        {
+            for (int i = 0; i < m_boardMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < m_boardMatrix.GetLength(1); j++)
+                {
+                    m_boardMatrix[i, j] = BoardSymbol.Blank;
+                }
+            }
+        }
+        private static int parseCellLocation(string i_location, bool i_getRowIndex)
+        {
+            List<string> locationIndexes = i_location.Split(',').ToList<string>();
 
+            return i_getRowIndex ? int.Parse(locationIndexes[0]) : int.Parse(locationIndexes[1]);
+        }
     }
 }

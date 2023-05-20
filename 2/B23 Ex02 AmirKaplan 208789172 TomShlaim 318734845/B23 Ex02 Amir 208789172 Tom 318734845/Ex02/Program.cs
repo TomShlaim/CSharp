@@ -6,7 +6,8 @@ namespace Ex02
     {
         public static void Main(string[] args) 
         {
-            BoardAnimation.updateBoardDraw();
+            Board board = new Board(5);
+            BoardAnimation.updateBoardDraw(board);
         }
     }
 }
