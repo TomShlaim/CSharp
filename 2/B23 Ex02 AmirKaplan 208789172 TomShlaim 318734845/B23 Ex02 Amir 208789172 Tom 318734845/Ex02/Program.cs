@@ -8,6 +8,9 @@ namespace Ex02
         {
             Board board = new Board(5);
             BoardAnimation.updateBoardDraw(board);
+            UI.queryBoardSize();
+            UI.displayGameInstructions();
+            UI.queryBoardSize();
         }
     }
 }
