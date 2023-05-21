@@ -2,5 +2,9 @@
 {
     public enum BoardSymbol
     {
+        Ex,
+        Circle,
+        Blank
     }
+
 }
