@@ -1,170 +1,176 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Ex02
 {
     internal class Board
     {
 
-        private BoardSymbol[,] m_boardMatrix;
-        private int m_numOfOccupuiedCells = 0;
+        private eBoardSymbol[,] m_BoardMatrix;
+        private LinkedList<Cell> m_EmptyCells;
 
-        public Board(int i_boardSize)
+        public Board(int i_BoardSize)
         {
-            m_boardMatrix = new BoardSymbol[i_boardSize, i_boardSize];
-            resetMatrix();
+            m_BoardMatrix = new eBoardSymbol[i_BoardSize, i_BoardSize];
+            m_EmptyCells = new LinkedList<Cell>();
+            resetMatrixAndEmptyCells();
         }
-        public BoardSymbol[,] BoardMatrix
+        public eBoardSymbol[,] BoardMatrix
         {
             get
             {
-                return m_boardMatrix;
+                return m_BoardMatrix;
+            }
+        }
+        public LinkedList<Cell> EmptyCells
+        {
+            get
+            {
+                return m_EmptyCells;
             }
         }
         public bool isFullBoard()
         {
-            return m_numOfOccupuiedCells == m_boardMatrix.GetLength(0) * m_boardMatrix.GetLength(1);
+            int boardSize = m_BoardMatrix.GetLength(0);
+            int numOfOccupuiedCells = boardSize * boardSize - m_EmptyCells.Count;
+
+            return numOfOccupuiedCells == boardSize * boardSize;
         }
-        public void updateBoard(int i_rowIndex, int i_columnIndex, BoardSymbol i_boardSymbol)
+        public void updateBoard(Cell i_Cell, eBoardSymbol i_BoardSymbol)
         {
-            m_boardMatrix[i_rowIndex,i_columnIndex] = i_boardSymbol;
-            m_numOfOccupuiedCells++;
+            int rowIndex = i_Cell.Row, columnIndex = i_Cell.Column;
+
+            m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
+            m_EmptyCells.Remove(new Cell(rowIndex, columnIndex));
         }
         public void resetBoard()
         {
-            resetMatrix();
-            m_numOfOccupuiedCells = 0;
+            resetMatrixAndEmptyCells();
         }
-        private void resetMatrix()
+        private void resetMatrixAndEmptyCells()
         {
-            for (int i = 0; i < m_boardMatrix.GetLength(0); i++)
+            int boardSize = m_BoardMatrix.GetLength(0);
+
+            for (int i = 0; i < boardSize; i++)
             {
-                for (int j = 0; j < m_boardMatrix.GetLength(1); j++)
+                for (int j = 0; j < boardSize; j++)
                 {
-                    m_boardMatrix[i, j] = BoardSymbol.Blank;
+                    m_BoardMatrix[i, j] = eBoardSymbol.Blank;
+                    m_EmptyCells.AddLast(new Cell(i, j));
                 }
             }
         }
         public bool hasSequence()
         {
-            return getSequenceSymbol() != BoardSymbol.Blank;
+            return getSequenceSymbol() != eBoardSymbol.Blank;
         }
-        public BoardSymbol getSequenceSymbol()
+        public eBoardSymbol getSequenceSymbol()
         {
-            BoardSymbol sequenceSymbol = BoardSymbol.Blank;
-            int boardSize = m_boardMatrix.GetLength(0);
+            eBoardSymbol sequenceSymbol = eBoardSymbol.Blank;
+            int boardSize = m_BoardMatrix.GetLength(0);
 
-            if (hasSequenceInPrimaryDiagonal() > -1)
+            if (indexOfSequenceInPrimaryDiagonal() > -1)
             {
-                sequenceSymbol = m_boardMatrix[0, 0];
+                sequenceSymbol = m_BoardMatrix[0, 0];
             }
-            else if (hasSequenceInSecondaryDiagonal() > -1)
+            else if (indexOfSequenceInSecondaryDiagonal() > -1)
             {
-                sequenceSymbol = m_boardMatrix[0, boardSize - 1];
+                sequenceSymbol = m_BoardMatrix[0, boardSize - 1];
             }
             else
             {
-                int rowSequenceIndex = hasSequenceInRow();
+                int rowSequenceIndex = indexOfSequenceInRow();
 
                 if(rowSequenceIndex > -1)
                 {
-                    sequenceSymbol = m_boardMatrix[rowSequenceIndex, 0];
+                    sequenceSymbol = m_BoardMatrix[rowSequenceIndex, 0];
                 }
                 else
                 {
-                    int columnSequenceIndex = hasSequenceInColumn();
+                    int columnSequenceIndex = indexOfSequenceInColumn();
 
-                    sequenceSymbol = m_boardMatrix[0, columnSequenceIndex];
+                    sequenceSymbol = m_BoardMatrix[0, columnSequenceIndex];
                 }
             }
 
             return sequenceSymbol;
         }
-        private int hasSequenceInPrimaryDiagonal()
+        private int indexOfSequenceInPrimaryDiagonal()
         {
-            int hasSequence = 1;
-            int boardSize = m_boardMatrix.GetLength(0);
+            int indexOfSequence = -1;
+            int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int i = 0; i < boardSize - 1; i++)
             {
-                if(m_boardMatrix[i, i] != m_boardMatrix[i + 1, i + 1])
+                if(m_BoardMatrix[i, i] != m_BoardMatrix[i + 1, i + 1])
                 {
-                    hasSequence = -1;
+                    indexOfSequence = -1;
                     break;
                 }
             }
 
-            return hasSequence;
+            return indexOfSequence;
         }
-        private int hasSequenceInSecondaryDiagonal()
+        private int indexOfSequenceInSecondaryDiagonal()
         {
-            int hasSequence =-1;
-            int boardSize = m_boardMatrix.GetLength(0);
+            int indexOfSequence = -1;
+            int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int i = 0; i < boardSize - 1; i++)
             {
-                if(m_boardMatrix[i, boardSize - 1 - i] != m_boardMatrix[i + 1, boardSize - 2 - i])
+                if(m_BoardMatrix[i, boardSize - 1 - i] != m_BoardMatrix[i + 1, boardSize - 2 - i])
                 {
-                    hasSequence = -1;
+                    indexOfSequence = -1;
                     break;
                 }
             }
 
-            return hasSequence;
+            return indexOfSequence;
         }
-        private int hasSequenceInRow()
+        private int indexOfSequenceInRow()
         {
-            int hasSequence = -1;
-            int boardSize = m_boardMatrix.GetLength(0);
+            int indexOfSequence = -1;
+            int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int i = 0; i < boardSize; i++)
             {
-                bool hasSequenceInSpecificRow = true;
+                bool indexOfSequenceInSpecificRow = true;
                 for (int j = 0; j < boardSize - 1; j++)
                 {
-                    if(m_boardMatrix[i, j] != m_boardMatrix[i, j + 1])
+                    if(m_BoardMatrix[i, j] != m_BoardMatrix[i, j + 1])
                     {
-                        hasSequenceInSpecificRow = false;
+                        indexOfSequenceInSpecificRow = false;
                     }
                 }
-                if(hasSequenceInSpecificRow)
+                if(indexOfSequenceInSpecificRow)
                 {
-                    hasSequence = i;
+                    indexOfSequence = i;
                 }
             }
 
-            return hasSequence;
+            return indexOfSequence;
         }
-        private int hasSequenceInColumn()
+        private int indexOfSequenceInColumn()
         {
-            int hasSequence = -1;
-            int boardSize = m_boardMatrix.GetLength(0);
+            int indexOfSequence = -1;
+            int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int j = 0; j < boardSize; j++)
             {
-                bool hasSequenceInSpecificColumn = true;
+                bool indexOfSequenceInSpecificColumn = true;
                 for (int i = 0; i < boardSize - 1; i++)
                 {
-                    if (m_boardMatrix[i, j] != m_boardMatrix[i + 1, j])
+                    if (m_BoardMatrix[i, j] != m_BoardMatrix[i + 1, j])
                     {
-                        hasSequenceInSpecificColumn = false;
+                        indexOfSequenceInSpecificColumn = false;
                     }
                 }
-                if (hasSequenceInSpecificColumn)
+                if (indexOfSequenceInSpecificColumn)
                 {
-                    hasSequence = j;
+                    indexOfSequence = j;
                 }
             }
 
-            return hasSequence;
-        }
-        public static int parseCellLocation(string i_location, bool i_getRowIndex)
-        {
-            List<string> locationIndexes = i_location.Split(',').ToList<string>();
-
-            return i_getRowIndex ? int.Parse(locationIndexes[0]) : int.Parse(locationIndexes[1]);
+            return indexOfSequence;
         }
     }
 }

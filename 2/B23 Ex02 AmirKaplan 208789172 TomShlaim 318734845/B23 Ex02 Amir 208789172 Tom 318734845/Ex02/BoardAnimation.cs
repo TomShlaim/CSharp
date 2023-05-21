@@ -6,16 +6,16 @@ namespace Ex02
 {
     internal class BoardAnimation
     {
-        private const int k_cellWidthSize = 5;
-        private const char k_cellSeparator = '|';
-        private const char k_lineSeparator = '=';
+        private const int k_CellWidthSize = 5;
+        private const char k_CellSeparator = '|';
+        private const char k_LineSeparator = '=';
         private static void clearBoard()
         {
             Ex02.ConsoleUtils.Screen.Clear();
         }
-        private static void drawBoard(Board i_board)
+        private static void drawBoard(Board i_Board)
         {
-            BoardSymbol[,] boardMatrix = i_board.BoardMatrix;
+            eBoardSymbol[,] boardMatrix = i_Board.BoardMatrix;
             StringBuilder boardAnimation = new StringBuilder();
             
             boardAnimation.Append(getBoardColumnsHeader(boardMatrix));
@@ -23,15 +23,15 @@ namespace Ex02
             boardAnimation.Append(getBoardRows(boardMatrix));
             Console.WriteLine(boardAnimation);
         }
-        private static StringBuilder getBoardRows(BoardSymbol[,] i_boardMatrix)
+        private static StringBuilder getBoardRows(eBoardSymbol[,] i_BoardMatrix)
         {
-            int boardNumOfRows = i_boardMatrix.GetLength(0);
-            int boardNumOfColumns = i_boardMatrix.GetLength(1);
+            int boardNumOfRows = i_BoardMatrix.GetLength(0);
+            int boardNumOfColumns = i_BoardMatrix.GetLength(1);
             StringBuilder boardsRow = new StringBuilder();
 
             for (int i = 0; i < boardNumOfRows; i++)
             {
-                boardsRow.Append(getBoardRow(i_boardMatrix, i, boardNumOfColumns));
+                boardsRow.Append(getBoardRow(i_BoardMatrix, i, boardNumOfColumns));
                 boardsRow.AppendLine();
                 boardsRow.Append(getLineSeparator(boardNumOfColumns));
                 boardsRow.AppendLine();
@@ -39,56 +39,56 @@ namespace Ex02
 
             return boardsRow;
         }
-        private static StringBuilder getBoardRow(BoardSymbol[,] i_boardMatrix, int i_rowIndex, int i_boardNumOfColumns)
+        private static StringBuilder getBoardRow(eBoardSymbol[,] i_BoardMatrix, int i_RowIndex, int i_BoardNumOfColumns)
         {
-            StringBuilder boardRow = new StringBuilder((i_rowIndex + 1).ToString());
-            string spaceInCell = new string(' ', k_cellWidthSize);
+            StringBuilder boardRow = new StringBuilder((i_RowIndex + 1).ToString());
+            string spaceInCell = new string(' ', k_CellWidthSize);
 
-            for (int j = 0; j < i_boardNumOfColumns; j++)
+            for (int j = 0; j < i_BoardNumOfColumns; j++)
             {
-                switch (i_boardMatrix[i_rowIndex,j])
+                switch (i_BoardMatrix[i_RowIndex,j])
                 {
-                    case BoardSymbol.Blank:
-                        boardRow.AppendFormat("{0}{1}", k_cellSeparator, new String(' ', k_cellWidthSize));
+                    case eBoardSymbol.Blank:
+                        boardRow.AppendFormat("{0}{1}", k_CellSeparator, new String(' ', k_CellWidthSize));
                         break;
-                    case BoardSymbol.Ex:
-                        boardRow.AppendFormat("{0}{1}", k_cellSeparator, String.Format("{0}{1}{2}", spaceInCell, 'X', spaceInCell));
+                    case eBoardSymbol.Ex:
+                        boardRow.AppendFormat("{0}{1}", k_CellSeparator, String.Format("{0}{1}{2}", spaceInCell, 'X', spaceInCell));
                         break;
-                    case BoardSymbol.Circle:
-                        boardRow.AppendFormat("{0}{1}", k_cellSeparator, String.Format("{0}{1}{2}", spaceInCell, 'O', spaceInCell));
+                    case eBoardSymbol.Circle:
+                        boardRow.AppendFormat("{0}{1}", k_CellSeparator, String.Format("{0}{1}{2}", spaceInCell, 'O', spaceInCell));
                         break;
                 }
             }
 
-            boardRow.Append(k_cellSeparator);
+            boardRow.Append(k_CellSeparator);
 
             return boardRow;
         }
-        private static StringBuilder getLineSeparator(int i_boardNumOfColumns)
+        private static StringBuilder getLineSeparator(int i_BoardNumOfColumns)
         {
-            StringBuilder lineSeparator = new StringBuilder(new string(' ', k_cellWidthSize - 4));
+            StringBuilder lineSeparator = new StringBuilder(new string(' ', k_CellWidthSize - 4));
 
-            lineSeparator.Append(k_lineSeparator, (i_boardNumOfColumns) * (k_cellWidthSize + 1) + 1);
+            lineSeparator.Append(k_LineSeparator, (i_BoardNumOfColumns) * (k_CellWidthSize + 1) + 1);
 
             return lineSeparator;
         }
-        private static StringBuilder getBoardColumnsHeader(BoardSymbol[,] i_boardMatrix) 
+        private static StringBuilder getBoardColumnsHeader(eBoardSymbol[,] i_BoardMatrix) 
         {
-            int boardNumOfColumns = i_boardMatrix.GetLength(1);
+            int boardNumOfColumns = i_BoardMatrix.GetLength(1);
 
-            StringBuilder columnsHeader = new StringBuilder(new string(' ', k_cellWidthSize - 2));
+            StringBuilder columnsHeader = new StringBuilder(new string(' ', k_CellWidthSize - 2));
 
             for (int i = 0; i < boardNumOfColumns; i++)
             {
-                columnsHeader.AppendFormat("{0}{1}", i + 1, new String(' ', k_cellWidthSize));
+                columnsHeader.AppendFormat("{0}{1}", i + 1, new String(' ', k_CellWidthSize));
             }
 
             return columnsHeader;
         }
-        public static void updateBoardDraw(Board i_board) 
+        public static void updateBoardDraw(Board i_Board) 
         {
             clearBoard();
-            drawBoard(i_board);
+            drawBoard(i_Board);
         }
 
     }

@@ -1,96 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ex02
 {
     internal class Game
     {
-        private Board m_board;
-        private List<Object> m_players;
-        int m_currentTurnPlayerIndex = 0;
+        private Board m_Board;
+        private List<Player> m_Players;
+        int m_CurrentTurnPlayerIndex = 0;
 
-        public Game(Board i_board, List<Object> i_players)
+        public Game(Board i_Board, List<Player> i_Players)
         {
-            m_board = i_board;
-            m_players = i_players;
+            m_Board = i_Board;
+            m_Players = i_Players;
         }
         public bool isGameOver()
         {
-            return isGameTied() || m_board.hasSequence() ? true : false;
+            return isGameTied() || m_Board.hasSequence() ? true : false;
         }
         private bool isGameTied()
         {
-            return m_board.isFullBoard();
+            return m_Board.isFullBoard();
         }
-        public object getWinningPlayer()
+        public void playGame()
         {
-            BoardSymbol losingSymbol = m_board.getSequenceSymbol();
-            object winningPlayer = null;
-
-            foreach(Object player in m_players)
-            {
-                if(player.GetType() == typeof(PersonPlayer))
-                {
-                    if (((PersonPlayer)player).Symbol != losingSymbol)
-                    {
-                        winningPlayer = player;
-                    }
-                }
-                else
-                {
-                    if (((ComputerPlayer)player).Symbol != losingSymbol)
-                    {
-                        winningPlayer = player;
-                    }
-                }
-            }
-            return winningPlayer;
-        }
-        public void startGame()
-        {
-            BoardAnimation.updateBoardDraw(m_board);
+            BoardAnimation.updateBoardDraw(m_Board);
             
             while(!isGameOver())
             {
-                string location = "";
-                Object currentPlayer = m_players[m_currentTurnPlayerIndex];
-                if (currentPlayer.GetType() == typeof(PersonPlayer))
-                {
-                    UI.queryNextCellLocation();
-                    GameValidator.setValidLocation(out location, m_board);
-                    
-                }
-                else
-                {
-                    location = ((ComputerPlayer)currentPlayer).chooseLocation();
-                    ((ComputerPlayer)currentPlayer).removeLocationFromFreeLocations(location);
-                }
+                Cell playerNextCell = getPlayerNextCell();
 
-                int locationRowIndex = Board.parseCellLocation(location, true);
-                int locationColumnIndex = Board.parseCellLocation(location, false);
-
-                //m_board.updateBoard(locationRowIndex, locationColumnIndex);
-                BoardAnimation.updateBoardDraw(m_board);
-                m_currentTurnPlayerIndex = 1 - m_currentTurnPlayerIndex;
+                m_Board.updateBoard(playerNextCell, m_Players[m_CurrentTurnPlayerIndex].Symbol);
+                BoardAnimation.updateBoardDraw(m_Board);
+                m_CurrentTurnPlayerIndex = getNextTurnPlayer();
             }
             if(isGameTied())
             {
-                UI.displayTieGameMessage(m_players);
+                UI.displayGameFinishedMessage(m_Players, true);
             }
             else
             {
-                UI.displayRematchMessage();
-                string doRematch = Console.ReadLine();
-                //Game validator logic here;
-                //If retry else quit?
-                m_board.resetBoard();
-                startGame();
+                List<Player> winningPlayers = getWinningPlayers();
+                updateWinningPlayers(winningPlayers);
+                UI.displayGameFinishedMessage(getWinningPlayers(), false);
+            }
+            rematchOrQuitGame();
+        }
+        private void rematchOrQuitGame()
+        {
+            UI.displayRematchMessage();
+
+            string personPlayerChosenAction = Console.ReadLine();
+
+            while(!GameValidator.isValidRematchInput(personPlayerChosenAction))
+            {
+                personPlayerChosenAction = Console.ReadLine();
+            }
+
+            if(personPlayerChosenAction == "Y")
+            {
+                m_Board.resetBoard();
+                playGame();
+            }
+            else
+            {
+                quitGame();
             }
         }
-        public void quitGame()
+        private void quitGame()
         {
             UI.displayQuitMessage();
             Console.ReadLine();
+        }
+        private List<Player> getWinningPlayers()
+        {
+            List<Player> winningPlayers = null;
+            eBoardSymbol losingSymbol = m_Board.getSequenceSymbol();
+
+            foreach (Player player in m_Players)
+            {
+                if (player.Symbol != losingSymbol)
+                {
+                    winningPlayers.Add(player);
+                }
+            }
+            return winningPlayers;
+        }
+        private void updateWinningPlayers(List<Player> i_WinningPlayers)
+        {
+            foreach (Player player in i_WinningPlayers)
+            {
+                player.Score += 1;
+            }
+        }
+        private Cell getPlayerNextCell()
+        {
+            Player currentPlayingPlayer = m_Players[m_CurrentTurnPlayerIndex];
+            Cell nextCell;
+
+            if(currentPlayingPlayer.IsComputer)
+            {
+                nextCell = getComputerPlayerNextCell();
+            }
+            else
+            {
+                UI.queryNextCellCell();
+                nextCell = getPersonPlayerNextCell();
+            }
+
+            return nextCell;
+        }
+        private Cell getPersonPlayerNextCell()
+        {
+            string personPlayerChosenCell = Console.ReadLine();
+
+            while (!GameValidator.isValidCell(personPlayerChosenCell, m_Board))
+            {
+                personPlayerChosenCell = Console.ReadLine();
+            }
+
+            return new Cell(personPlayerChosenCell);
+        }
+        private Cell getComputerPlayerNextCell()
+        {
+            LinkedList<Cell> boardEmptyCells = m_Board.EmptyCells;
+            Random m_RandomLocationGenerator = new Random();
+            int randomIndex = m_RandomLocationGenerator.Next(m_Board.EmptyCells.Count);
+
+            return boardEmptyCells.ElementAt(randomIndex);
+        }
+        private int getNextTurnPlayer()
+        {
+            return (m_CurrentTurnPlayerIndex + 1) % m_Players.Count;
         }
     }
 }

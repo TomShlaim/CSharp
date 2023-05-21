@@ -1,6 +1,6 @@
 ﻿namespace Ex02
 {
-    public enum BoardSymbol
+    public enum eBoardSymbol
     {
         Ex,
         Circle,

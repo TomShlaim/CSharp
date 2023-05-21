@@ -34,15 +34,17 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="BoardAnimation.cs" />
     <Compile Include="BoardSymbol.cs" />
+    <Compile Include="Cell.cs" />
     <Compile Include="ComputerPlayer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameValidator.cs" />
-    <Compile Include="PersonPlayer.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UI.cs" />
   </ItemGroup>
@@ -50,6 +52,7 @@
     <Reference Include="Ex02.ConsoleUtils">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Temp\Ex02.ConsoleUtils.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
