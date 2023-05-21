@@ -42,7 +42,7 @@ namespace Ex02
         private static StringBuilder getBoardRow(eBoardSymbol[,] i_BoardMatrix, int i_RowIndex, int i_BoardNumOfColumns)
         {
             StringBuilder boardRow = new StringBuilder((i_RowIndex + 1).ToString());
-            string spaceInCell = new string(' ', k_CellWidthSize);
+            string spaceInCell = new string(' ', k_CellWidthSize / 2);
 
             for (int j = 0; j < i_BoardNumOfColumns; j++)
             {

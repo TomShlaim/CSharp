@@ -37,13 +37,13 @@ namespace Ex02
             }
             if(isGameTied())
             {
-                UI.displayGameFinishedMessage(m_Players, true);
+                UI.displayGameTieMessage(m_Players);
             }
             else
             {
                 List<Player> winningPlayers = getWinningPlayers();
                 updateWinningPlayers(winningPlayers);
-                UI.displayGameFinishedMessage(getWinningPlayers(), false);
+                UI.displayGameWinMessage(m_Players,winningPlayers);
             }
             rematchOrQuitGame();
         }
@@ -75,7 +75,7 @@ namespace Ex02
         }
         private List<Player> getWinningPlayers()
         {
-            List<Player> winningPlayers = null;
+            List<Player> winningPlayers = new List<Player>();
             eBoardSymbol losingSymbol = m_Board.getSequenceSymbol();
 
             foreach (Player player in m_Players)
@@ -105,7 +105,7 @@ namespace Ex02
             }
             else
             {
-                UI.queryNextCellCell();
+                UI.queryNextCellCell(currentPlayingPlayer);
                 nextCell = getPersonPlayerNextCell();
             }
 

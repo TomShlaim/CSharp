@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Ex02
@@ -8,8 +9,9 @@ namespace Ex02
     {
         public static void displayGameInstructions()
         {
-            string gameInstructions = string.Format(
+            string gameInstructions = String.Format(
 @"Welcome to the X Mix Drix game!
+
 Those are the game instructions :
 =================================
 
@@ -30,106 +32,143 @@ Those are the game instructions :
         }
         public static void queryBoardSize()
         {
-            string boardSizeQuery = string.Format(
+            string boardSizeQuery = String.Format(
 @"Please choose the game board size :
-=====================================
-"
+====================================="
 );
 
             displayMessageToUser(boardSizeQuery);
         }
         public static void displayInvalidBoardSizeMessage()
         {
-            displayMessageToUser("Invalid board size! Board size should be between 3 and 9");
+            string invalidBoardSizeMessage = String.Format(
+@"Invalid board size! Board size should be between 3 and 9. Please try again :
+=========================================================================================="
+);
+
+            displayMessageToUser(invalidBoardSizeMessage);
         }
         public static void querySingleOrMultiplayerGame()
         {
-            string numOfPlayersQuery = string.Format(
+            string numOfPlayersQuery = String.Format(
 @"Please choose the number of players :
-=======================================
-"
+======================================="
 );
 
             displayMessageToUser(numOfPlayersQuery);
         }
         public static void displayInvalidNumOfPlayersMessage()
         {
-            displayMessageToUser("Invalid number of players! Number of players should be 1 or 2");
-        }
-        public static void queryNextCellCell()
-        {
-            string nextCellQuery = string.Format(
-@"Please choose the cell to put in your tool :
-===================================================
-"
+            string invalidNumOfPlayersMessage = String.Format(
+@"Invalid number of players! Number of players should be bigger than 1. Please try again :
+=========================================================================================="
 );
+
+            displayMessageToUser("Invalid number of players! Number of players should be bigger than 1");
+        }
+        public static void queryNextCellCell(Player i_Player)
+        {
+            string nextCellQuery = String.Format(
+@"{0}, Please choose the cell to put in your tool :
+==================================================="
+, i_Player.Name);
 
             displayMessageToUser(nextCellQuery);
         }
         public static void displayInvalidCellFormatMessage()
         {
-            displayMessageToUser("Invalid cell format! Cell should be of the following format 'rowIndex,columnIndex'");
+            string invalidCellFormatMessage = String.Format(
+@"Invalid cell format! Cell should be of the following format 'rowIndex,columnIndex'. Please try again :
+========================================================================================================="
+);
+
+            displayMessageToUser(invalidCellFormatMessage);
         }
         public static void displayInvalidCellIndexesMessage()
         {
-            displayMessageToUser("Invalid cell indexes! Cocation is out of bound");
+            string invalidCellIndexesMessage = String.Format(
+@"Invalid cell indexes! Cell is out of bound. Please try again :
+================================================================"
+);
+
+            displayMessageToUser(invalidCellIndexesMessage);
         }
         public static void displayCellAlreadyChosenMessage()
         {    
-            string nextCellQuery = string.Format(
+            string nextCellQuery = String.Format(
 @"The cell you chose is alreday taken! Please try again :
-=========================================================
-"
+========================================================="
 );
 
             displayMessageToUser(nextCellQuery);           
         }
-        public static void displayGameFinishedMessage(List<Player> i_Players, bool i_IsTie)
+        public static void displayGameTieMessage(List<Player> i_Players)
         {
-            string gameFinishedMessage = getGameFinishedHeaderMessage(i_Players, i_IsTie) + getPointsStatusMessage(i_Players);
-
-            displayMessageToUser(gameFinishedMessage);
-        }
-        private static string getGameFinishedHeaderMessage(List<Player> i_Players, bool i_IsTie)
-        {
-            string gameResultMessage = i_IsTie ? "Tie" : i_Players.Count == 1 ? "The winner is : " : "The winners are : ";
-            string gameFinsihedHeaderMessage = string.Format(
+            string gameTieMessage = String.Format(
 @"Game Over!
-============
+TIE
+===========================
 {0}
 "
-, gameResultMessage);
+, getPointsStatusMessage(i_Players));
 
-            return gameFinsihedHeaderMessage;
+            displayMessageToUser(gameTieMessage);
+        }
+        public static void displayGameWinMessage(List<Player> i_Players, List<Player> i_WinningPlayers)
+        {
+            StringBuilder gameWinnersHeader = new StringBuilder();
+            if(i_WinningPlayers.Count == 1)
+            {
+                gameWinnersHeader.Append(String.Format("The winner is : {0} ",i_WinningPlayers[0].Name));
+            }
+            else
+            {
+                gameWinnersHeader.Append("The winners are :");
+                gameWinnersHeader.AppendLine();
+                foreach (Player winningPlayer in i_WinningPlayers)
+                {
+                    gameWinnersHeader.Append(winningPlayer.Name);
+                }
+            }
+            string gameWinMessage = String.Format(
+@"Game Over!
+
+{0}
+
+===========================
+{1}"
+, gameWinnersHeader, getPointsStatusMessage(i_Players));
+
+            displayMessageToUser(gameWinMessage);
         }
         private static StringBuilder getPointsStatusMessage(List<Player> i_Players)
         {
-            StringBuilder pointsStatusMessage = new StringBuilder(string.Format("This is the points status :" +
-                "==========================="));
+            StringBuilder pointsStatusMessage = new StringBuilder(String.Format(
+@"This is the points status :
+===========================
+"));
 
             foreach (Player player in i_Players)
             {
-                pointsStatusMessage.AppendLine(String.Format("{0} - {1} points", player.Name, 'O', player.Score));
+                pointsStatusMessage.AppendLine(String.Format("{0} - {1} points", player.Name, player.Score));
             }
 
             return pointsStatusMessage;
         }
         public static void displayRematchMessage()
         {
-            string rematchMessage = string.Format(
+            string rematchMessage = String.Format(
 @"If you would like a rematch, please type Y :
-==============================================
-"
+=============================================="
 );
 
             displayMessageToUser(rematchMessage);
         }
         public static void displayInvalidRematchInputMessage()
         {
-            string invalidRematchMessage = string.Format(
+            string invalidRematchMessage = String.Format(
 @"Invalid rematch input! Please try again :
-===========================================
-"
+==========================================="
 );
 
             displayMessageToUser(invalidRematchMessage);

@@ -88,7 +88,10 @@ namespace Ex02
                 {
                     int columnSequenceIndex = indexOfSequenceInColumn();
 
-                    sequenceSymbol = m_BoardMatrix[0, columnSequenceIndex];
+                    if(columnSequenceIndex > -1)
+                    {
+                        sequenceSymbol = m_BoardMatrix[0, columnSequenceIndex];
+                    }
                 }
             }
 
@@ -101,7 +104,7 @@ namespace Ex02
 
             for (int i = 0; i < boardSize - 1; i++)
             {
-                if(m_BoardMatrix[i, i] != m_BoardMatrix[i + 1, i + 1])
+                if(m_BoardMatrix[i, i] == eBoardSymbol.Blank || m_BoardMatrix[i, i] != m_BoardMatrix[i + 1, i + 1])
                 {
                     indexOfSequence = -1;
                     break;
@@ -117,7 +120,7 @@ namespace Ex02
 
             for (int i = 0; i < boardSize - 1; i++)
             {
-                if(m_BoardMatrix[i, boardSize - 1 - i] != m_BoardMatrix[i + 1, boardSize - 2 - i])
+                if(m_BoardMatrix[i, boardSize - 1 - i] == eBoardSymbol.Blank || m_BoardMatrix[i, boardSize - 1 - i] != m_BoardMatrix[i + 1, boardSize - 2 - i])
                 {
                     indexOfSequence = -1;
                     break;
@@ -136,7 +139,7 @@ namespace Ex02
                 bool indexOfSequenceInSpecificRow = true;
                 for (int j = 0; j < boardSize - 1; j++)
                 {
-                    if(m_BoardMatrix[i, j] != m_BoardMatrix[i, j + 1])
+                    if(m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i, j + 1])
                     {
                         indexOfSequenceInSpecificRow = false;
                     }
@@ -159,7 +162,7 @@ namespace Ex02
                 bool indexOfSequenceInSpecificColumn = true;
                 for (int i = 0; i < boardSize - 1; i++)
                 {
-                    if (m_BoardMatrix[i, j] != m_BoardMatrix[i + 1, j])
+                    if (m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i + 1, j])
                     {
                         indexOfSequenceInSpecificColumn = false;
                     }

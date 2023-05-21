@@ -17,8 +17,8 @@ namespace Ex02
         {
             List<string> cellIndexes = i_Cell.Split(',').ToList<string>();
 
-            m_Row = int.Parse(cellIndexes[0]);
-            m_Column = int.Parse(cellIndexes[1]);
+            m_Row = int.Parse(cellIndexes[0]) - 1;
+            m_Column = int.Parse(cellIndexes[1]) - 1;
         }
 
         public int Row

@@ -25,7 +25,8 @@ namespace Ex02
             UI.querySingleOrMultiplayerGame();
             setValidNumberOPlayers(out numOfPlayers);
             /*
-             * Here there should be a generic function that knows how to add more than 2 players, instead of the logic below
+             * Here there should be a generic function that knows how to add more than 2 players, instead of the logic below.
+             * Moreover, I think we should present the player to its symbol with a special message ("Moshe - You game tool is blabla"). We can extend the UI library.
             */
             player1Symbol = (eBoardSymbol)randSymbolGenerator.Next(2);
             player2Symbol = (eBoardSymbol)(1 - ((int)player1Symbol));
