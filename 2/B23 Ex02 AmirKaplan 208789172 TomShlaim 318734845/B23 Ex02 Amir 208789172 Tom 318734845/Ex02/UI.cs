@@ -57,6 +57,46 @@ Those are the game instructions :
 
             displayMessageToUser(numOfPlayersQuery);
         }
+
+        public static void queryPlayerName(int i_PlayerIndex)
+        {
+            string playerNameQuery = String.Format(
+@"Please enter player {0} name :
+====================================="
+, i_PlayerIndex);
+
+            displayMessageToUser(playerNameQuery);
+        }
+
+        public static void greetPlayer(Player i_Player)
+        {
+            string greetPlayerMessage = String.Format(
+@"Hello, {0}! Your game symbol is {1}
+====================================="
+, i_Player.Name, displaySymbolAnimation(i_Player.Symbol));
+
+            displayMessageToUser(greetPlayerMessage);
+        }
+
+        public static string displaySymbolAnimation(eBoardSymbol i_Symbol)
+        {
+            string symbol = null;
+            switch(i_Symbol)
+            {
+                case eBoardSymbol.Ex:
+                    symbol = "'X'";
+                    break;
+                case eBoardSymbol.Circle:
+                    symbol = "'O'";
+                    break;
+                case eBoardSymbol.Blank:
+                    symbol = "' '";
+                    break;
+            }
+
+            return symbol;
+        }
+
         public static void displayInvalidNumOfPlayersMessage()
         {
             string invalidNumOfPlayersMessage = String.Format(
@@ -66,6 +106,7 @@ Those are the game instructions :
 
             displayMessageToUser("Invalid number of players! Number of players should be bigger than 1");
         }
+
         public static void queryNextCellCell(Player i_Player)
         {
             string nextCellQuery = String.Format(
@@ -75,6 +116,17 @@ Those are the game instructions :
 
             displayMessageToUser(nextCellQuery);
         }
+
+        public static void displayInvalidNameMessage()
+        {
+            string invalidNameMessage = String.Format(
+@"Invalid name! Player's name should be at least 2 characters long and consist of english letters only. Please try again :
+========================================================================================================="
+);
+
+            displayMessageToUser(invalidNameMessage);
+        }
+
         public static void displayInvalidCellFormatMessage()
         {
             string invalidCellFormatMessage = String.Format(
@@ -84,6 +136,7 @@ Those are the game instructions :
 
             displayMessageToUser(invalidCellFormatMessage);
         }
+
         public static void displayInvalidCellIndexesMessage()
         {
             string invalidCellIndexesMessage = String.Format(
@@ -93,6 +146,7 @@ Those are the game instructions :
 
             displayMessageToUser(invalidCellIndexesMessage);
         }
+
         public static void displayCellAlreadyChosenMessage()
         {    
             string nextCellQuery = String.Format(
@@ -102,6 +156,7 @@ Those are the game instructions :
 
             displayMessageToUser(nextCellQuery);           
         }
+
         public static void displayGameTieMessage(List<Player> i_Players)
         {
             string gameTieMessage = String.Format(
@@ -114,6 +169,7 @@ TIE
 
             displayMessageToUser(gameTieMessage);
         }
+
         public static void displayGameWinMessage(List<Player> i_Players, List<Player> i_WinningPlayers)
         {
             StringBuilder gameWinnersHeader = new StringBuilder();
@@ -141,6 +197,7 @@ TIE
 
             displayMessageToUser(gameWinMessage);
         }
+
         private static StringBuilder getPointsStatusMessage(List<Player> i_Players)
         {
             StringBuilder pointsStatusMessage = new StringBuilder(String.Format(
@@ -155,6 +212,7 @@ TIE
 
             return pointsStatusMessage;
         }
+
         public static void displayRematchMessage()
         {
             string rematchMessage = String.Format(
@@ -164,6 +222,7 @@ TIE
 
             displayMessageToUser(rematchMessage);
         }
+
         public static void displayInvalidRematchInputMessage()
         {
             string invalidRematchMessage = String.Format(
@@ -173,10 +232,12 @@ TIE
 
             displayMessageToUser(invalidRematchMessage);
         }
+
             public static void displayQuitMessage()
         {
             displayMessageToUser("Thanks for playing, quitting the game...");
         }
+
         public static void displayMessageToUser(string i_message)
         {
             Console.WriteLine(i_message);

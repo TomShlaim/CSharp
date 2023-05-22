@@ -61,7 +61,7 @@ namespace Ex02
             if(personPlayerChosenAction == "Y")
             {
                 m_Board.resetBoard();
-                playGame();
+                playGame(); // Can another round be implemented without recursion somehow ? (maximum stack depth might be exceeded)
             }
             else
             {
@@ -102,6 +102,7 @@ namespace Ex02
             if(currentPlayingPlayer.IsComputer)
             {
                 nextCell = getComputerPlayerNextCell();
+                // Maybe add a slight delay here so that board won't refresh instantly (?)
             }
             else
             {

@@ -14,6 +14,7 @@ namespace Ex02
             bool isValidBoardSize = true;
             int boardSize;
 
+            Program.exitProgramIfRequested(i_CurrentUserInput);
             if (!int.TryParse(i_CurrentUserInput, out boardSize))
             {
                 UI.displayInvalidBoardSizeMessage();
@@ -32,6 +33,7 @@ namespace Ex02
             bool isValidNumOfPlayers = true;
             int numOfPlayers;
 
+            Program.exitProgramIfRequested(i_CurrentUserInput);
             if (!int.TryParse(i_CurrentUserInput, out numOfPlayers))
             {
                 UI.displayInvalidNumOfPlayersMessage();
@@ -45,11 +47,37 @@ namespace Ex02
 
             return isValidNumOfPlayers;
         }
+
+        public static bool isValidName(string i_CurrentUserInput)
+        {
+            bool isValidName = true;
+
+            Program.exitProgramIfRequested(i_CurrentUserInput);
+            if (i_CurrentUserInput.Length < 2)
+            {
+                isValidName = false;
+            }
+            else
+            {
+                foreach (char character in i_CurrentUserInput)
+                {
+                    if (!char.IsLetter(character))
+                    {
+                        isValidName = false;
+                        break;
+                    }
+                }
+            }
+
+            return isValidName;
+        }
+
         public static bool isValidCell(string i_CurrentUserInput, Board i_Board) 
         {
            bool isValidCell = true;
            int rowIndex, columnIndex;
 
+            Program.exitProgramIfRequested(i_CurrentUserInput);
             if(i_CurrentUserInput.Length != 3)
             {
                 UI.displayInvalidCellFormatMessage();
@@ -76,17 +104,23 @@ namespace Ex02
             return isValidCell;          
         }
 
-        public static bool isValidRematchInput(string i_RematchMessage)
+        public static bool isValidRematchInput(string i_CurrentUserInput)
         {
             bool isValidRematchInput = true;
 
-            if(!i_RematchMessage.Equals("Y") && !i_RematchMessage.Equals("Q"))
+            Program.exitProgramIfRequested(i_CurrentUserInput);
+            if (!i_CurrentUserInput.Equals("Y"))
             {
                 UI.displayInvalidRematchInputMessage();
                 isValidRematchInput = false;
             }
 
             return isValidRematchInput;
+        }
+
+        public static bool isExitCommand(string i_UserInput) 
+        {
+            return i_UserInput.Equals("Q");
         }
 
     }

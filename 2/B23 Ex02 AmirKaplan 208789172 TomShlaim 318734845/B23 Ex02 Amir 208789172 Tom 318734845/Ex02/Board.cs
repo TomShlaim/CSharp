@@ -40,7 +40,7 @@ namespace Ex02
             int rowIndex = i_Cell.Row, columnIndex = i_Cell.Column;
 
             m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
-            m_EmptyCells.Remove(new Cell(rowIndex, columnIndex));
+            m_EmptyCells.Remove(new Cell(rowIndex, columnIndex)); // Why do you send a new Cell as an argument here? the Cell must already exits in m_EmptyCells
         }
         public void resetBoard()
         {
@@ -63,7 +63,7 @@ namespace Ex02
         {
             return getSequenceSymbol() != eBoardSymbol.Blank;
         }
-        public eBoardSymbol getSequenceSymbol()
+        public eBoardSymbol getSequenceSymbol() 
         {
             eBoardSymbol sequenceSymbol = eBoardSymbol.Blank;
             int boardSize = m_BoardMatrix.GetLength(0);
@@ -99,6 +99,7 @@ namespace Ex02
         }
         private int indexOfSequenceInPrimaryDiagonal()
         {
+            // Logic of this function doesn't seem right (does not return the correct index if there's a sequence)
             int indexOfSequence = -1;
             int boardSize = m_BoardMatrix.GetLength(0);
 
@@ -115,6 +116,7 @@ namespace Ex02
         }
         private int indexOfSequenceInSecondaryDiagonal()
         {
+            // Logic of this function doesn't seem right (does not return the correct index if there's a sequence)
             int indexOfSequence = -1;
             int boardSize = m_BoardMatrix.GetLength(0);
 
@@ -122,7 +124,7 @@ namespace Ex02
             {
                 if(m_BoardMatrix[i, boardSize - 1 - i] == eBoardSymbol.Blank || m_BoardMatrix[i, boardSize - 1 - i] != m_BoardMatrix[i + 1, boardSize - 2 - i])
                 {
-                    indexOfSequence = -1;
+                    indexOfSequence = -1; 
                     break;
                 }
             }
@@ -142,6 +144,7 @@ namespace Ex02
                     if(m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i, j + 1])
                     {
                         indexOfSequenceInSpecificRow = false;
+                        // Maybe can add a 'break' statement here to break the inner loop
                     }
                 }
                 if(indexOfSequenceInSpecificRow)
@@ -165,6 +168,7 @@ namespace Ex02
                     if (m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i + 1, j])
                     {
                         indexOfSequenceInSpecificColumn = false;
+                        // Maybe can add a 'break' statement here to break the inner loop
                     }
                 }
                 if (indexOfSequenceInSpecificColumn)
