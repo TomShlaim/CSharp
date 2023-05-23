@@ -91,7 +91,7 @@ namespace Ex02
             if(currentPlayingPlayer.IsComputer)
             {
                 nextCell = getComputerPlayerNextCell();
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
             }
             else
             {

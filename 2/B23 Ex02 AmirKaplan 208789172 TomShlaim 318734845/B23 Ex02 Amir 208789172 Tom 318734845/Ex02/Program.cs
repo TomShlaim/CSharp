@@ -27,6 +27,7 @@ namespace Ex02
             addPlayers(players, numOfPlayers); 
             Game game = new Game(board, players);
             //Maybe sleep here? the last greeting isn't showed
+            Thread.Sleep(2000);
             game.playGame();        
         }
         private static void setValidBoardSize(out int o_BoardSize)
@@ -63,43 +64,59 @@ namespace Ex02
             }
         }
 
-        //I would split this function logic to some sub functions, even if they are one line : getFreeSymbols, updateFreeSymbols, addPersonPlayer, addComputerPlayer  
+        //I would split this function logic to some sub functions, even if they are one line : getFreeSymbols, updateFreeSymbols, addPersonPlayer, addComputerPlayer
+
+        // Done. I found it better to pass FreeSymbols as an argument. 
         private static void addPlayers(List<Player> i_Players, int i_NumOfPlayers)
         {
-            string currentPlayerName;
-            eBoardSymbol currentPlayerSymbol;
             Random randIndexGenerator = new Random();
             List<eBoardSymbol> freeSymbols = Enum.GetValues(typeof(eBoardSymbol)).Cast<eBoardSymbol>().ToList();
 
-            //addPersonPlayer 
             freeSymbols.Remove(eBoardSymbol.Blank);
-            UI.queryPlayerName(1);
-            setValidPlayerName(out currentPlayerName);
-            currentPlayerSymbol = freeSymbols[randIndexGenerator.Next(freeSymbols.Count())];
-            i_Players.Add(new Player(currentPlayerName, currentPlayerSymbol, false));
-            freeSymbols.Remove(currentPlayerSymbol);
-            UI.greetPlayer(i_Players.Last());
+            addPersonPlayer(i_Players, freeSymbols, randIndexGenerator);
             if (i_NumOfPlayers == 1)
             {
                 //addComputerPlayer
-                currentPlayerSymbol = freeSymbols[randIndexGenerator.Next(freeSymbols.Count())];
-                i_Players.Add(new Player("Computer", currentPlayerSymbol, true));
-                freeSymbols.Remove(currentPlayerSymbol);
+                addComputerPlayer(i_Players, freeSymbols, randIndexGenerator);
             }
             else
             {
                 for(int i = 2; i <= i_NumOfPlayers; i++)
                 {
                     //AddPersonPlayer
-                    UI.queryPlayerName(i);
-                    setValidPlayerName(out currentPlayerName);
-                    currentPlayerSymbol = freeSymbols[randIndexGenerator.Next(freeSymbols.Count())];
-                    i_Players.Add(new Player(currentPlayerName, currentPlayerSymbol, false));
-                    freeSymbols.Remove(currentPlayerSymbol);
-                    UI.greetPlayer(i_Players.Last());
+                    addPersonPlayer(i_Players, freeSymbols, randIndexGenerator);
                 }
             }
         }
+
+        private static void updateFreeSymbols(List<eBoardSymbol> i_FreeSymbols, eBoardSymbol i_Symbol)
+        {
+            i_FreeSymbols.Remove(i_Symbol);
+        }
+
+        private static void addPersonPlayer(List<Player> i_Players, List<eBoardSymbol> i_FreeSymbols, Random i_RandIndexGenerator)
+        {
+            string playerName;
+            eBoardSymbol playerSymbol;
+
+            UI.queryPlayerName(Player.GetNumPlayersCreated() + 1);
+            setValidPlayerName(out playerName);
+            playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
+            i_Players.Add(new Player(playerName, playerSymbol, false));
+            updateFreeSymbols(i_FreeSymbols, playerSymbol);
+            UI.greetPlayer(i_Players.Last());
+        }
+
+        private static void addComputerPlayer(List<Player> i_Players, List<eBoardSymbol> i_FreeSymbols, Random i_RandIndexGenerator)
+        {
+            eBoardSymbol playerSymbol;
+
+            playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
+            i_Players.Add(new Player("Computer", playerSymbol, true));
+            updateFreeSymbols(i_FreeSymbols, playerSymbol);
+        }
+
+        
 
         internal static void exitProgramIfRequested (string i_UserInput)
         {

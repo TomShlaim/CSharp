@@ -8,6 +8,7 @@ namespace Ex02
         private const int k_MinBoardSize = 3;
         private const int k_MaxBoardSize = 9;
         private const int k_MinNumOfPlayers = 1;
+        private const int k_MaxNumOfPlayers = 2;
 
         public static bool isValidBoardSize(string i_CurrentUserInput)
         {
@@ -39,7 +40,7 @@ namespace Ex02
                 UI.displayInvalidNumOfPlayersMessage();
                 isValidNumOfPlayers = false;
             }
-            else if (numOfPlayers < k_MinNumOfPlayers)
+            else if (numOfPlayers < k_MinNumOfPlayers || numOfPlayers > k_MaxNumOfPlayers)
             {
                 UI.displayInvalidNumOfPlayersMessage();
                 isValidNumOfPlayers = false;

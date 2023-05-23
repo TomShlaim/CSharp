@@ -2,6 +2,7 @@
 {
     internal class Player
     {
+        private static int s_NumOfPlayersCreated = 0;
         private readonly string r_Name;
         private readonly eBoardSymbol r_Symbol;
         private int m_Score = 0;
@@ -10,6 +11,7 @@
 
         public Player(string i_Name, eBoardSymbol i_Symbol, bool i_IsComputer)
         {
+            s_NumOfPlayersCreated++;
             r_Name = i_Name;
             r_Symbol = i_Symbol;
             m_IsComputer = i_IsComputer;
@@ -49,6 +51,11 @@
             {
                 return m_IsComputer;
             }
+        }
+
+        public static int GetNumPlayersCreated()
+        {
+            return s_NumOfPlayersCreated;
         }
     }
 }

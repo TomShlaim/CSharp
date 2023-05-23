@@ -10,7 +10,7 @@ namespace Ex02
         public static void displayGameInstructions()
         {
             string gameInstructions = String.Format(
-@"Welcome to the X Mix Drix game!
+@"Welcome to Reversed X Mix Drix!
 
 Those are the game instructions :
 =================================
@@ -24,7 +24,7 @@ Those are the game instructions :
     a. The board is full
     b. A player has a sequence of its tool (In this case, this player is the loser).
 6. In case the game ended, you'll have the ability to rematch.
-7. If you would like to quit the game, just type Q. 
+7. If you would like to quit the game, just type 'Q'. 
 "
 );
 
@@ -104,7 +104,7 @@ Those are the game instructions :
 =========================================================================================="
 );
 
-            displayMessageToUser("Invalid number of players! Number of players should be bigger than 1");
+            displayMessageToUser("Invalid number of players! Number of players should be in the range 1-2 ");
         }
 
         public static void queryNextCellCell(Player i_Player)
@@ -216,7 +216,7 @@ TIE
         public static void displayRematchMessage()
         {
             string rematchMessage = String.Format(
-@"If you would like a rematch, please type Y :
+@"If you would like a rematch, please type 'Y' :
 =============================================="
 );
 
