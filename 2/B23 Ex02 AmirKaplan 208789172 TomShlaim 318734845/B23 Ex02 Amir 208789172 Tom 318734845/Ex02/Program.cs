@@ -24,12 +24,9 @@ namespace Ex02
             board = new Board(boardSize);
             UI.querySingleOrMultiplayerGame();
             setValidNumberOPlayers(out numOfPlayers);
-            /*
-             * Here there should be a generic function that knows how to add more than 2 players, instead of the logic below.
-             * Moreover, I think we should present the player to its symbol with a special message ("Moshe - You game tool is blabla"). We can extend the UI library.
-            */
             addPlayers(players, numOfPlayers); 
             Game game = new Game(board, players);
+            //Maybe sleep here? the last greeting isn't showed
             game.playGame();        
         }
         private static void setValidBoardSize(out int o_BoardSize)
@@ -66,6 +63,7 @@ namespace Ex02
             }
         }
 
+        //I would split this function logic to some sub functions, even if they are one line : getFreeSymbols, updateFreeSymbols, addPersonPlayer, addComputerPlayer  
         private static void addPlayers(List<Player> i_Players, int i_NumOfPlayers)
         {
             string currentPlayerName;
@@ -73,6 +71,7 @@ namespace Ex02
             Random randIndexGenerator = new Random();
             List<eBoardSymbol> freeSymbols = Enum.GetValues(typeof(eBoardSymbol)).Cast<eBoardSymbol>().ToList();
 
+            //addPersonPlayer 
             freeSymbols.Remove(eBoardSymbol.Blank);
             UI.queryPlayerName(1);
             setValidPlayerName(out currentPlayerName);
@@ -82,6 +81,7 @@ namespace Ex02
             UI.greetPlayer(i_Players.Last());
             if (i_NumOfPlayers == 1)
             {
+                //addComputerPlayer
                 currentPlayerSymbol = freeSymbols[randIndexGenerator.Next(freeSymbols.Count())];
                 i_Players.Add(new Player("Computer", currentPlayerSymbol, true));
                 freeSymbols.Remove(currentPlayerSymbol);
@@ -90,6 +90,7 @@ namespace Ex02
             {
                 for(int i = 2; i <= i_NumOfPlayers; i++)
                 {
+                    //AddPersonPlayer
                     UI.queryPlayerName(i);
                     setValidPlayerName(out currentPlayerName);
                     currentPlayerSymbol = freeSymbols[randIndexGenerator.Next(freeSymbols.Count())];

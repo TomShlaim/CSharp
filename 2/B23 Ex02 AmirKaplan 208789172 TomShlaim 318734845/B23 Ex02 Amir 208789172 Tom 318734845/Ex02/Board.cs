@@ -41,6 +41,7 @@ namespace Ex02
 
             m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
             m_EmptyCells.Remove(new Cell(rowIndex, columnIndex)); // Why do you send a new Cell as an argument here? the Cell must already exits in m_EmptyCells
+            //Maybe I missed your point, but how can we remove it otherwise?
         }
         public void resetBoard()
         {
@@ -98,9 +99,8 @@ namespace Ex02
             return sequenceSymbol;
         }
         private int indexOfSequenceInPrimaryDiagonal()
-        {
-            // Logic of this function doesn't seem right (does not return the correct index if there's a sequence)
-            int indexOfSequence = -1;
+        {            
+            int indexOfSequence = 1;
             int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int i = 0; i < boardSize - 1; i++)
@@ -116,8 +116,7 @@ namespace Ex02
         }
         private int indexOfSequenceInSecondaryDiagonal()
         {
-            // Logic of this function doesn't seem right (does not return the correct index if there's a sequence)
-            int indexOfSequence = -1;
+            int indexOfSequence = 1;
             int boardSize = m_BoardMatrix.GetLength(0);
 
             for (int i = 0; i < boardSize - 1; i++)
@@ -144,7 +143,7 @@ namespace Ex02
                     if(m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i, j + 1])
                     {
                         indexOfSequenceInSpecificRow = false;
-                        // Maybe can add a 'break' statement here to break the inner loop
+                        break;
                     }
                 }
                 if(indexOfSequenceInSpecificRow)
@@ -168,7 +167,7 @@ namespace Ex02
                     if (m_BoardMatrix[i, j] == eBoardSymbol.Blank || m_BoardMatrix[i, j] != m_BoardMatrix[i + 1, j])
                     {
                         indexOfSequenceInSpecificColumn = false;
-                        // Maybe can add a 'break' statement here to break the inner loop
+                        break;
                     }
                 }
                 if (indexOfSequenceInSpecificColumn)

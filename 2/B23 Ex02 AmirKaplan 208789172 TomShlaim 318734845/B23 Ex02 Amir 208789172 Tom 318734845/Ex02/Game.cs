@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Ex02
 {
@@ -57,21 +58,9 @@ namespace Ex02
             {
                 personPlayerChosenAction = Console.ReadLine();
             }
-
-            if(personPlayerChosenAction == "Y")
-            {
-                m_Board.resetBoard();
-                playGame(); // Can another round be implemented without recursion somehow ? (maximum stack depth might be exceeded)
-            }
-            else
-            {
-                quitGame();
-            }
-        }
-        private void quitGame()
-        {
-            UI.displayQuitMessage();
-            Console.ReadLine();
+            m_Board.resetBoard();
+            playGame(); // Can another round be implemented without recursion somehow ? (maximum stack depth might be exceeded)
+            //Not sure
         }
         private List<Player> getWinningPlayers()
         {
@@ -102,7 +91,7 @@ namespace Ex02
             if(currentPlayingPlayer.IsComputer)
             {
                 nextCell = getComputerPlayerNextCell();
-                // Maybe add a slight delay here so that board won't refresh instantly (?)
+                Thread.Sleep(5000);
             }
             else
             {
