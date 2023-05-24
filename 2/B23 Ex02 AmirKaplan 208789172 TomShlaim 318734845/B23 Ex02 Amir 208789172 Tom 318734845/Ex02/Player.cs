@@ -52,7 +52,7 @@
                 return m_IsComputer;
             }
         }
-
+        //I don't think it related to this class
         public static int GetNumPlayersCreated()
         {
             return s_NumOfPlayersCreated;

@@ -104,7 +104,7 @@ Those are the game instructions :
 =========================================================================================="
 );
 
-            displayMessageToUser("Invalid number of players! Number of players should be in the range 1-2 ");
+            displayMessageToUser(invalidNumOfPlayersMessage);
         }
 
         public static void queryNextCellCell(Player i_Player)

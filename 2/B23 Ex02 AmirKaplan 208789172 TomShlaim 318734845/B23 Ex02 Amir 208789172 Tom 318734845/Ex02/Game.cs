@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Ex02
 {
@@ -36,15 +35,15 @@ namespace Ex02
                 BoardAnimation.updateBoardDraw(m_Board);
                 m_CurrentTurnPlayerIndex = getNextTurnPlayer();
             }
-            if(isGameTied())
-            {
-                UI.displayGameTieMessage(m_Players);
-            }
-            else
+            if(isGameDecided())
             {
                 List<Player> winningPlayers = getWinningPlayers();
                 updateWinningPlayers(winningPlayers);
-                UI.displayGameWinMessage(m_Players,winningPlayers);
+                UI.displayGameWinMessage(m_Players, winningPlayers);
+            }
+            else if(isGameTied())
+            {
+                UI.displayGameTieMessage(m_Players);
             }
             rematchOrQuitGame();
         }
@@ -59,19 +58,25 @@ namespace Ex02
                 personPlayerChosenAction = Console.ReadLine();
             }
             m_Board.resetBoard();
-            playGame(); // Can another round be implemented without recursion somehow ? (maximum stack depth might be exceeded)
-            //Not sure
+            playGame(); 
+        }
+        private bool isGameDecided()
+        {
+            return getWinningPlayers().Count() > 0; 
         }
         private List<Player> getWinningPlayers()
         {
             List<Player> winningPlayers = new List<Player>();
             eBoardSymbol losingSymbol = m_Board.getSequenceSymbol();
 
-            foreach (Player player in m_Players)
+            if (losingSymbol != eBoardSymbol.Blank)
             {
-                if (player.Symbol != losingSymbol)
+                foreach (Player player in m_Players)
                 {
-                    winningPlayers.Add(player);
+                    if (player.Symbol != losingSymbol)
+                    {
+                        winningPlayers.Add(player);
+                    }
                 }
             }
             return winningPlayers;
@@ -91,7 +96,6 @@ namespace Ex02
             if(currentPlayingPlayer.IsComputer)
             {
                 nextCell = getComputerPlayerNextCell();
-                Thread.Sleep(2000);
             }
             else
             {

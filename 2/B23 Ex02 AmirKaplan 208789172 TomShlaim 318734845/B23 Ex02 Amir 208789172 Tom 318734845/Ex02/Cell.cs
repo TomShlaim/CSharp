@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Ex02
 {
-    internal class Cell
+    internal struct Cell
     {
         private int m_Row;
         private int m_Column;
@@ -35,11 +35,5 @@ namespace Ex02
                 return m_Column;
             }
         }
-        public override bool Equals(object i_Obj)
-        {
-            Cell otherCell = i_Obj as Cell;
-            return otherCell.Row == m_Row && otherCell.Column == m_Column;
-        }
-
     }
 }

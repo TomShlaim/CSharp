@@ -8,6 +8,7 @@ namespace Ex02
         private const int k_MinBoardSize = 3;
         private const int k_MaxBoardSize = 9;
         private const int k_MinNumOfPlayers = 1;
+        //I think there shouldn't be max in our case, what do you think (this will require change iv validator)?
         private const int k_MaxNumOfPlayers = 2;
 
         public static bool isValidBoardSize(string i_CurrentUserInput)
@@ -90,8 +91,8 @@ namespace Ex02
                 UI.displayInvalidCellFormatMessage();
                 isValidCell = false;
             }
-            else if(rowIndex > i_Board.BoardMatrix.GetLength(0) || rowIndex < 0 || columnIndex > i_Board.BoardMatrix.GetLength(1)
-                || columnIndex < 0)
+            else if(rowIndex > i_Board.BoardMatrix.GetLength(0) || rowIndex <= 0 || columnIndex > i_Board.BoardMatrix.GetLength(1)
+                || columnIndex <= 0)
             {
                 UI.displayInvalidCellIndexesMessage();
                 isValidCell = false;

@@ -40,13 +40,7 @@ namespace Ex02
             int rowIndex = i_Cell.Row, columnIndex = i_Cell.Column;
 
             m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
-            m_EmptyCells.Remove(new Cell(rowIndex, columnIndex)); // Why do you send a new Cell as an argument here? the Cell must already exits in m_EmptyCells
-            //Maybe I missed your point, but how can we remove it otherwise?
-
-            // I don't think your operation removes an existing cell in m_EmptyCells, as you are creating a new instance with a different address in memory
-            // and then deleting it instantly. The cell you want to remove is already in m_EmptyCells and has a different address in memory.
-            // Try using 'myList.RemoveAll(x => x.Field1 == value1 && x.Field2 == value2);' instead (taken from ChatGPT).
-
+            m_EmptyCells.Remove(new Cell(rowIndex, columnIndex));
         }
         public void resetBoard()
         {
