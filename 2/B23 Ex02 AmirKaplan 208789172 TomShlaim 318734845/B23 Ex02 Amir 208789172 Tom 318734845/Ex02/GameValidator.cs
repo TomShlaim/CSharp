@@ -8,12 +8,6 @@ namespace Ex02
         private const int k_MinBoardSize = 3;
         private const int k_MaxBoardSize = 9;
         private const int k_MinNumOfPlayers = 1;
-        //I think there shouldn't be max in our case, what do you think (this will require change iv validator)?
-
-        // It requires a slight change in line 50 here which I already took care of.
-        // I think it's better this way, because if there wasn't such constant, the player could enter any number bigger than 2
-        // which then causes an exception when determining the player's symbol (as there are 2 at the moment), I checked it.
-        // This way it's more modular in the sense that if we want to allow more than 2 players we simply change the value of this constant and add more symbols.
         private const int k_MaxNumOfPlayers = 2;
 
         public static bool IsValidBoardSize(string i_CurrentUserInput)

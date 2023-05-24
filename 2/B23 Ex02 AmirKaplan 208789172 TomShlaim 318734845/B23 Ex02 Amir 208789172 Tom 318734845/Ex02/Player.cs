@@ -2,7 +2,6 @@
 {
     internal class Player
     {
-        // Should we change this class to a struct? 
         private static int s_NumOfPlayersCreated = 0;
         private readonly string r_Name;
         private readonly eBoardSymbol r_Symbol;
@@ -52,11 +51,6 @@
                 return m_IsComputer;
             }
         }
-        //I don't think it related to this class
-
-        // It's needed for accessing the static varaible 's_NumOfPlayersCreated' from outside this class. 
-        // In my opinion, 's_NumOfPlayersCreated' is a legit (and totally optional) static variable of the class that counts 
-        // the number of 'Player' instances created. In particular, I needed it in 'addPersonPlayer()'.
         public static int GetNumPlayersCreated()
         {
             return s_NumOfPlayersCreated;
