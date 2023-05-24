@@ -58,6 +58,7 @@ namespace Ex02
                 personPlayerChosenAction = Console.ReadLine();
             }
             m_Board.resetBoard();
+            m_CurrentTurnPlayerIndex = 0;
             playGame(); 
         }
         private bool isGameDecided()
