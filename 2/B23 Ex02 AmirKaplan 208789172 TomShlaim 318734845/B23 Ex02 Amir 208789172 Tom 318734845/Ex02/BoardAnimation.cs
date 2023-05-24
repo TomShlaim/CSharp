@@ -9,10 +9,12 @@ namespace Ex02
         private const int k_CellWidthSize = 5;
         private const char k_CellSeparator = '|';
         private const char k_LineSeparator = '=';
+
         private static void clearBoard()
         {
             Ex02.ConsoleUtils.Screen.Clear();
         }
+
         private static void drawBoard(Board i_Board)
         {
             eBoardSymbol[,] boardMatrix = i_Board.BoardMatrix;
@@ -23,6 +25,7 @@ namespace Ex02
             boardAnimation.Append(getBoardRows(boardMatrix));
             Console.WriteLine(boardAnimation);
         }
+
         private static StringBuilder getBoardRows(eBoardSymbol[,] i_BoardMatrix)
         {
             int boardNumOfRows = i_BoardMatrix.GetLength(0);
@@ -39,6 +42,7 @@ namespace Ex02
 
             return boardsRow;
         }
+
         private static StringBuilder getBoardRow(eBoardSymbol[,] i_BoardMatrix, int i_RowIndex, int i_BoardNumOfColumns)
         {
             StringBuilder boardRow = new StringBuilder((i_RowIndex + 1).ToString());
@@ -64,6 +68,7 @@ namespace Ex02
 
             return boardRow;
         }
+
         private static StringBuilder getLineSeparator(int i_BoardNumOfColumns)
         {
             StringBuilder lineSeparator = new StringBuilder(new string(' ', k_CellWidthSize - 4));
@@ -72,6 +77,7 @@ namespace Ex02
 
             return lineSeparator;
         }
+
         private static StringBuilder getBoardColumnsHeader(eBoardSymbol[,] i_BoardMatrix) 
         {
             int boardNumOfColumns = i_BoardMatrix.GetLength(1);
@@ -85,7 +91,8 @@ namespace Ex02
 
             return columnsHeader;
         }
-        public static void updateBoardDraw(Board i_Board) 
+
+        public static void UpdateBoardDraw(Board i_Board) 
         {
             clearBoard();
             drawBoard(i_Board);

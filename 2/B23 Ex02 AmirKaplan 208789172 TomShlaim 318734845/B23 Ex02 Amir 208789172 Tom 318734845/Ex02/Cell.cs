@@ -13,6 +13,7 @@ namespace Ex02
             m_Row = i_Row;
             m_Column = i_Column;
         }
+
         public Cell(string i_Cell)
         {
             List<string> cellIndexes = i_Cell.Split(',').ToList<string>();
@@ -28,6 +29,7 @@ namespace Ex02
                 return m_Row;
             }
         }
+
         public int Column
         {
             get

@@ -9,52 +9,58 @@ namespace Ex02
         private const int k_MaxBoardSize = 9;
         private const int k_MinNumOfPlayers = 1;
         //I think there shouldn't be max in our case, what do you think (this will require change iv validator)?
+
+        // It requires a slight change in line 50 here which I already took care of.
+        // I think it's better this way, because if there wasn't such constant, the player could enter any number bigger than 2
+        // which then causes an exception when determining the player's symbol (as there are 2 at the moment), I checked it.
+        // This way it's more modular in the sense that if we want to allow more than 2 players we simply change the value of this constant and add more symbols.
         private const int k_MaxNumOfPlayers = 2;
 
-        public static bool isValidBoardSize(string i_CurrentUserInput)
+        public static bool IsValidBoardSize(string i_CurrentUserInput)
         {
             bool isValidBoardSize = true;
             int boardSize;
 
-            Program.exitProgramIfRequested(i_CurrentUserInput);
+            Program.ExitProgramIfRequested(i_CurrentUserInput);
             if (!int.TryParse(i_CurrentUserInput, out boardSize))
             {
-                UI.displayInvalidBoardSizeMessage();
+                UI.DisplayInvalidBoardSizeMessage();
                 isValidBoardSize = false;
             }
             else if (boardSize < k_MinBoardSize || boardSize > k_MaxBoardSize)
             {
-                UI.displayInvalidBoardSizeMessage();
+                UI.DisplayInvalidBoardSizeMessage();
                 isValidBoardSize = false;
             }
 
             return isValidBoardSize;
         }
-        public static bool isValidNumberOfPlayers(string i_CurrentUserInput)
+
+        public static bool IsValidNumberOfPlayers(string i_CurrentUserInput)
         {
             bool isValidNumOfPlayers = true;
             int numOfPlayers;
 
-            Program.exitProgramIfRequested(i_CurrentUserInput);
+            Program.ExitProgramIfRequested(i_CurrentUserInput);
             if (!int.TryParse(i_CurrentUserInput, out numOfPlayers))
             {
-                UI.displayInvalidNumOfPlayersMessage();
+                UI.DisplayInvalidNumOfPlayersMessage();
                 isValidNumOfPlayers = false;
             }
             else if (numOfPlayers < k_MinNumOfPlayers || numOfPlayers > k_MaxNumOfPlayers)
             {
-                UI.displayInvalidNumOfPlayersMessage();
+                UI.DisplayInvalidNumOfPlayersMessage();
                 isValidNumOfPlayers = false;
             }
 
             return isValidNumOfPlayers;
         }
 
-        public static bool isValidName(string i_CurrentUserInput)
+        public static bool IsValidName(string i_CurrentUserInput)
         {
             bool isValidName = true;
 
-            Program.exitProgramIfRequested(i_CurrentUserInput);
+            Program.ExitProgramIfRequested(i_CurrentUserInput);
             if (i_CurrentUserInput.Length < 2)
             {
                 isValidName = false;
@@ -74,53 +80,53 @@ namespace Ex02
             return isValidName;
         }
 
-        public static bool isValidCell(string i_CurrentUserInput, Board i_Board) 
+        public static bool IsValidCell(string i_CurrentUserInput, Board i_Board) 
         {
            bool isValidCell = true;
            int rowIndex, columnIndex;
 
-            Program.exitProgramIfRequested(i_CurrentUserInput);
+            Program.ExitProgramIfRequested(i_CurrentUserInput);
             if(i_CurrentUserInput.Length != 3)
             {
-                UI.displayInvalidCellFormatMessage();
+                UI.DisplayInvalidCellFormatMessage();
                 isValidCell = false;
             }
             else if(i_CurrentUserInput[1] != ',' || !int.TryParse(i_CurrentUserInput[0].ToString(), out rowIndex)
                      || !int.TryParse(i_CurrentUserInput[2].ToString(), out columnIndex))
             {
-                UI.displayInvalidCellFormatMessage();
+                UI.DisplayInvalidCellFormatMessage();
                 isValidCell = false;
             }
             else if(rowIndex > i_Board.BoardMatrix.GetLength(0) || rowIndex <= 0 || columnIndex > i_Board.BoardMatrix.GetLength(1)
                 || columnIndex <= 0)
             {
-                UI.displayInvalidCellIndexesMessage();
+                UI.DisplayInvalidCellIndexesMessage();
                 isValidCell = false;
             }
             else if (i_Board.BoardMatrix[rowIndex - 1, columnIndex - 1] != eBoardSymbol.Blank)
             {
-                UI.displayCellAlreadyChosenMessage();
+                UI.DisplayCellAlreadyChosenMessage();
                 isValidCell = false;
             }
 
             return isValidCell;          
         }
 
-        public static bool isValidRematchInput(string i_CurrentUserInput)
+        public static bool IsValidRematchInput(string i_CurrentUserInput)
         {
             bool isValidRematchInput = true;
 
-            Program.exitProgramIfRequested(i_CurrentUserInput);
+            Program.ExitProgramIfRequested(i_CurrentUserInput);
             if (!i_CurrentUserInput.Equals("Y"))
             {
-                UI.displayInvalidRematchInputMessage();
+                UI.DisplayInvalidRematchInputMessage();
                 isValidRematchInput = false;
             }
 
             return isValidRematchInput;
         }
 
-        public static bool isExitCommand(string i_UserInput) 
+        public static bool IsExitCommand(string i_UserInput) 
         {
             return i_UserInput.Equals("Q");
         }

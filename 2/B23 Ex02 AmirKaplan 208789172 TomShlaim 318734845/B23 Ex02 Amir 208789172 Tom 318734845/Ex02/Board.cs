@@ -28,21 +28,21 @@ namespace Ex02
                 return m_EmptyCells;
             }
         }
-        public bool isFullBoard()
+        public bool IsFullBoard()
         {
             int boardSize = m_BoardMatrix.GetLength(0);
             int numOfOccupuiedCells = boardSize * boardSize - m_EmptyCells.Count;
 
             return numOfOccupuiedCells == boardSize * boardSize;
         }
-        public void updateBoard(Cell i_Cell, eBoardSymbol i_BoardSymbol)
+        public void UpdateBoard(Cell i_Cell, eBoardSymbol i_BoardSymbol)
         {
             int rowIndex = i_Cell.Row, columnIndex = i_Cell.Column;
 
             m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
             m_EmptyCells.Remove(new Cell(rowIndex, columnIndex));
         }
-        public void resetBoard()
+        public void ResetBoard()
         {
             resetMatrixAndEmptyCells();
         }
@@ -59,11 +59,11 @@ namespace Ex02
                 }
             }
         }
-        public bool hasSequence()
+        public bool HasSequence()
         {
-            return getSequenceSymbol() != eBoardSymbol.Blank;
+            return GetSequenceSymbol() != eBoardSymbol.Blank;
         }
-        public eBoardSymbol getSequenceSymbol() 
+        public eBoardSymbol GetSequenceSymbol() 
         {
             eBoardSymbol sequenceSymbol = eBoardSymbol.Blank;
             int boardSize = m_BoardMatrix.GetLength(0);

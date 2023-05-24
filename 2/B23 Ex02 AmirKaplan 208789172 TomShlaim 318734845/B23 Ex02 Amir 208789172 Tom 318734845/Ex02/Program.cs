@@ -5,11 +5,11 @@ using System.Threading;
 
 namespace Ex02
 {
-    internal class Program
+    public class Program
     {
         public static void Main(string[] args) 
         {
-           initProgram();
+          initProgram();
         }
 
         private static void initProgram()
@@ -18,16 +18,21 @@ namespace Ex02
             Board board;
             List<Player> players = new List<Player>();
 
-            UI.displayGameInstructions();
-            UI.queryBoardSize();
+            UI.DisplayGameInstructions();
+            UI.QueryBoardSize();
             setValidBoardSize(out boardSize);
             board = new Board(boardSize);
-            UI.querySingleOrMultiplayerGame();
+            UI.QuerySingleOrMultiplayerGame();
             setValidNumberOPlayers(out numOfPlayers);
             addPlayers(players, numOfPlayers); 
             Game game = new Game(board, players);
-            game.playGame();        
+            game.PlayGame();
+            while (game.Rematch())
+            {
+                game.PlayGame();
+            }
         }
+
         private static void addPlayers(List<Player> i_Players, int i_NumOfPlayers)
         {
             Random randIndexGenerator = new Random();
@@ -58,13 +63,13 @@ namespace Ex02
             string playerName;
             eBoardSymbol playerSymbol;
 
-            UI.queryPlayerName(Player.GetNumPlayersCreated() + 1);
+            UI.QueryPlayerName(Player.GetNumPlayersCreated() + 1);
             setValidPlayerName(out playerName);
             playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
             i_Players.Add(new Player(playerName, playerSymbol, false));
             updateFreeSymbols(i_FreeSymbols, playerSymbol);
-            UI.greetPlayer(i_Players.Last());
-            Program.pause(1000);
+            UI.GreetPlayer(i_Players.Last());
+            Program.Pause(1000);
         }
 
         private static void addComputerPlayer(List<Player> i_Players, List<eBoardSymbol> i_FreeSymbols, Random i_RandIndexGenerator)
@@ -74,24 +79,26 @@ namespace Ex02
             playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
             i_Players.Add(new Player("Computer", playerSymbol, true));
             updateFreeSymbols(i_FreeSymbols, playerSymbol);
-            Program.pause(1000);
+            Program.Pause(1000);
         }
+
         private static void setValidBoardSize(out int o_BoardSize)
         {
             string currentUserInput = Console.ReadLine();
 
-            while (!GameValidator.isValidBoardSize(currentUserInput))
+            while (!GameValidator.IsValidBoardSize(currentUserInput))
             {
                 currentUserInput = Console.ReadLine();
             }
 
             o_BoardSize = int.Parse(currentUserInput);
         }
+
         private static void setValidNumberOPlayers(out int o_NumberOfPlayers)
         {
             string currentUserInput = Console.ReadLine();
 
-            while (!GameValidator.isValidNumberOfPlayers(currentUserInput))
+            while (!GameValidator.IsValidNumberOfPlayers(currentUserInput))
             {
 
                 currentUserInput = Console.ReadLine();
@@ -103,22 +110,24 @@ namespace Ex02
         private static void setValidPlayerName(out string o_PlayerName)
         {
             o_PlayerName = Console.ReadLine();
-            while (!GameValidator.isValidName(o_PlayerName))
+            while (!GameValidator.IsValidName(o_PlayerName))
             {
-                UI.displayInvalidNameMessage();
+                UI.DisplayInvalidNameMessage();
                 o_PlayerName = Console.ReadLine();
             }
         }
-        internal static void exitProgramIfRequested(string i_UserInput)
+
+        internal static void ExitProgramIfRequested(string i_UserInput)
         {
-            if (GameValidator.isExitCommand(i_UserInput))
+            if (GameValidator.IsExitCommand(i_UserInput))
             {
-                UI.displayQuitMessage();
-                Program.pause(1000);
+                UI.DisplayQuitMessage();
+                Program.Pause(1000);
                 Environment.Exit(0);
             }
         }
-        internal static void pause(int i_MilliSeconds)
+
+        internal static void Pause(int i_MilliSeconds)
         {
             Thread.Sleep(i_MilliSeconds);
         }

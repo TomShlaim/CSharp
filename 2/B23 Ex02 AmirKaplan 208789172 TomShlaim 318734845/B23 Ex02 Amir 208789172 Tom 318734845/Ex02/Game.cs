@@ -15,60 +15,72 @@ namespace Ex02
             m_Board = i_Board;
             m_Players = i_Players;
         }
-        public bool isGameOver()
+
+        public bool IsGameOver()
         {
-            return isGameTied() || m_Board.hasSequence() ? true : false;
+            return isGameTied() || m_Board.HasSequence() ? true : false;
         }
+
         private bool isGameTied()
         {
-            return m_Board.isFullBoard();
+            return m_Board.IsFullBoard();
         }
-        public void playGame()
+
+        public void PlayGame()
         {
-            BoardAnimation.updateBoardDraw(m_Board);
+            BoardAnimation.UpdateBoardDraw(m_Board);
             
-            while(!isGameOver())
+            while(!IsGameOver())
             {
                 Cell playerNextCell = getPlayerNextCell();
 
-                m_Board.updateBoard(playerNextCell, m_Players[m_CurrentTurnPlayerIndex].Symbol);
-                BoardAnimation.updateBoardDraw(m_Board);
+                m_Board.UpdateBoard(playerNextCell, m_Players[m_CurrentTurnPlayerIndex].Symbol);
+                BoardAnimation.UpdateBoardDraw(m_Board);
                 m_CurrentTurnPlayerIndex = getNextTurnPlayer();
             }
             if(isGameDecided())
             {
                 List<Player> winningPlayers = getWinningPlayers();
                 updateWinningPlayers(winningPlayers);
-                UI.displayGameWinMessage(m_Players, winningPlayers);
+                UI.DisplayGameWinMessage(m_Players, winningPlayers);
             }
             else if(isGameTied())
             {
-                UI.displayGameTieMessage(m_Players);
+                UI.DisplayGameTieMessage(m_Players);
             }
-            rematchOrQuitGame();
         }
-        private void rematchOrQuitGame()
+
+        public bool Rematch()
         {
-            UI.displayRematchMessage();
+            bool personPlayerWantsRematch = false;
+            string personPlayerChosenAction;
 
-            string personPlayerChosenAction = Console.ReadLine();
+            UI.DisplayRematchMessage();
+            personPlayerChosenAction = Console.ReadLine();
 
-            while(!GameValidator.isValidRematchInput(personPlayerChosenAction))
+            while(!GameValidator.IsValidRematchInput(personPlayerChosenAction))
             {
                 personPlayerChosenAction = Console.ReadLine();
             }
-            m_Board.resetBoard();
+
+            personPlayerWantsRematch = true;
+            m_Board.ResetBoard();
             m_CurrentTurnPlayerIndex = 0;
-            playGame(); 
+
+            return personPlayerWantsRematch;
+            // I think the recursion can be solved by adding a wrapper  
+            //PlayGame(); 
         }
+
         private bool isGameDecided()
         {
             return getWinningPlayers().Count() > 0; 
         }
+
         private List<Player> getWinningPlayers()
         {
             List<Player> winningPlayers = new List<Player>();
-            eBoardSymbol losingSymbol = m_Board.getSequenceSymbol();
+            eBoardSymbol losingSymbol = m_Board.GetSequenceSymbol();
 
             if (losingSymbol != eBoardSymbol.Blank)
             {
@@ -82,6 +94,7 @@ namespace Ex02
             }
             return winningPlayers;
         }
+
         private void updateWinningPlayers(List<Player> i_WinningPlayers)
         {
             foreach (Player player in i_WinningPlayers)
@@ -89,6 +102,7 @@ namespace Ex02
                 player.Score += 1;
             }
         }
+
         private Cell getPlayerNextCell()
         {
             Player currentPlayingPlayer = m_Players[m_CurrentTurnPlayerIndex];
@@ -100,23 +114,25 @@ namespace Ex02
             }
             else
             {
-                UI.queryNextCellCell(currentPlayingPlayer);
+                UI.QueryNextCellCell(currentPlayingPlayer);
                 nextCell = getPersonPlayerNextCell();
             }
 
             return nextCell;
         }
+
         private Cell getPersonPlayerNextCell()
         {
             string personPlayerChosenCell = Console.ReadLine();
 
-            while (!GameValidator.isValidCell(personPlayerChosenCell, m_Board))
+            while (!GameValidator.IsValidCell(personPlayerChosenCell, m_Board))
             {
                 personPlayerChosenCell = Console.ReadLine();
             }
 
             return new Cell(personPlayerChosenCell);
         }
+
         private Cell getComputerPlayerNextCell()
         {
             LinkedList<Cell> boardEmptyCells = m_Board.EmptyCells;
