@@ -68,8 +68,6 @@ namespace Ex02
             m_CurrentTurnPlayerIndex = 0;
 
             return personPlayerWantsRematch;
-            // I think the recursion can be solved by adding a wrapper  
-            //PlayGame(); 
         }
 
         private bool isGameDecided()
