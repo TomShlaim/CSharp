@@ -8,5 +8,8 @@ namespace GarageLogic
 {
     internal class Motorcycle : Veichle
     {
+
+        private const float k_MaxAirPressure = 31f;
+        private const int k_NumOfWheels = 2;
     }
 }

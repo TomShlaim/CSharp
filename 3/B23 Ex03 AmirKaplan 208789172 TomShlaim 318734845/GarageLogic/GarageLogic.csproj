@@ -39,6 +39,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="eCarColor.cs" />
+    <Compile Include="eNumOfDoors.cs" />
+    <Compile Include="eVeichleType.cs" />
     <Compile Include="Truck.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Car.cs" />
@@ -53,6 +56,9 @@
     <Compile Include="FuelEngine.cs" />
     <Compile Include="ElectricEngine.cs" />
     <Compile Include="VeichleInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

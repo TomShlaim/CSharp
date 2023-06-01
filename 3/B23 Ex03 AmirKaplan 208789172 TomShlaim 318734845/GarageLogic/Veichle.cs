@@ -8,11 +8,11 @@ namespace GarageLogic
 {
     internal abstract class Veichle
     {
-        private readonly VeichleOwner r_VehicleOwner;
+        private readonly VeichleOwner r_VehicleOwner; // Not sure if belongs here or in 'VehicleInfo' class
         private readonly string r_ModelName;
         private readonly string r_RegistrationNumber;
         private readonly List<Wheel> r_Wheels;
-        private readonly Engine r_Engine; 
+        private readonly Engine r_Engine;
 
         public Veichle(string i_ModelName, string i_RegistrationNumber, Engine i_Engine)
         {
@@ -61,6 +61,18 @@ namespace GarageLogic
                 r_Wheels.Add(new Wheel(i_WheelMaxPressure));
             }
         }
+        public string WheelsToString()
+        {
+            StringBuilder wheelsInfo = new StringBuilder();
+
+            foreach (Wheel wheel in r_Wheels)
+            {
+                wheelsInfo.Append(wheel.ToString());
+                wheelsInfo.Append(Environment.NewLine);
+            }
+
+            return wheelsInfo.ToString();
+        }
 
         public void InflateWheelsToMaximumPressure()
         {
@@ -68,6 +80,19 @@ namespace GarageLogic
             {
                 wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"Registration Number: {0}
+Owner: {1}
+Model Name: {2}
+Engine: 
+{3}
+Wheels information: 
+{3}"
+     , r_RegistrationNumber, r_VehicleOwner.ToString(), r_ModelName, r_Engine.ToString(), WheelsToString());
         }
 
     }

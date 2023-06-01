@@ -48,16 +48,16 @@ namespace GarageLogic
             get { return r_MaxLitersInFuelTank; }
         }
 
+        public override void UpdateEnergyPercentage()
+        {
+            base.SetEnergyPercentage(m_CurrentAmountOfLitersInFuelTank, r_MaxLitersInFuelTank);
+        }
+
         public void Refuel(float i_NumOfLiters, eFuelType i_FuelType)
         {
             // Validation here (?)
             m_CurrentAmountOfLitersInFuelTank += i_NumOfLiters;
             UpdateEnergyPercentage();
-        }
-
-        public override void UpdateEnergyPercentage()
-        {
-            base.SetEnergyPercentage(m_CurrentAmountOfLitersInFuelTank, r_MaxLitersInFuelTank);
         }
 
         public override string ToString()
@@ -66,7 +66,7 @@ namespace GarageLogic
 @"{0} Fuel Engine
 Liters in tank:{1}
 Maximum liters in tank: {2}
-Energy Percentage:{3}"
+Energy Percentage:{3}%"
 ,r_FuelType,m_CurrentAmountOfLitersInFuelTank, r_MaxLitersInFuelTank, base.EnergyPercentage);
         }
     }
