@@ -1,6 +1,6 @@
 ﻿namespace GarageLogic
 {
-    public enum eVehicleStatus
+    internal enum eVehicleStatus
     {
         None,
         InRepair,

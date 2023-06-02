@@ -1,6 +1,6 @@
 ﻿namespace GarageLogic
 {
-    public enum eFuelType
+    internal enum eFuelType
     {
         Soler,
         Octan95,

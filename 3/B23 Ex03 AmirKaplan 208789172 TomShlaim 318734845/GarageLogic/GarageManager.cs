@@ -6,20 +6,20 @@ namespace GarageLogic
 {
     internal class GarageManager
     {
-        private Dictionary<string, VehicleInfo> m_VehiclesInGarage;
+        private static Dictionary<string, VehicleInfo> m_VehiclesInGarage = new Dictionary<string, VehicleInfo>();
 
-        public void AddVehicle(VehicleInfo i_VehicleInfo)
+        public static void AddVehicle(VehicleInfo i_VehicleInfo)
         {
             if (!isVehicleInGarage(i_VehicleInfo.Vehicle.RegistrationNumber))
             {
                 m_VehiclesInGarage.Add(i_VehicleInfo.Vehicle.RegistrationNumber, i_VehicleInfo);
             }
         }
-        public bool isVehicleInGarage(string i_VehicleRegistrationNumber)
+        public static bool isVehicleInGarage(string i_VehicleRegistrationNumber)
         {
             return m_VehiclesInGarage.ContainsKey(i_VehicleRegistrationNumber);
         }
-        public void UpdateVehicleStatus(string i_VehicleRegistrationNumber, eVehicleStatus i_NewVehicleStatus)
+        public static void UpdateVehicleStatus(string i_VehicleRegistrationNumber, eVehicleStatus i_NewVehicleStatus)
         {
             VehicleInfo vehicleInGarage;
 
@@ -28,7 +28,7 @@ namespace GarageLogic
                 vehicleInGarage.VehicleStatus = i_NewVehicleStatus;
             }
         }
-        public String GetVehiclesRegisterationNumbersByVehicleStatus(eVehicleStatus i_VehicleStatus = eVehicleStatus.None)
+        public static String GetVehiclesRegisterationNumbersByVehicleStatus(eVehicleStatus i_VehicleStatus = eVehicleStatus.None)
         {
             StringBuilder registerationNumbersByVehicleStatus = new StringBuilder();
 
@@ -52,7 +52,7 @@ namespace GarageLogic
 
             return registerationNumbersByVehicleStatus.ToString();
         }
-        public void InflateVehicleWheelsToMaximum(string i_VehicleRegistrationNumber)
+        public static void InflateVehicleWheelsToMaximum(string i_VehicleRegistrationNumber)
         {
             VehicleInfo vehicleInGarage;
 
@@ -61,7 +61,7 @@ namespace GarageLogic
                 vehicleInGarage.Vehicle.InflateWheelsToMaximumPressure();
             }
         }
-        public void FuelVehicle(string i_VehicleRegistrationNumber, eFuelType i_FuelType, float i_AmountToFill)
+        public static void FuelVehicle(string i_VehicleRegistrationNumber, eFuelType i_FuelType, float i_AmountToFill)
         {
             VehicleInfo vehicleInGarage;
 
@@ -74,7 +74,7 @@ namespace GarageLogic
                 }
             }
         }
-        public void ChargeVehicle(string i_VehicleRegistrationNumber, float i_minutesToCharge)
+        public static void ChargeVehicle(string i_VehicleRegistrationNumber, float i_minutesToCharge)
         {
             VehicleInfo vehicleInGarage;
 
@@ -87,7 +87,7 @@ namespace GarageLogic
                 }
             }
         }
-        public String GetAllVehiclesData()
+        public static String GetAllVehiclesData(string i_VehicleRegistrationNumber)
         {
             //In order to get specific vehicle data (such as lisence for motorcycle), I think we should maybe add classes for each type and override ToString
             return "";

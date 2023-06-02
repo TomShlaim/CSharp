@@ -1,6 +1,6 @@
 ﻿namespace GarageLogic
 {
-    internal class VehicleInfo
+    public class VehicleInfo
     {
         private readonly Vehicle r_Vehicle;
         private readonly VehicleOwner r_VehicleOwner; 
