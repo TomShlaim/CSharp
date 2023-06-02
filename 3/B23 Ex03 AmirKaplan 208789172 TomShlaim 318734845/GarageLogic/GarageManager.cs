@@ -4,7 +4,7 @@ namespace GarageLogic
 {
     internal class GarageManager
     {
-        private Dictionary<string, VehicleInfo> m_VeichlesInGarage;
+        private Dictionary<string, VehicleInfo> m_VehiclesInGarage;
 
     }
 }

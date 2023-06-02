@@ -2,13 +2,15 @@
 {
     internal class VehicleInfo
     {
-        private readonly Vehicle r_Veichle;
+        private readonly Vehicle r_Vehicle;
         private readonly VehicleOwner r_VehicleOwner; 
-        private eVehicleStatus m_VehicleStatus = eVehicleStatus;
+        private eVehicleStatus m_VehicleStatus;
         
-        public VehicleInfo(Vehicle i_Veichle, VehicleOwner i_VechileOwner)
+        public VehicleInfo(Vehicle i_Veichle, VehicleOwner i_VehicleOwner, eVehicleStatus i_VehicleType)
         {
-
+            r_Vehicle = i_Veichle;
+            r_VehicleOwner = i_VehicleOwner;
+            m_VehicleStatus = i_VehicleType;
         }
         public enum eVehicleStatus  // eNum defition can later be refactored to a stand-alone file. not sure what's better
         {
@@ -24,7 +26,7 @@
 {1} 
 {2}
 "
-     ,r_VehicleOwner, r_Veichle, m_VehicleStatus);
+     ,r_VehicleOwner, r_Vehicle, m_VehicleStatus);
         }
     }
 }
