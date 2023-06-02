@@ -50,4 +50,3 @@ Number Of Doors: {2}", base.ToString(), m_Color, r_NumOfDoors);
         }
     }
 }
-}
