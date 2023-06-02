@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    internal class Truck : Veichle
+    internal class Truck : Vehicle
     {
         private bool m_IsCarryingDangerousMaterial;
         private bool m_IsRefrigeratedTransport;

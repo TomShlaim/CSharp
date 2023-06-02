@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    internal class Motorcycle : Veichle
+    internal class Motorcycle : Vehicle
     {
 
         private const float k_MaxAirPressure = 31f;

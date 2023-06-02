@@ -9,13 +9,13 @@ namespace GarageLogic
     internal abstract class Engine
     {
         private float m_EnergyPercentage;
-        private static readonly Dictionary<eVeichleType, float> r_EnergyCapacityDict = new Dictionary<eVeichleType, float>
+        private static readonly Dictionary<eVehicleType, float> r_EnergyCapacityDict = new Dictionary<eVehicleType, float>
         {
-            { eVeichleType.ElectricCar, 5.2f },
-            { eVeichleType.ElectricMotorcycle, 2.6f },
-            { eVeichleType.FuelCar, 46f },
-            { eVeichleType.FuelMotorcycle, 6.4f },
-            { eVeichleType.Truck, 135f }
+            { eVehicleType.ElectricCar, 5.2f },
+            { eVehicleType.ElectricMotorcycle, 2.6f },
+            { eVehicleType.FuelCar, 46f },
+            { eVehicleType.FuelMotorcycle, 6.4f },
+            { eVehicleType.Truck, 135f }
         };
 
         public float EnergyPercentage

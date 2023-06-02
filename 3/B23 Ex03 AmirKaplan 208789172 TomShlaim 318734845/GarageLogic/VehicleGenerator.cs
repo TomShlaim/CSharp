@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    internal class VeichleOwner
+    internal class VehicleGenerator
     {
     }
 }
