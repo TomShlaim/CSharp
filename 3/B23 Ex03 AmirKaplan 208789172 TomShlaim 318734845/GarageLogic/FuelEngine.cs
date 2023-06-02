@@ -12,25 +12,11 @@ namespace GarageLogic
         private float m_CurrentAmountOfLitersInFuelTank;
         private readonly float r_MaxLitersInFuelTank;
 
-        public enum eFuelType
-        {
-            Soler,
-            Octan95,
-            Octan96,
-            Octan98
-        }
-
         public FuelEngine(eFuelType i_FuelType, float i_MaxLitersInFuelTank)
         {
             r_FuelType = i_FuelType;
             r_MaxLitersInFuelTank = i_MaxLitersInFuelTank;
         }
-
-        public eFuelType FuelType
-        {
-            get { return r_FuelType; }
-        }
-
         public float CurrentAmountOfLitersInFuelTank
         {
             get { return m_CurrentAmountOfLitersInFuelTank; }

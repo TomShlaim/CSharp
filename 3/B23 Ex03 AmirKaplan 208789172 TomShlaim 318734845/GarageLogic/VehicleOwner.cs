@@ -27,7 +27,8 @@ namespace GarageLogic
         public override string ToString()
         {
             return string.Format(
-@"Owner Information
+@"Owner Information :
+=====================
 Owner Name : {0}
 Owner Phone: {1}
 "
