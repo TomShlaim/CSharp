@@ -1,7 +1,6 @@
-﻿
-namespace GarageLogic
+﻿namespace GarageLogic
 {
-    internal enum eVehicleType
+    public enum eVehicleType
     {
         Truck,
         ElectricCar,

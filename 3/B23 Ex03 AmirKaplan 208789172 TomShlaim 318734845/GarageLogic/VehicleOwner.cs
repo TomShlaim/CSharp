@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GarageLogic
+﻿namespace GarageLogic
 {
-    internal class VehicleOwner
+    public class VehicleOwner
     {
         private readonly string r_Name;
         private readonly string r_Phone;

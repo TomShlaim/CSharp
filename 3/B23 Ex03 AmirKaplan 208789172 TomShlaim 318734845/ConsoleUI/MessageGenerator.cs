@@ -46,11 +46,11 @@ Please try again.
 
             Console.WriteLine(invalidFieldMessage);
         }
-        public static void DisplayQuitMessage()
+        public static void DisplayCloseMessage()
         {
             string quitMessage = string.Format(
 @"Thanks for using our garage!
-Quiting...
+Closing...
 ");
 
             Console.WriteLine(quitMessage);

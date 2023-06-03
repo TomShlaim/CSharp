@@ -4,11 +4,11 @@ using System.Text;
 
 namespace GarageLogic
 {
-    internal class GarageManager
+    public class GarageManager
     {
-        private static Dictionary<string, VehicleInfo> m_VehiclesInGarage = new Dictionary<string, VehicleInfo>();
+        private static Dictionary<string, GarageVehicleInfo> m_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
 
-        public static void AddVehicle(VehicleInfo i_VehicleInfo)
+        public static void AddVehicle(GarageVehicleInfo i_VehicleInfo)
         {
             if (!isVehicleInGarage(i_VehicleInfo.Vehicle.RegistrationNumber))
             {
@@ -21,7 +21,7 @@ namespace GarageLogic
         }
         public static void UpdateVehicleStatus(string i_VehicleRegistrationNumber, eVehicleStatus i_NewVehicleStatus)
         {
-            VehicleInfo vehicleInGarage;
+            GarageVehicleInfo vehicleInGarage;
 
             if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
@@ -38,7 +38,7 @@ namespace GarageLogic
             }
             else
             {
-                foreach (KeyValuePair<string, VehicleInfo> vehicleInGarage in m_VehiclesInGarage)
+                foreach (KeyValuePair<string, GarageVehicleInfo> vehicleInGarage in m_VehiclesInGarage)
                 {
                     string registerationNumber = vehicleInGarage.Key;
                     eVehicleStatus vehicleStatus = vehicleInGarage.Value.VehicleStatus;
@@ -54,7 +54,7 @@ namespace GarageLogic
         }
         public static void InflateVehicleWheelsToMaximum(string i_VehicleRegistrationNumber)
         {
-            VehicleInfo vehicleInGarage;
+            GarageVehicleInfo vehicleInGarage;
 
             if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
@@ -63,12 +63,11 @@ namespace GarageLogic
         }
         public static void FuelVehicle(string i_VehicleRegistrationNumber, eFuelType i_FuelType, float i_AmountToFill)
         {
-            VehicleInfo vehicleInGarage;
+            GarageVehicleInfo vehicleInGarage;
 
             if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
-                FuelEngine fuelEngine = vehicleInGarage.Vehicle.Engine as FuelEngine;
-                if (fuelEngine != null)
+                if (vehicleInGarage.Vehicle.Engine is FuelEngine fuelEngine)
                 {
                     fuelEngine.Refuel(i_AmountToFill, i_FuelType);
                 }
@@ -76,12 +75,11 @@ namespace GarageLogic
         }
         public static void ChargeVehicle(string i_VehicleRegistrationNumber, float i_minutesToCharge)
         {
-            VehicleInfo vehicleInGarage;
+            GarageVehicleInfo vehicleInGarage;
 
             if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
-                ElectricEngine electricEngine = vehicleInGarage.Vehicle.Engine as ElectricEngine;
-                if (electricEngine != null)
+                if (vehicleInGarage.Vehicle.Engine is ElectricEngine electricEngine)
                 {
                     electricEngine.RechargeBattery(i_minutesToCharge / 60);
                 }

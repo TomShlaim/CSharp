@@ -1,15 +1,14 @@
 ﻿namespace GarageLogic
 {
-    internal class VehicleInfo
+    public class GarageVehicleInfo
     {
         private readonly Vehicle r_Vehicle;
         private readonly VehicleOwner r_VehicleOwner; 
-        private eVehicleStatus m_VehicleStatus;
-        public VehicleInfo(Vehicle i_Veichle, VehicleOwner i_VehicleOwner, eVehicleStatus i_VehicleType)
+        private eVehicleStatus m_VehicleStatus = eVehicleStatus.InRepair;
+        public GarageVehicleInfo(Vehicle i_Veichle, VehicleOwner i_VehicleOwner)
         {
             r_Vehicle = i_Veichle;
             r_VehicleOwner = i_VehicleOwner;
-            m_VehicleStatus = i_VehicleType;
         }
         public Vehicle Vehicle 
         {

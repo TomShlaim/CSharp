@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    internal class Wheel
+    public class Wheel
     {
         private readonly string r_Manufacturer;
         private float m_CurrentAirPressure;

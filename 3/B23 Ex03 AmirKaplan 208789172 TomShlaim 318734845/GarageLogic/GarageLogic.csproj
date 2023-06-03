@@ -52,12 +52,12 @@
     <Compile Include="VehicleOwner.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Wheel.cs" />
-    <Compile Include="Validator.cs" />
+    <Compile Include="LogicValidator.cs" />
     <Compile Include="VehicleGenerator.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FuelEngine.cs" />
     <Compile Include="ElectricEngine.cs" />
-    <Compile Include="VehicleInfo.cs" />
+    <Compile Include="GarageVehicleInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

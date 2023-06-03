@@ -19,7 +19,7 @@ namespace ConsoleUI
                 MessageGenerator.DisplayMenu();
                 eGarageFunctions chosenGarageFunctionNumber = getGarageFunctionNumber();
 
-                if (chosenGarageFunctionNumber == eGarageFunctions.Quit)
+                if (chosenGarageFunctionNumber == eGarageFunctions.Close)
                 {
                     isQuit = true;
                 }
@@ -29,12 +29,12 @@ namespace ConsoleUI
                 }
             }
 
-            quit();
+            CloseGarage();
         }
         
-        private static void quit()
+        private static void CloseGarage()
         {
-            MessageGenerator.DisplayQuitMessage();
+            MessageGenerator.DisplayCloseMessage();
             Environment.Exit(0);
         }
         private static eGarageFunctions getGarageFunctionNumber()

@@ -12,19 +12,13 @@ namespace GarageLogic
         private bool m_IsCarryingDangerousMaterial;
         private bool m_IsRefrigeratedTransport;
         private float m_CargoVolume;
-        private const float k_MaxAirPressure = 26f;
         private const int k_NumOfWheels = 14;
+        private const float k_MaxAirPressure = 26f;
 
-        public Truck(string i_RegistrationNumber, string i_ModelName, Engine i_Engine) : base(i_RegistrationNumber, i_ModelName, i_Engine)
+        public Truck(string i_RegistrationNumber, string i_ModelName, Engine i_Engine) 
+            : base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure)
         {
-        }
 
-        public Truck(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, bool i_IsCarryingDangerousMaterial, bool i_IsRefrigeratedTransport, float i_CargoVolume) 
-            : base(i_RegistrationNumber, i_ModelName, i_Engine)
-        {
-            m_IsCarryingDangerousMaterial = i_IsCarryingDangerousMaterial;
-            m_IsRefrigeratedTransport = i_IsRefrigeratedTransport;
-            m_CargoVolume = i_CargoVolume;
         }
 
         public float CargoVolume

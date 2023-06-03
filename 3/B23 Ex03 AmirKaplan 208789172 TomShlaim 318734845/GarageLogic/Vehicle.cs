@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    internal abstract class Vehicle
+    public abstract class Vehicle
     {
         private readonly string r_ModelName;
         private readonly string r_RegistrationNumber;
         private readonly List<Wheel> r_Wheels;
         private readonly Engine r_Engine;
 
-        public Vehicle(string i_ModelName, string i_RegistrationNumber, Engine i_Engine)
+        public Vehicle(string i_ModelName, string i_RegistrationNumber, Engine i_Engine, int i_NumberOfWheels, float i_MaxAirPressure)
         {
             r_ModelName = i_ModelName;
             r_RegistrationNumber = i_RegistrationNumber;
-            r_Wheels = new List<Wheel>();
             r_Engine = i_Engine;
+            r_Wheels = new List<Wheel>();
+            AttachWheels(i_NumberOfWheels, i_MaxAirPressure);
         }
 
         public float CurrentEnergyPercentage

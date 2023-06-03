@@ -15,6 +15,6 @@ namespace ConsoleUI
         FuelVehicle = 5,
         ChargeVehicle = 6,
         ShowVehicleData = 7,
-        Quit = 8
+        Close = 8
     }
 }

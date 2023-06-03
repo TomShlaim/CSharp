@@ -1,5 +1,4 @@
-﻿
-namespace GarageLogic
+﻿namespace GarageLogic
 {
     internal enum eCarColor
     {
