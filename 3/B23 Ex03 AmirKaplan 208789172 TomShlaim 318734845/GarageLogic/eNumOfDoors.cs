@@ -1,6 +1,6 @@
 ﻿namespace GarageLogic
 {
-    internal enum eNumOfDoors
+    public enum eNumOfDoors
     {
         Two = 2,
         Three = 3,

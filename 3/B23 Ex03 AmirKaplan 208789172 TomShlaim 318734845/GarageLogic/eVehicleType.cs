@@ -1,5 +1,5 @@
 ﻿namespace GarageLogic
-{
+{   
     public enum eVehicleType
     {
         Truck,

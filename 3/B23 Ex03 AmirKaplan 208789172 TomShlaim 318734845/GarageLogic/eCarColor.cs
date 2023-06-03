@@ -1,6 +1,6 @@
 ﻿namespace GarageLogic
 {
-    internal enum eCarColor
+    public enum eCarColor
     {
         White,
         Black,

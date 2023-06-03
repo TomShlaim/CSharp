@@ -8,7 +8,7 @@ namespace ConsoleUI
 {
     internal class UIValidator
     {
-        public static bool isValidGarageFunction(string i_GarageFunctionNumber)
+        public static bool IsValidGarageFunction(string i_GarageFunctionNumber)
         {
             int garageFunctionNumber;
             bool isValidNumber = int.TryParse(i_GarageFunctionNumber, out garageFunctionNumber);

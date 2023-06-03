@@ -1,8 +1,11 @@
-﻿using System;
+﻿using GarageLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleUI
@@ -14,7 +17,7 @@ namespace ConsoleUI
             MessageGenerator.DisplayWelcomeMessage();
             bool isQuit = false;
 
-            while (isQuit)
+            while (!isQuit)
             {
                 MessageGenerator.DisplayMenu();
                 eGarageFunctions chosenGarageFunctionNumber = getGarageFunctionNumber();
@@ -35,13 +38,14 @@ namespace ConsoleUI
         private static void CloseGarage()
         {
             MessageGenerator.DisplayCloseMessage();
+            Thread.Sleep(3000);
             Environment.Exit(0);
         }
         private static eGarageFunctions getGarageFunctionNumber()
         {
             string inputGarageFunctionNumber = Console.ReadLine();
 
-            while (!UIValidator.isValidGarageFunction(inputGarageFunctionNumber))
+            while (!UIValidator.IsValidGarageFunction(inputGarageFunctionNumber))
             {
                 MessageGenerator.DisplayInvalidFieldMessage("function number", "Must be a positive integer");
                 inputGarageFunctionNumber = Console.ReadLine();
@@ -78,7 +82,26 @@ namespace ConsoleUI
         }
         private static void addVehicle()
         {
+            try
+            {
+                MessageGenerator.DisplayInsertFieldMessage("registeration number");
+                string registerationNumber = getRegisterationNumber();
 
+                if(GarageManager.isVehicleInGarage(registerationNumber)) {
+                    GarageManager.UpdateVehicleStatus(registerationNumber, eVehicleStatus.InRepair);
+                    MessageGenerator.DisplayChangeVehicleStatusMessage(eVehicleStatus.InRepair, "Vehicle is already in garage!");
+                }
+                else
+                {
+                    MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("veichle type", typeof(eVehicleType));
+                    eVehicleType vehicleType = getVehicleType();
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageGenerator.DisplayInvalidFieldMessage(e.Message);
+            }
         }
         private static void showVehiclesRegisterationsNumbers()
         {
@@ -103,6 +126,20 @@ namespace ConsoleUI
         private static void showVehicleData()
         {
 
+        }
+        private static string getRegisterationNumber()
+        {
+            string inputRegisterationNumber = Console.ReadLine();
+            LogicValidator.IsValidRegisterationNumber(inputRegisterationNumber);
+
+            return inputRegisterationNumber;
+        }
+        private static eVehicleType getVehicleType()
+        {
+            string inputVehicleType = Console.ReadLine();
+            eVehicleType vehicleType = LogicValidator.ValidateAndParseStringToVehicleType(inputVehicleType);
+
+            return vehicleType;
         }
     }
 }

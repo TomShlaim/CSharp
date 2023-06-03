@@ -11,6 +11,7 @@ namespace ConsoleUI
         public static void Main(string[] args)
         {
             GarageUI.OpenGarage();
+            Console.ReadLine();
         }
     }
 }
