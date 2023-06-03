@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="eCarColor.cs" />
     <Compile Include="eFuelType.cs" />
+    <Compile Include="eLicenseType.cs" />
     <Compile Include="eNumOfDoors.cs" />
     <Compile Include="eVehicleStatus.cs" />
     <Compile Include="eVehicleType.cs" />

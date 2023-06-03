@@ -13,9 +13,9 @@ namespace GarageLogic
         private const float k_MaxAirPressure = 31f;
         private const int k_NumOfWheels = 2;
 
-        public Motorcycle(string i_RegistrationNumber, string i_ModelName, Engine i_Engine) : base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure)
+        public Motorcycle(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, eVehicleType i_VehicleType) 
+            : base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
         {
-
         }
 
         public  eLicenseType LicenseType

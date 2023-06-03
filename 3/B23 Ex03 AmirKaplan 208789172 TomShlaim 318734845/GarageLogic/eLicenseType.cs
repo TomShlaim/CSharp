@@ -2,7 +2,7 @@
 
 namespace GarageLogic
 {
-    internal enum eLicenseType
+    public enum eLicenseType
     {
         A1,
         A2,

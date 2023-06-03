@@ -80,6 +80,15 @@ namespace GarageLogic
 
             return vehicleStatus;
         }
+        public static eLicenseType ValidateAndParseLicenseType(string i_StringToParse)
+        {
+            if (!Enum.TryParse(i_StringToParse, out eLicenseType licenseType))
+            {
+                throw new ArgumentException("Invalid fuel type! String is not a fuel type!");
+            }
+
+            return licenseType;
+        }
         public static bool IsValidRegisterationNumber(string i_RegisterationNumber)
         {
             return ValidateAndParseStringToInteger(i_RegisterationNumber) > 0;

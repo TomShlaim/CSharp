@@ -32,10 +32,10 @@ namespace ConsoleUI
                 }
             }
 
-            CloseGarage();
+            closeGarage();
         }
         
-        private static void CloseGarage()
+        private static void closeGarage()
         {
             MessageGenerator.DisplayCloseMessage();
             Thread.Sleep(3000);
@@ -95,6 +95,7 @@ namespace ConsoleUI
                 {
                     MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("veichle type", typeof(eVehicleType));
                     eVehicleType vehicleType = getVehicleType();
+
 
                 }
             }

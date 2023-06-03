@@ -8,7 +8,8 @@
         private const int k_NumOfWheels = 5;
 
 
-        public Car(string i_RegistrationNumber, string i_ModelName, Engine i_Engine) : base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure)
+        public Car(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, eVehicleType i_VehicleType) : 
+            base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
         {
         }
 

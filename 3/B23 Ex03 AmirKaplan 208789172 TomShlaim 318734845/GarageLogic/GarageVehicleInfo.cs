@@ -34,5 +34,6 @@
 "
      ,r_VehicleOwner, r_Vehicle, m_VehicleStatus);
         }
+        //veichle type
     }
 }
