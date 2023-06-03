@@ -12,7 +12,7 @@ namespace GarageLogic
         {
             if(!int.TryParse(i_StringToParse, out int intToParse))
             {
-                throw new ArgumentException("Invalid string! String is not an integer!");
+                throw new ArgumentException("Invalid value! Value is not an integer!");
             }
 
             return intToParse;
@@ -21,7 +21,7 @@ namespace GarageLogic
         {
             if (!float.TryParse(i_StringToParse, out float floatToParse))
             {
-                throw new ArgumentException("Invalid string! String is not a float!");
+                throw new ArgumentException("Invalid value! Value is not a float!");
             }
 
             return floatToParse;
@@ -30,7 +30,7 @@ namespace GarageLogic
         {
             if (!bool.TryParse(i_StringToParse, out bool boolToParse))
             {
-                throw new ArgumentException("Invalid string! String is not a boolean!");
+                throw new ArgumentException("Invalid value! Value is not a boolean!");
             }
 
             return boolToParse;
@@ -39,7 +39,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eCarColor carColor))
             {
-                throw new ArgumentException("Invalid car color! String is not a car color!");
+                throw new ArgumentException("Invalid car color! Value is not a car color!");
             }
 
             return carColor;
@@ -48,7 +48,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eNumOfDoors numOfDoors))
             {
-                throw new ArgumentException("Invalid num of doors! String is not a num of doors!");
+                throw new ArgumentException("Invalid num of doors! Value is not a num of doors!");
             }
 
             return numOfDoors;
@@ -57,7 +57,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eVehicleType vehicleType))
             {
-                throw new ArgumentException("Invalid vehicle type! String is not a vehicle type!");
+                throw new ArgumentException("Invalid vehicle type! Value is not a vehicle type!");
             }
 
             return vehicleType;
@@ -66,7 +66,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eVehicleStatus vehicleStatus))
             {
-                throw new ArgumentException("Invalid vehicle status! String is not a vehicle status!");
+                throw new ArgumentException("Invalid vehicle status! Value is not a vehicle status!");
             }
 
             return vehicleStatus;
@@ -75,7 +75,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eFuelType vehicleStatus))
             {
-                throw new ArgumentException("Invalid fuel type! String is not a fuel type!");
+                throw new ArgumentException("Invalid fuel type! Value is not a fuel type!");
             }
 
             return vehicleStatus;
@@ -84,7 +84,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eLicenseType licenseType))
             {
-                throw new ArgumentException("Invalid fuel type! String is not a fuel type!");
+                throw new ArgumentException("Invalid fuel type! Value is not a fuel type!");
             }
 
             return licenseType;

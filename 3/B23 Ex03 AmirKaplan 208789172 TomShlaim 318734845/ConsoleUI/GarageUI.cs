@@ -1,12 +1,8 @@
 ﻿using GarageLogic;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using static GarageLogic.VehicleGenerator;
 
 namespace ConsoleUI
 {
@@ -93,16 +89,33 @@ namespace ConsoleUI
                 }
                 else
                 {
-                    MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("veichle type", typeof(eVehicleType));
+                    MessageGenerator.DisplayInsertFieldMessage("model name");
+                    string modelName = Console.ReadLine();
+
+                    MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("vehicle type", typeof(eVehicleType));
                     eVehicleType vehicleType = getVehicleType();
 
-
+                    Vehicle newVehicle = CreateVehicle(vehicleType, registerationNumber, modelName);
+                    populateVehicleFields(newVehicle, vehicleType);
                 }
             }
             catch (Exception e)
             {
                 MessageGenerator.DisplayInvalidFieldMessage(e.Message);
             }
+        }
+        private static void populateVehicleFields(Vehicle i_Vehicle, eVehicleType i_VehicleType)
+        {
+            VehicleGenerator.GetVehicleAdditionalFields(i_VehicleType).ForEach(field =>
+            {
+                Dictionary<eVehicleAdditionalFields, string> vehicleAdditionalFields = new Dictionary<eVehicleAdditionalFields, string>();
+
+                MessageGenerator.DisplayInsertFieldMessage(field.ToString());
+                string vehicleFieldValue = Console.ReadLine();
+
+                vehicleAdditionalFields.Add(field, vehicleFieldValue);
+                VehicleGenerator.SetVehicleAdditionalFields(i_Vehicle, i_VehicleType, vehicleAdditionalFields);
+            });
         }
         private static void showVehiclesRegisterationsNumbers()
         {
