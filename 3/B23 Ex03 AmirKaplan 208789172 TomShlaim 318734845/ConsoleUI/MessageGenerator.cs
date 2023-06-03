@@ -1,9 +1,7 @@
 ﻿using GarageLogic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using static GarageLogic.VehicleGenerator;
 
 namespace ConsoleUI
 {
@@ -44,7 +42,7 @@ Please choose a function by typing the function number out of the functions list
             string invalidFieldMessage = string.Format(
 @"
 {0} {1}
-Please try again :
+Please try again!
 "
 , i_ErrorMessage, i_AdditionalInformation);
 
@@ -54,7 +52,7 @@ Please try again :
         {
             string insertFieldMessage = string.Format(
 @"
-Please insert {0} {1}:"
+Please insert the {0} {1}:"
 , i_FieldName, i_AdditionalInformation);
 
             Console.WriteLine(insertFieldMessage);
@@ -68,7 +66,7 @@ Please insert {0} {1}:"
             string quitMessage = string.Format(
 @"
 Thanks for using our garage!
-Closing...");
+Quitting...");
 
             Console.WriteLine(quitMessage);
         }
@@ -81,14 +79,65 @@ Closing...");
 
             Console.WriteLine(quitMessage);
         }
+        public static void DisplayFieldMessage(eVehicleAdditionalFields field)
+        {
+            switch (field)
+            {
+                case eVehicleAdditionalFields.LicenseType:
+                    DisplayInsertFieldWithValidEnumValuesMessage("license type", typeof(eLicenseType));
+                    break;
+                case eVehicleAdditionalFields.Color:
+                    DisplayInsertFieldWithValidEnumValuesMessage("car color", typeof(eCarColor));
+                    break;
+                case eVehicleAdditionalFields.NumOfDoors:
+                    DisplayInsertFieldWithValidEnumValuesMessage("number of doors", typeof(eNumOfDoors));
+                    break;
+                case eVehicleAdditionalFields.IsCarryingDangerousMaterial:
+                case eVehicleAdditionalFields.IsRefrigeratedTransport:
+                    DisplayInsertFieldMessage(getLowerCasedAndSpacedString(field.ToString()), getFieldValidValuesMessage("true, false")); 
+                    break;
+                default:
+                    DisplayInsertFieldMessage(getLowerCasedAndSpacedString(field.ToString()));
+                    break;
+            }
+        }
+        public static void DisplayFunctionExecutionMessage(eGarageFunctions i_GarageFunction, bool i_isSuccess)
+        {
+            string functionExecutionResult = i_isSuccess ? "succeeded" : "failed";
+
+            string quitMessage = string.Format(
+@"
+The garage function {0} {1}!
+Please choose function out of the list below.
+", getLowerCasedAndSpacedString(i_GarageFunction.ToString()), functionExecutionResult);
+
+            Console.WriteLine(quitMessage);
+        }
         private static string getEnumValueValues(Type i_EnumType)
         {
             return string.Join(", ", Enum.GetNames(i_EnumType));
         }
         private static string getFieldValidValuesMessage(string i_ValidValues)
         {
-            return string.Format("Valid values are : {0}", i_ValidValues);
+            return string.Format("The valid values are : {0}", i_ValidValues);
         }
+        private static string getLowerCasedAndSpacedString(string i_String)
+        {
+            StringBuilder lowerCasedAndSpacedString = new StringBuilder();
 
+            for (int i = 0; i < i_String.Length; i++)
+            {
+                char currentChar = i_String[i];
+
+                if (i > 0 && Char.IsUpper(currentChar))
+                {
+                    lowerCasedAndSpacedString.Append(' ');
+                }
+
+                lowerCasedAndSpacedString.Append(Char.ToLower(currentChar));
+            }
+
+            return lowerCasedAndSpacedString.ToString();
+        }
     }
 }

@@ -35,7 +35,8 @@ namespace GarageLogic
             return string.Format(
 @"{0}
 License Type: {1}
-Engine Volume: {2} cc", base.ToString(), m_LicenseType, m_EngineVolume);
+Engine Volume: {2} cc
+", base.ToString(), m_LicenseType, m_EngineVolume);
         }
     }
 }

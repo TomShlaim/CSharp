@@ -30,10 +30,9 @@
 ======================
 {0}
 {1} 
-{2}
+Current status in garage : {2}
 "
-     ,r_VehicleOwner, r_Vehicle, m_VehicleStatus);
+     ,r_Vehicle, r_VehicleOwner, m_VehicleStatus);
         }
-        //veichle type
     }
 }

@@ -74,17 +74,30 @@ namespace GarageLogic
                 wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure);
             }
         }
-
+        public void InflateWheels(float wheelPressure)
+        {
+            foreach (Wheel wheel in r_Wheels)
+            {
+                wheel.Inflate(wheelPressure);
+            }
+        }
         public override string ToString()
         {
             return string.Format(
-@"Registration Number: {0}
-Model Name: {1}
+@"
+Vehicle Type : {0}
+Registration Number: {1}
+Model Name: {2}
+
 Engine: 
-{2}
+=======
+{3}
+
 Wheels information: 
-{3}"
-     , r_RegistrationNumber, r_ModelName, r_Engine.ToString(), WheelsToString());
+===================
+{4}
+"
+     ,r_VehicleType, r_RegistrationNumber, r_ModelName, r_Engine.ToString(), WheelsToString());
         }
 
     }

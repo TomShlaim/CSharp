@@ -21,10 +21,11 @@
         public override string ToString()
         {
             return string.Format(
-@"Owner Information :
-=====================
-Owner Name : {0}
-Owner Phone: {1}
+@"
+Owner :
+=======
+Name : {0}
+Phone: {1}
 "
      , r_Name, r_Phone);
         }

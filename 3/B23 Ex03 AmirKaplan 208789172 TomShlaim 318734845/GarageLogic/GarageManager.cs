@@ -8,11 +8,15 @@ namespace GarageLogic
     {
         private static Dictionary<string, GarageVehicleInfo> m_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
 
-        public static void AddVehicle(GarageVehicleInfo i_VehicleInfo)
+        public static void AddVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
         {
-            if (!isVehicleInGarage(i_VehicleInfo.Vehicle.RegistrationNumber))
+            VehicleOwner vehicleOwner = new VehicleOwner(i_OwnerName, i_OwnerPhone);
+            GarageVehicleInfo garageVehicleInfo = new GarageVehicleInfo(i_Vehicle, vehicleOwner);
+
+
+            if (!isVehicleInGarage(garageVehicleInfo.Vehicle.RegistrationNumber))
             {
-                m_VehiclesInGarage.Add(i_VehicleInfo.Vehicle.RegistrationNumber, i_VehicleInfo);
+                m_VehiclesInGarage.Add(garageVehicleInfo.Vehicle.RegistrationNumber, garageVehicleInfo);
             }
         }
         public static bool isVehicleInGarage(string i_VehicleRegistrationNumber)
@@ -26,6 +30,10 @@ namespace GarageLogic
             if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 vehicleInGarage.VehicleStatus = i_NewVehicleStatus;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
             }
         }
         public static String GetVehiclesRegisterationNumbersByVehicleStatus(eVehicleStatus i_VehicleStatus = eVehicleStatus.None)
@@ -60,6 +68,10 @@ namespace GarageLogic
             {
                 vehicleInGarage.Vehicle.InflateWheelsToMaximumPressure();
             }
+            else
+            {
+                throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
+            }
         }
         public static void FuelVehicle(string i_VehicleRegistrationNumber, eFuelType i_FuelType, float i_AmountToFill)
         {
@@ -71,6 +83,10 @@ namespace GarageLogic
                 {
                     fuelEngine.Refuel(i_AmountToFill, i_FuelType);
                 }
+            }
+            else
+            {
+                throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
             }
         }
         public static void ChargeVehicle(string i_VehicleRegistrationNumber, float i_minutesToCharge)
@@ -84,11 +100,23 @@ namespace GarageLogic
                     electricEngine.RechargeBattery(i_minutesToCharge / 60);
                 }
             }
+            else
+            {
+                throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
+            }
         }
-        public static String GetAllVehiclesData(string i_VehicleRegistrationNumber)
+        public static string GetAllVehicleData(string i_VehicleRegistrationNumber)
         {
-            //In order to get specific vehicle data (such as lisence for motorcycle), I think we should maybe add classes for each type and override ToString
-            return "";
+            GarageVehicleInfo vehicleInGarage;
+
+            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            {
+                return vehicleInGarage.ToString();
+            }
+            else
+            {
+                throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
+            }
         }
     }
 }

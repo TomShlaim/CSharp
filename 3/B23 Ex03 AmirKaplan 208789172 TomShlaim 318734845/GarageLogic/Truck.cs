@@ -41,7 +41,8 @@
 @"{0}
 Cargo Volume: {1}
 Carrying Dangerous Material: {2}
-Refrigerated Transport: {3}", base.ToString(), m_CargoVolume, isCarryingDangerousMaterialString, isRefrigeratedTransportString);
+Refrigerated Transport: {3}
+", base.ToString(), m_CargoVolume, isCarryingDangerousMaterialString, isRefrigeratedTransportString);
         }
 
     }
