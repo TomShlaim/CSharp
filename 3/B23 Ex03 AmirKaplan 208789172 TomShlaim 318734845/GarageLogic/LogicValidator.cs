@@ -12,16 +12,20 @@ namespace GarageLogic
         {
             if(!int.TryParse(i_StringToParse, out int intToParse))
             {
-                throw new ArgumentException("Invalid value! Value is not an integer!");
+                throw new FormatException("Invalid value! Value is not an integer!");
             }
 
             return intToParse;
         }
-        public static float ValidateAndParseStringToFloat(string i_StringToParse)
+        public static float ValidateAndParseStringToPositiveFloat(string i_StringToParse)
         {
             if (!float.TryParse(i_StringToParse, out float floatToParse))
             {
-                throw new ArgumentException("Invalid value! Value is not a float!");
+                throw new FormatException("Invalid value! Value is not a float!");
+            }
+            else if(floatToParse < 0.0f)
+            {
+                throw new ArgumentException("Invalid value! Value most be positive!");
             }
 
             return floatToParse;
@@ -30,7 +34,7 @@ namespace GarageLogic
         {
             if (!bool.TryParse(i_StringToParse, out bool boolToParse))
             {
-                throw new ArgumentException("Invalid value! Value is not a boolean!");
+                throw new FormatException("Invalid value! Value is not a boolean!");
             }
 
             return boolToParse;
@@ -39,7 +43,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eCarColor carColor))
             {
-                throw new ArgumentException("Invalid car color! Value is not a car color!");
+                throw new FormatException("Invalid car color! Value is not a car color!");
             }
 
             return carColor;
@@ -48,7 +52,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eNumOfDoors numOfDoors))
             {
-                throw new ArgumentException("Invalid num of doors! Value is not a num of doors!");
+                throw new FormatException("Invalid num of doors! Value is not a num of doors!");
             }
 
             return numOfDoors;
@@ -57,7 +61,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eVehicleType vehicleType))
             {
-                throw new ArgumentException("Invalid vehicle type! Value is not a vehicle type!");
+                throw new FormatException("Invalid vehicle type! Value is not a vehicle type!");
             }
 
             return vehicleType;
@@ -66,7 +70,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eVehicleStatus vehicleStatus))
             {
-                throw new ArgumentException("Invalid vehicle status! Value is not a vehicle status!");
+                throw new FormatException("Invalid vehicle status! Value is not a vehicle status!");
             }
 
             return vehicleStatus;
@@ -75,7 +79,7 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eFuelType vehicleStatus))
             {
-                throw new ArgumentException("Invalid fuel type! Value is not a fuel type!");
+                throw new FormatException("Invalid fuel type! Value is not a fuel type!");
             }
 
             return vehicleStatus;
@@ -84,14 +88,22 @@ namespace GarageLogic
         {
             if (!Enum.TryParse(i_StringToParse, out eLicenseType licenseType))
             {
-                throw new ArgumentException("Invalid fuel type! Value is not a fuel type!");
+                throw new FormatException("Invalid fuel type! Value is not a fuel type!");
             }
 
             return licenseType;
         }
         public static bool IsValidRegisterationNumber(string i_RegisterationNumber)
         {
-            return ValidateAndParseStringToInteger(i_RegisterationNumber) > 0;
+            return isPositiveInteger(i_RegisterationNumber);
+        }
+        public static bool IsValidPhoneNumber(string i_PhoneNumber)
+        {
+            return isPositiveInteger(i_PhoneNumber);
+        }
+        private static bool isPositiveInteger(string i_String)
+        {
+            return ValidateAndParseStringToInteger(i_String) > 0;
         }
     }
 }

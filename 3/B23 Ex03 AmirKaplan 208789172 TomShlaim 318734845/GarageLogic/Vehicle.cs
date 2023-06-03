@@ -21,32 +21,14 @@ namespace GarageLogic
             AttachWheels(i_NumberOfWheels, i_MaxAirPressure);
             this.r_VehicleType = r_VehicleType;
         }
-
-        public float CurrentEnergyPercentage
-        {
-            get { return r_Engine.EnergyPercentage; }
-            set { r_Engine.EnergyPercentage = value; }
-        }
-        public string ModelName
-        {
-            get { return r_ModelName; }
-        }
-
         public string RegistrationNumber
         {
             get { return r_RegistrationNumber; }
         }
-
-        public List<Wheel> Wheels
-        {
-            get { return r_Wheels; }
-        }
-
         public Engine Engine
         {
             get { return r_Engine; }
         }
-
         public void AttachWheels(int i_NumberOfWheels, float i_WheelMaxPressure)
         {
             for (int i = 0; i < i_NumberOfWheels; i++)
@@ -54,19 +36,6 @@ namespace GarageLogic
                 r_Wheels.Add(new Wheel(i_WheelMaxPressure));
             }
         }
-        public string WheelsToString()
-        {
-            StringBuilder wheelsInfo = new StringBuilder();
-
-            foreach (Wheel wheel in r_Wheels)
-            {
-                wheelsInfo.Append(wheel.ToString());
-                wheelsInfo.Append(Environment.NewLine);
-            }
-
-            return wheelsInfo.ToString();
-        }
-
         public void InflateWheelsToMaximumPressure()
         {
             foreach (Wheel wheel in r_Wheels)
@@ -80,6 +49,18 @@ namespace GarageLogic
             {
                 wheel.Inflate(wheelPressure);
             }
+        }
+        public string WheelsToString()
+        {
+            StringBuilder wheelsInfo = new StringBuilder();
+
+            foreach (Wheel wheel in r_Wheels)
+            {
+                wheelsInfo.Append(wheel.ToString());
+                wheelsInfo.Append(Environment.NewLine);
+            }
+
+            return wheelsInfo.ToString();
         }
         public override string ToString()
         {

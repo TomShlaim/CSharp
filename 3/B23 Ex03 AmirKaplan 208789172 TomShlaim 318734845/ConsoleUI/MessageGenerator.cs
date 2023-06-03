@@ -74,7 +74,8 @@ Quitting...");
         {
             string quitMessage = string.Format(
 @"
-{0} Vehicle new status is :{1}.
+{0}
+Vehicle new status is :{1}.
 ", i_AdditionalInformation, i_NewVehicleStatus);
 
             Console.WriteLine(quitMessage);
@@ -112,6 +113,18 @@ Please choose function out of the list below.
 ", getLowerCasedAndSpacedString(i_GarageFunction.ToString()), functionExecutionResult);
 
             Console.WriteLine(quitMessage);
+        }
+        public static void DisplayVehiclesInGarage(string i_VehiclesInGarage = "")
+        {
+            string vehiclesInGarage = i_VehiclesInGarage != "" ? string.Format(
+@"
+Those are the registeration numbers of the vehicles in the garage with the requested status (If 'None' supplied, you got all of them) :
+{0}",i_VehiclesInGarage) :
+@"
+No vehicles in the garage with the requested status!"
+;
+
+            Console.WriteLine(vehiclesInGarage);
         }
         private static string getEnumValueValues(Type i_EnumType)
         {

@@ -9,23 +9,6 @@
         {
             r_MaxHoursOfBattery = i_MaxHoursOfBattery;
         }
-
-        public float RemainingHoursInBattery
-        {
-            get { return m_RemainingHoursInBattery; }
-            set 
-            {
-                // Validation here (?)
-                m_RemainingHoursInBattery = value;
-                UpdateEnergyPercentage();
-            }
-        }
-
-        public float MaxHoursOfBattery
-        {
-            get { return m_RemainingHoursInBattery; }
-        }
-
         public override void UpdateEnergyPercentage()
         {
             base.SetEnergyPercentage(m_RemainingHoursInBattery, r_MaxHoursOfBattery);
@@ -33,9 +16,15 @@
 
         public void RechargeBattery(float i_HoursToAdd)
         {
-            // Validation here (?)
-            m_RemainingHoursInBattery += i_HoursToAdd;
-            UpdateEnergyPercentage();
+            if (m_RemainingHoursInBattery + i_HoursToAdd <= r_MaxHoursOfBattery)
+            {
+                m_RemainingHoursInBattery += i_HoursToAdd;
+                UpdateEnergyPercentage();
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(0, r_MaxHoursOfBattery);
+            }
         }
 
         public override string ToString()

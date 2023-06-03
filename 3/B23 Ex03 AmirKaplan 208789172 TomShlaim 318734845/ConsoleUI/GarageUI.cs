@@ -1,7 +1,6 @@
 ﻿using GarageLogic;
 using System;
 using System.Threading;
-using static GarageLogic.VehicleGenerator;
 
 namespace ConsoleUI
 {
@@ -100,28 +99,25 @@ namespace ConsoleUI
                 MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("vehicle type", typeof(eVehicleType));
                 eVehicleType vehicleType = getVehicleType();
 
-                Vehicle newVehicle = CreateVehicle(vehicleType, registerationNumber, modelName);
+                Vehicle newVehicle = GarageManager.CreateVehicle(vehicleType, registerationNumber, modelName);
                 populateVehicleFields(newVehicle, vehicleType);
                 insertVehicleIntoGarage(newVehicle);
             } 
         }
         private static void populateVehicleFields(Vehicle i_Vehicle, eVehicleType i_VehicleType)
         {
-            VehicleGenerator.GetVehicleAdditionalFields(i_VehicleType).ForEach(field =>
+            GarageManager.GetVehicleAdditionalFields(i_VehicleType).ForEach(field =>
             {
                 MessageGenerator.DisplayFieldMessage(field);
                 string vehicleFieldValue = Console.ReadLine();
 
-                VehicleGenerator.SetVehicleAdditionalField(i_Vehicle, field, vehicleFieldValue);
+                GarageManager.SetVehicleAdditionalField(i_Vehicle, field, vehicleFieldValue);
             });
         }
         private static void insertVehicleIntoGarage(Vehicle i_Vehicle)
         {
-            MessageGenerator.DisplayInsertFieldMessage("owner name");
-            string ownerName = Console.ReadLine();
-            MessageGenerator.DisplayInsertFieldMessage("owner phone");
-            string ownerPhone = Console.ReadLine();
-
+            string ownerName = getOwnerName();
+            string ownerPhone = getOwnerPhoneNumber();
 
             GarageManager.AddVehicle(i_Vehicle, ownerName, ownerPhone);
         }
@@ -129,7 +125,7 @@ namespace ConsoleUI
         {
             eVehicleStatus vehicleStatus = getVehicleStatus();
 
-            GarageManager.GetVehiclesRegisterationNumbersByVehicleStatus(vehicleStatus);        
+            MessageGenerator.DisplayVehiclesInGarage(GarageManager.GetVehiclesRegisterationNumbersByVehicleStatus(vehicleStatus));        
         }
         private static void changeVehicleStatus()
         {
@@ -175,6 +171,22 @@ namespace ConsoleUI
 
             return inputRegisterationNumber;
         }
+        private static string getOwnerName()
+        {
+            MessageGenerator.DisplayInsertFieldMessage("owner name");
+            string inputOwnerName = Console.ReadLine();
+
+            return inputOwnerName;
+        }
+        private static string getOwnerPhoneNumber()
+        {
+            MessageGenerator.DisplayInsertFieldMessage("owner phone number");
+            string inputOwnerPhoneNumber = Console.ReadLine();
+
+            LogicValidator.IsValidPhoneNumber(inputOwnerPhoneNumber);
+
+            return inputOwnerPhoneNumber;
+        }
         private static eVehicleType getVehicleType()
         {
             string inputVehicleType = Console.ReadLine();
@@ -187,7 +199,7 @@ namespace ConsoleUI
             MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("vehicle status", typeof(eVehicleStatus));
             string inputVehicleStatus = Console.ReadLine();
 
-            eVehicleStatus vehicleStatus = LogicValidator.ValidateAndParseStringToVehicleStatus(Console.ReadLine());
+            eVehicleStatus vehicleStatus = LogicValidator.ValidateAndParseStringToVehicleStatus(inputVehicleStatus);
 
             return vehicleStatus;
         }
@@ -196,7 +208,7 @@ namespace ConsoleUI
             MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("fuel type", typeof(eFuelType));
             string inputFuelType = Console.ReadLine();
 
-            eFuelType fuelType = LogicValidator.ValidateAndParseStringToFuelType(Console.ReadLine());
+            eFuelType fuelType = LogicValidator.ValidateAndParseStringToFuelType(inputFuelType);
 
             return fuelType;
         }
@@ -213,7 +225,7 @@ namespace ConsoleUI
             MessageGenerator.DisplayInsertFieldMessage(i_FieldName);
             string inputValue = Console.ReadLine();
 
-            float value = LogicValidator.ValidateAndParseStringToFloat(inputValue);
+            float value = LogicValidator.ValidateAndParseStringToPositiveFloat(inputValue);
 
             return value;
         }

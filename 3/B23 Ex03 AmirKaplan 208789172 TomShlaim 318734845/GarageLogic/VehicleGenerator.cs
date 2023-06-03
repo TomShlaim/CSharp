@@ -18,8 +18,22 @@ namespace GarageLogic
             IsCarryingDangerousMaterial,
             IsRefrigeratedTransport,
             CargoVolume
-    }
-        public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName)
+        }
+        private static readonly Dictionary<eVehicleType, float> r_EnergyCapacity = new Dictionary<eVehicleType, float>
+        {
+            { eVehicleType.FuelMotorcycle, 6.4f },
+            { eVehicleType.ElectricMotorcycle, 2.6f },
+            { eVehicleType.FuelCar, 46f },
+            { eVehicleType.ElectricCar, 5.2f },
+            { eVehicleType.Truck, 135f }
+        };
+        private static readonly Dictionary<eVehicleType, eFuelType> r_VehicleFuelType = new Dictionary<eVehicleType, eFuelType>
+        {
+            { eVehicleType.FuelMotorcycle, eFuelType.Octan98 },
+            { eVehicleType.FuelCar, eFuelType.Octan95 },
+            { eVehicleType.Truck, eFuelType.Soler }
+        };
+        internal static Vehicle createVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName)
         {
             Vehicle vehicle = null;
 
@@ -44,63 +58,79 @@ namespace GarageLogic
 
             return vehicle;
         }
-        public static void SetVehicleAdditionalField(Vehicle i_Vehicle, eVehicleAdditionalFields i_VehicleAdditionalField, string i_VehicleAdditionalFieldValue)
+        internal static void setVehicleAdditionalField(Vehicle i_Vehicle, eVehicleAdditionalFields i_VehicleAdditionalField, string i_VehicleAdditionalFieldValue)
         {
             switch (i_VehicleAdditionalField)
             {
                 case eVehicleAdditionalFields.CurrentAmountOfFuel:
-                    float currentAmountOfFuel = LogicValidator.ValidateAndParseStringToFloat(i_VehicleAdditionalFieldValue);
+                    float currentAmountOfFuel = LogicValidator.ValidateAndParseStringToPositiveFloat(i_VehicleAdditionalFieldValue);
 
-                    (i_Vehicle.Engine as FuelEngine).CurrentAmountOfLitersInFuelTank = currentAmountOfFuel;
+                    if(i_Vehicle.Engine is FuelEngine fuelEngine)
+                    {
+                        fuelEngine.Refuel(currentAmountOfFuel, fuelEngine.FuelType);
+                    }
+
                     break;
                 case eVehicleAdditionalFields.RemainingHoursInBattery:
-                    float remainingHoursInBattery = LogicValidator.ValidateAndParseStringToFloat(i_VehicleAdditionalFieldValue);
+                    float remainingHoursInBattery = LogicValidator.ValidateAndParseStringToPositiveFloat(i_VehicleAdditionalFieldValue);
 
-                    (i_Vehicle.Engine as ElectricEngine).RemainingHoursInBattery = remainingHoursInBattery;
+                    if (i_Vehicle.Engine is ElectricEngine electricEngine)
+                    {
+                        electricEngine.RechargeBattery(remainingHoursInBattery);
+                    }
+
                     break;
                 case eVehicleAdditionalFields.LicenseType:
                     eLicenseType licenseType = LogicValidator.ValidateAndParseLicenseType(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Motorcycle).LicenseType = licenseType;
+
                     break;
                 case eVehicleAdditionalFields.EngineVolume:
                     int engineVolume = LogicValidator.ValidateAndParseStringToInteger(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Motorcycle).EngineVolume = engineVolume;
+
                     break;
                 case eVehicleAdditionalFields.Color:
                     eCarColor carColor = LogicValidator.ValidateAndParseStringToCarColor(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Car).Color = carColor;
+
                     break;
                 case eVehicleAdditionalFields.NumOfDoors:
                     eNumOfDoors carNumOfDoors = LogicValidator.ValidateAndParseStringToNumOfDoors(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Car).NumOfDoors = carNumOfDoors;
+
                     break;
                 case eVehicleAdditionalFields.IsCarryingDangerousMaterial:
                     bool isCarryingDangerousMaterial = LogicValidator.ValidateAndParseStringToBoolean(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Truck).IsCarryingDangerousMaterial = isCarryingDangerousMaterial;
+
                     break;
                 case eVehicleAdditionalFields.IsRefrigeratedTransport:
                     bool isRefrigeratedTransport = LogicValidator.ValidateAndParseStringToBoolean(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Truck).IsRefrigeratedTransport = isRefrigeratedTransport;
+
                     break;
                 case eVehicleAdditionalFields.CargoVolume:
-                    float cargoVolume = LogicValidator.ValidateAndParseStringToFloat(i_VehicleAdditionalFieldValue);
+                    float cargoVolume = LogicValidator.ValidateAndParseStringToPositiveFloat(i_VehicleAdditionalFieldValue);
 
                     (i_Vehicle as Truck).CargoVolume = cargoVolume;
+
                     break;
                 case eVehicleAdditionalFields.AmountOfAirInWheels:
-                    float amountOfAirInWheels = LogicValidator.ValidateAndParseStringToFloat(i_VehicleAdditionalFieldValue);
+                    float amountOfAirInWheels = LogicValidator.ValidateAndParseStringToPositiveFloat(i_VehicleAdditionalFieldValue);
 
                     i_Vehicle.InflateWheels(amountOfAirInWheels);
+
                     break;
             }
         }
-    public static List<eVehicleAdditionalFields> GetVehicleAdditionalFields(eVehicleType i_VehicleType)
+    internal static List<eVehicleAdditionalFields> getVehicleAdditionalFields(eVehicleType i_VehicleType)
         {
             List<eVehicleAdditionalFields> vehicleAdditionalFields = new List<eVehicleAdditionalFields>();
 
@@ -129,33 +159,46 @@ namespace GarageLogic
         }
         private static Motorcycle createFuelMotorcycle(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
         {
-            FuelEngine fuelEngine = new FuelEngine(eFuelType.Octan98, 6.4f);
+            FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
             return new Motorcycle(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
         }
         private static Motorcycle createElectricMotorcycle(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
         {
-            ElectricEngine electricEngine = new ElectricEngine(2.6f);
+            ElectricEngine electricEngine = createElectricEngine(i_VehicleType);
 
             return new Motorcycle(i_RegistrationNumber, i_ModelName, electricEngine, i_VehicleType);
         }
         private static Car createFuelCar(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
         {
-            FuelEngine fuelEngine = new FuelEngine(eFuelType.Octan95, 46f);
+            FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
             return new Car(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
         }
         private static Car createElectricCar(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
         {
-            ElectricEngine electricEngine = new ElectricEngine(5.2f);
+            ElectricEngine electricEngine = createElectricEngine(i_VehicleType);
 
             return new Car(i_RegistrationNumber, i_ModelName, electricEngine, i_VehicleType);
         }
         private static Truck createTruck(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
         {
-            FuelEngine fuelEngine = new FuelEngine(eFuelType.Soler, 135f);
+            FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
             return new Truck(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
+        }
+        private static FuelEngine createFuelEngine(eVehicleType i_VehicleType)
+        {
+            r_EnergyCapacity.TryGetValue(i_VehicleType, out float capacity);
+            r_VehicleFuelType.TryGetValue(i_VehicleType, out eFuelType fuelType);
+
+            return  new FuelEngine(fuelType, capacity);
+        }
+        private static ElectricEngine createElectricEngine(eVehicleType i_VehicleType)
+        {
+            r_EnergyCapacity.TryGetValue(i_VehicleType, out float capacity);
+
+            return new ElectricEngine(capacity);
         }
         private static List<eVehicleAdditionalFields> getFuelMotorcycleAdditionalFields()
         {

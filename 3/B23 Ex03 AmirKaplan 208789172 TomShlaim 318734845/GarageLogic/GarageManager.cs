@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static GarageLogic.VehicleGenerator;
 
 namespace GarageLogic
 {
     public class GarageManager
     {
         private static Dictionary<string, GarageVehicleInfo> m_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
+
+        public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName)
+        {
+            return createVehicle(i_VehicleType, i_RegistrationNumber, i_ModelName);
+        }
+        public static void SetVehicleAdditionalField (Vehicle i_Vehicle, eVehicleAdditionalFields i_VehicleAdditionalField, string i_VehicleAdditionalFieldValue)
+        {
+            setVehicleAdditionalField(i_Vehicle, i_VehicleAdditionalField, i_VehicleAdditionalFieldValue);
+        }
+        public static List<eVehicleAdditionalFields> GetVehicleAdditionalFields(eVehicleType i_VehicleType)
+        {
+            return getVehicleAdditionalFields(i_VehicleType);
+        }
 
         public static void AddVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhone)
         {
@@ -36,27 +50,22 @@ namespace GarageLogic
                 throw new ArgumentException("Invalid registeration number! Vehicle doesn't exist in garage");
             }
         }
-        public static String GetVehiclesRegisterationNumbersByVehicleStatus(eVehicleStatus i_VehicleStatus = eVehicleStatus.None)
+        public static String GetVehiclesRegisterationNumbersByVehicleStatus(eVehicleStatus i_VehicleStatus)
         {
             StringBuilder registerationNumbersByVehicleStatus = new StringBuilder();
 
-            if (i_VehicleStatus == eVehicleStatus.None)
-            {
-                registerationNumbersByVehicleStatus.Append(m_VehiclesInGarage.Keys);
-            }
-            else
-            {
-                foreach (KeyValuePair<string, GarageVehicleInfo> vehicleInGarage in m_VehiclesInGarage)
-                {
-                    string registerationNumber = vehicleInGarage.Key;
-                    eVehicleStatus vehicleStatus = vehicleInGarage.Value.VehicleStatus;
 
-                    if (vehicleStatus == i_VehicleStatus)
-                    {
-                        registerationNumbersByVehicleStatus.AppendLine(registerationNumber);
-                    }
+            foreach (KeyValuePair<string, GarageVehicleInfo> vehicleInGarage in m_VehiclesInGarage)
+            {
+                string registerationNumber = vehicleInGarage.Key;
+                eVehicleStatus vehicleStatus = vehicleInGarage.Value.VehicleStatus;
+
+                if (i_VehicleStatus == eVehicleStatus.None || vehicleStatus == i_VehicleStatus)
+                {
+                    registerationNumbersByVehicleStatus.AppendLine(registerationNumber);
                 }
-            }
+        }
+           
 
             return registerationNumbersByVehicleStatus.ToString();
         }

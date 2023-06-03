@@ -12,7 +12,6 @@
             base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
         {
         }
-
         public eCarColor Color
         {
             get { return m_Color; }
@@ -24,12 +23,6 @@
             get { return r_NumOfDoors; }
             set { r_NumOfDoors = value; }
         }
-
-        public float MaxAirPressure
-        {
-            get { return k_MaxAirPressure; }
-        }
-
         public override string ToString()
         {
             return string.Format(

@@ -24,8 +24,14 @@ namespace GarageLogic
 
         public void Inflate(float i_AirPressure)
         {
-            // Validation (that max pressure was not exceeded) should be entered here (?)
-            m_CurrentAirPressure += i_AirPressure;
+            if (m_CurrentAirPressure + i_AirPressure <= r_MaxAirPressure)
+            {
+                m_CurrentAirPressure += i_AirPressure;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(0, r_MaxAirPressure);
+            }
         }
 
         public string Manufacturer
@@ -36,11 +42,6 @@ namespace GarageLogic
         public float CurrentAirPressure
         {
             get { return m_CurrentAirPressure; }
-            set
-            {
-                // Validation here (?)
-                m_CurrentAirPressure = value;
-            }
         }
 
         public float MaxAirPressure
