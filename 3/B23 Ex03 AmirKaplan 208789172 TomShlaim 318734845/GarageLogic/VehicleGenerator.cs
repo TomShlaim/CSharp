@@ -46,19 +46,6 @@ namespace GarageLogic
         }
         public static void SetVehicleAdditionalFields(Vehicle i_Vehicle, eVehicleType i_VehicleType, Dictionary<eVehicleAdditionalFields, string> i_VehicleAdditionalFields)
         {
-            switch (i_Vehicle)
-            {
-                case Motorcycle motorcycle:
-                    setMotorcycleAdditonalFields(motorcycle, i_VehicleAdditionalFields);
-                    break;
-                case Car car:
-                    setCarAdditonalFields(car, i_VehicleAdditionalFields);
-                    break;
-                case Truck truck:
-                    setTruckAdditonalFields(truck, i_VehicleAdditionalFields);
-                    break;
-
-            }
             switch (i_VehicleType)
             {
                 case eVehicleType.FuelMotorcycle:
