@@ -47,10 +47,11 @@ namespace ConsoleUI
         private static eGarageFunctions getGarageFunctionNumber()
         {
             string inputGarageFunctionNumber = Console.ReadLine();
+            int numOfFunctionsAvailable = Enum.GetValues(typeof(eGarageFunctions)).Length;
 
             while (!UIValidator.IsValidGarageFunction(inputGarageFunctionNumber))
             {
-                MessageGenerator.DisplayInvalidFieldMessage("function number", "Must be a positive integer");
+                MessageGenerator.DisplayInvalidFieldMessage("function number", string.Format("must be an integer in the range 1-{0}", numOfFunctionsAvailable));
                 inputGarageFunctionNumber = Console.ReadLine();
             }
 
@@ -88,7 +89,7 @@ namespace ConsoleUI
             string registerationNumber = getRegisterationNumber();
 
             if(GarageManager.isVehicleInGarage(registerationNumber)) {
-                GarageManager.UpdateVehicleStatus(registerationNumber, eVehicleStatus.InRepair);
+                GarageManager.UpdateVehicleStatus(registerationNumber, eVehicleStatus.InRepair); 
                 MessageGenerator.DisplayChangeVehicleStatusMessage(eVehicleStatus.InRepair, "Vehicle is already in garage!");
             }
             else

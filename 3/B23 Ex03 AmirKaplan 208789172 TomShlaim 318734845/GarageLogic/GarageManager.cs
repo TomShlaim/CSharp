@@ -92,6 +92,12 @@ namespace GarageLogic
                 {
                     fuelEngine.Refuel(i_AmountToFill, i_FuelType);
                 }
+
+                else
+                {
+                    throw new ArgumentException("Invalid operation! This vehicle does not have a fuel engine.");
+                }
+
             }
             else
             {
@@ -107,6 +113,10 @@ namespace GarageLogic
                 if (vehicleInGarage.Vehicle.Engine is ElectricEngine electricEngine)
                 {
                     electricEngine.RechargeBattery(i_minutesToCharge / 60);
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid operation! This vehicle does not have an electric engine.");
                 }
             }
             else

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GarageLogic
 {
-    public class VehicleGenerator
+    public class VehicleGenerator // access modifier can be changed to 'internal' (?) 
     {
         public enum eVehicleAdditionalFields
         {
@@ -189,7 +189,7 @@ namespace GarageLogic
         }
         private static FuelEngine createFuelEngine(eVehicleType i_VehicleType)
         {
-            r_EnergyCapacity.TryGetValue(i_VehicleType, out float capacity);
+            r_EnergyCapacity.TryGetValue(i_VehicleType, out float capacity); 
             r_VehicleFuelType.TryGetValue(i_VehicleType, out eFuelType fuelType);
 
             return  new FuelEngine(fuelType, capacity);
