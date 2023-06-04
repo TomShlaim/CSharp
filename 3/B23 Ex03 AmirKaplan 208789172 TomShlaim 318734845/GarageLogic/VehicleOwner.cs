@@ -3,20 +3,20 @@
     public class VehicleOwner
     {
         private readonly string r_Name;
-        private readonly string r_Phone;
+        private readonly string r_PhoneNumber;
 
         public VehicleOwner(string i_Name, string i_Phone) 
         { 
             r_Name = i_Name;
-            r_Phone = i_Phone;
+            r_PhoneNumber = i_Phone;
         }
         public string Name
         {
             get { return r_Name; }
         }
-        public string Phone
+        public string PhoneNumber
         {
-            get { return r_Phone; }
+            get { return r_PhoneNumber; }
         }
         public override string ToString()
         {
@@ -25,9 +25,9 @@
 Owner :
 =======
 Name : {0}
-Phone: {1}
+Phone number: {1}
 "
-     , r_Name, r_Phone);
+     , r_Name, r_PhoneNumber);
         }
     }
 }

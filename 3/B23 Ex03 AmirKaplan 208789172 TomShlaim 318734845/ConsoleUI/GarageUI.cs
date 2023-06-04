@@ -119,9 +119,9 @@ namespace ConsoleUI
         private static void insertVehicleIntoGarage(Vehicle i_Vehicle)
         {
             string ownerName = getOwnerName();
-            string ownerPhone = getOwnerPhoneNumber();
+            string ownerPhoneNumber = getOwnerPhoneNumber();
 
-            GarageManager.AddVehicle(i_Vehicle, ownerName, ownerPhone);
+            GarageManager.AddVehicle(i_Vehicle, ownerName, ownerPhoneNumber);
         }
         private static void showVehiclesRegisterationsNumbersByVehicleStatus()
         {
