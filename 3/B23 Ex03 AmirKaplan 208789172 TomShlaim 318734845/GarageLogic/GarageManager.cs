@@ -7,7 +7,7 @@ namespace GarageLogic
 {
     public class GarageManager
     {
-        private static Dictionary<string, GarageVehicleInfo> m_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
+        private static readonly Dictionary<string, GarageVehicleInfo> r_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
 
         public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer)
         {
@@ -28,20 +28,20 @@ namespace GarageLogic
             GarageVehicleInfo garageVehicleInfo = new GarageVehicleInfo(i_Vehicle, vehicleOwner);
 
 
-            if (!isVehicleInGarage(garageVehicleInfo.Vehicle.RegistrationNumber))
+            if (!IsVehicleInGarage(garageVehicleInfo.Vehicle.RegistrationNumber))
             {
-                m_VehiclesInGarage.Add(garageVehicleInfo.Vehicle.RegistrationNumber, garageVehicleInfo);
+                r_VehiclesInGarage.Add(garageVehicleInfo.Vehicle.RegistrationNumber, garageVehicleInfo);
             }
         }
-        public static bool isVehicleInGarage(string i_VehicleRegistrationNumber)
+        public static bool IsVehicleInGarage(string i_VehicleRegistrationNumber)
         {
-            return m_VehiclesInGarage.ContainsKey(i_VehicleRegistrationNumber);
+            return r_VehiclesInGarage.ContainsKey(i_VehicleRegistrationNumber);
         }
         public static void UpdateVehicleStatus(string i_VehicleRegistrationNumber, eVehicleStatus i_NewVehicleStatus)
         {
             GarageVehicleInfo vehicleInGarage;
 
-            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            if (r_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 vehicleInGarage.VehicleStatus = i_NewVehicleStatus;
             }
@@ -55,7 +55,7 @@ namespace GarageLogic
             StringBuilder registerationNumbersByVehicleStatus = new StringBuilder();
 
 
-            foreach (KeyValuePair<string, GarageVehicleInfo> vehicleInGarage in m_VehiclesInGarage)
+            foreach (KeyValuePair<string, GarageVehicleInfo> vehicleInGarage in r_VehiclesInGarage)
             {
                 string registerationNumber = vehicleInGarage.Key;
                 eVehicleStatus vehicleStatus = vehicleInGarage.Value.VehicleStatus;
@@ -73,7 +73,7 @@ namespace GarageLogic
         {
             GarageVehicleInfo vehicleInGarage;
 
-            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            if (r_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 vehicleInGarage.Vehicle.InflateWheelsToMaximumPressure();
             }
@@ -86,7 +86,7 @@ namespace GarageLogic
         {
             GarageVehicleInfo vehicleInGarage;
 
-            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            if (r_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 if (vehicleInGarage.Vehicle.Engine is FuelEngine fuelEngine)
                 {
@@ -106,7 +106,7 @@ namespace GarageLogic
         {
             GarageVehicleInfo vehicleInGarage;
 
-            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            if (r_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 if (vehicleInGarage.Vehicle.Engine is ElectricEngine electricEngine)
                 {
@@ -126,7 +126,7 @@ namespace GarageLogic
         {
             GarageVehicleInfo vehicleInGarage;
 
-            if (m_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
+            if (r_VehiclesInGarage.TryGetValue(i_VehicleRegistrationNumber, out vehicleInGarage))
             {
                 return vehicleInGarage.ToString();
             }

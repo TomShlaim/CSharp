@@ -88,7 +88,7 @@ namespace ConsoleUI
         {
             string registerationNumber = getRegisterationNumber();
 
-            if(GarageManager.isVehicleInGarage(registerationNumber)) {
+            if(GarageManager.IsVehicleInGarage(registerationNumber)) {
                 GarageManager.UpdateVehicleStatus(registerationNumber, eVehicleStatus.InRepair); 
                 MessageGenerator.DisplayChangeVehicleStatusMessage(eVehicleStatus.InRepair, "Vehicle is already in garage!");
             }
