@@ -9,9 +9,9 @@ namespace GarageLogic
     {
         private static Dictionary<string, GarageVehicleInfo> m_VehiclesInGarage = new Dictionary<string, GarageVehicleInfo>();
 
-        public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName)
+        public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer)
         {
-            return createVehicle(i_VehicleType, i_RegistrationNumber, i_ModelName);
+            return createVehicle(i_VehicleType, i_RegistrationNumber, i_ModelName, i_WheelsManufacturer);
         }
         public static void SetVehicleAdditionalField (Vehicle i_Vehicle, eVehicleAdditionalFields i_VehicleAdditionalField, string i_VehicleAdditionalFieldValue)
         {
@@ -92,12 +92,10 @@ namespace GarageLogic
                 {
                     fuelEngine.Refuel(i_AmountToFill, i_FuelType);
                 }
-
                 else
                 {
                     throw new ArgumentException("Invalid operation! This vehicle does not have a fuel engine.");
                 }
-
             }
             else
             {

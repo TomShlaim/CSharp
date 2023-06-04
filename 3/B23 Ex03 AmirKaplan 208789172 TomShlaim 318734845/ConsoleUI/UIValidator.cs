@@ -12,14 +12,9 @@ namespace ConsoleUI
         {
             int garageFunctionNumber;
             bool isValidNumber = int.TryParse(i_GarageFunctionNumber, out garageFunctionNumber);
-            bool isValidGarageFunctionNumber = false;
+            bool isValidGarageFunctionNumber = Enum.IsDefined(typeof(eGarageFunctions), garageFunctionNumber);
 
-            if (isValidNumber)
-            {
-                isValidGarageFunctionNumber = Enum.IsDefined(typeof(eGarageFunctions), garageFunctionNumber);
-            }
-
-            return isValidGarageFunctionNumber;
+            return isValidNumber && isValidGarageFunctionNumber;
         }
     }
 }

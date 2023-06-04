@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GarageLogic
+﻿namespace GarageLogic
 {
     internal class Motorcycle : Vehicle
     {
@@ -13,8 +7,8 @@ namespace GarageLogic
         private const float k_MaxAirPressure = 31f;
         private const int k_NumOfWheels = 2;
 
-        public Motorcycle(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, eVehicleType i_VehicleType) 
-            : base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
+        public Motorcycle(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, string i_WheelsManufacturer, eVehicleType i_VehicleType)
+            : base(i_RegistrationNumber, i_ModelName, i_Engine, i_WheelsManufacturer, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
         {
         }
 

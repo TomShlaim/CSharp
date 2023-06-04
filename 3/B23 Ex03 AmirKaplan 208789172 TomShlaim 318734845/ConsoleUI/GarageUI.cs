@@ -94,13 +94,14 @@ namespace ConsoleUI
             }
             else
             {
-                MessageGenerator.DisplayInsertFieldMessage("model name");
-                string modelName = Console.ReadLine();
+                string modelName = getStringValue("model name");
+                string wheelsManufacturer = getStringValue("wheels manufacturer");
 
                 MessageGenerator.DisplayInsertFieldWithValidEnumValuesMessage("vehicle type", typeof(eVehicleType));
                 eVehicleType vehicleType = getVehicleType();
 
-                Vehicle newVehicle = GarageManager.CreateVehicle(vehicleType, registerationNumber, modelName);
+                Vehicle newVehicle = GarageManager.CreateVehicle(vehicleType, registerationNumber, modelName, wheelsManufacturer);
+
                 populateVehicleFields(newVehicle, vehicleType);
                 insertVehicleIntoGarage(newVehicle);
             } 
@@ -193,7 +194,7 @@ namespace ConsoleUI
             string inputVehicleType = Console.ReadLine();
             eVehicleType vehicleType = LogicValidator.ValidateAndParseStringToVehicleType(inputVehicleType);
 
-            return vehicleType;
+            return LogicValidator.ValidateAndParseStringToVehicleType(inputVehicleType); ;
         }
         private static eVehicleStatus getVehicleStatus()
         {
@@ -229,6 +230,13 @@ namespace ConsoleUI
             float value = LogicValidator.ValidateAndParseStringToPositiveFloat(inputValue);
 
             return value;
+        }
+        private static string getStringValue(string i_FieldName)
+        {
+            MessageGenerator.DisplayInsertFieldMessage(i_FieldName);
+            string inputValue = Console.ReadLine();
+
+            return inputValue;
         }
     }
 }

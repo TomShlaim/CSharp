@@ -12,13 +12,13 @@ namespace GarageLogic
         private readonly Engine r_Engine;
         private readonly eVehicleType r_VehicleType;
 
-        public Vehicle(string i_RegistrationNumber,string i_ModelName, Engine i_Engine, int i_NumberOfWheels, float i_MaxAirPressure, eVehicleType r_VehicleType)
+        public Vehicle(string i_RegistrationNumber,string i_ModelName, Engine i_Engine, string i_WheelsManufacturer, int i_NumberOfWheels, float i_MaxAirPressure, eVehicleType r_VehicleType)
         {
             r_RegistrationNumber = i_RegistrationNumber;
             r_ModelName = i_ModelName;
             r_Engine = i_Engine;
             r_Wheels = new List<Wheel>();
-            AttachWheels(i_NumberOfWheels, i_MaxAirPressure);
+            AttachWheels(i_NumberOfWheels, i_MaxAirPressure, i_WheelsManufacturer);
             this.r_VehicleType = r_VehicleType;
         }
         public string RegistrationNumber
@@ -29,11 +29,11 @@ namespace GarageLogic
         {
             get { return r_Engine; }
         }
-        public void AttachWheels(int i_NumberOfWheels, float i_WheelMaxPressure)
+        public void AttachWheels(int i_NumberOfWheels, float i_WheelMaxPressure, string i_WheelsManufacturer)
         {
             for (int i = 0; i < i_NumberOfWheels; i++)
             {
-                r_Wheels.Add(new Wheel(i_WheelMaxPressure));
+                r_Wheels.Add(new Wheel(i_WheelMaxPressure, i_WheelsManufacturer));
             }
         }
         public void InflateWheelsToMaximumPressure()

@@ -8,8 +8,8 @@
         private const int k_NumOfWheels = 5;
 
 
-        public Car(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, eVehicleType i_VehicleType) : 
-            base(i_RegistrationNumber, i_ModelName, i_Engine, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
+        public Car(string i_RegistrationNumber, string i_ModelName, Engine i_Engine, string i_WheelsManufacturer, eVehicleType i_VehicleType)
+            : base(i_RegistrationNumber, i_ModelName, i_Engine, i_WheelsManufacturer, k_NumOfWheels, k_MaxAirPressure, i_VehicleType)
         {
         }
         public eCarColor Color

@@ -17,7 +17,7 @@ namespace GarageLogic
             r_MaxAirPressure = i_MaxAirPressure;
         }
 
-        public Wheel(string i_Manufacturer, float i_MaxAirPressure) : this(i_MaxAirPressure)
+        public Wheel(float i_MaxAirPressure, string i_Manufacturer) : this(i_MaxAirPressure)
         {
             r_Manufacturer = i_Manufacturer;
         }

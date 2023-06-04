@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GarageLogic
 {
-    public class VehicleGenerator // access modifier can be changed to 'internal' (?) 
+    public class VehicleGenerator 
     {
         public enum eVehicleAdditionalFields
         {
@@ -33,26 +33,26 @@ namespace GarageLogic
             { eVehicleType.FuelCar, eFuelType.Octan95 },
             { eVehicleType.Truck, eFuelType.Soler }
         };
-        internal static Vehicle createVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName)
+        internal static Vehicle createVehicle(eVehicleType i_VehicleType, string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer)
         {
             Vehicle vehicle = null;
 
             switch (i_VehicleType)
             {
                 case eVehicleType.FuelMotorcycle:
-                    vehicle = createFuelMotorcycle(i_RegistrationNumber, i_ModelName, eVehicleType.FuelMotorcycle);
+                    vehicle = createFuelMotorcycle(i_RegistrationNumber, i_ModelName, i_WheelsManufacturer, eVehicleType.FuelMotorcycle);
                     break;
                 case eVehicleType.ElectricMotorcycle:
-                    vehicle = createElectricMotorcycle(i_RegistrationNumber, i_ModelName, eVehicleType.ElectricMotorcycle);
+                    vehicle = createElectricMotorcycle(i_RegistrationNumber, i_ModelName, i_WheelsManufacturer, eVehicleType.ElectricMotorcycle);
                     break;
                 case eVehicleType.FuelCar:
-                    vehicle = createFuelCar(i_RegistrationNumber, i_ModelName, eVehicleType.FuelCar);
+                    vehicle = createFuelCar(i_RegistrationNumber, i_ModelName, i_WheelsManufacturer, eVehicleType.FuelCar);
                     break;
                 case eVehicleType.ElectricCar:
-                    vehicle = createElectricCar(i_RegistrationNumber, i_ModelName, eVehicleType.ElectricCar);
+                    vehicle = createElectricCar(i_RegistrationNumber, i_ModelName, i_WheelsManufacturer, eVehicleType.ElectricCar);
                     break;
                 case eVehicleType.Truck:
-                    vehicle = createTruck(i_RegistrationNumber, i_ModelName, eVehicleType.Truck);
+                    vehicle = createTruck(i_RegistrationNumber, i_ModelName, i_WheelsManufacturer, eVehicleType.Truck);
                     break;
             }
 
@@ -157,35 +157,35 @@ namespace GarageLogic
 
             return vehicleAdditionalFields;
         }
-        private static Motorcycle createFuelMotorcycle(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
+        private static Motorcycle createFuelMotorcycle(string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer, eVehicleType i_VehicleType)
         {
             FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
-            return new Motorcycle(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
+            return new Motorcycle(i_RegistrationNumber, i_ModelName, fuelEngine, i_WheelsManufacturer, i_VehicleType);
         }
-        private static Motorcycle createElectricMotorcycle(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
+        private static Motorcycle createElectricMotorcycle(string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer, eVehicleType i_VehicleType)
         {
             ElectricEngine electricEngine = createElectricEngine(i_VehicleType);
 
-            return new Motorcycle(i_RegistrationNumber, i_ModelName, electricEngine, i_VehicleType);
+            return new Motorcycle(i_RegistrationNumber, i_ModelName, electricEngine, i_WheelsManufacturer, i_VehicleType);
         }
-        private static Car createFuelCar(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
+        private static Car createFuelCar(string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer, eVehicleType i_VehicleType)
         {
             FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
-            return new Car(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
+            return new Car(i_RegistrationNumber, i_ModelName, fuelEngine, i_WheelsManufacturer, i_VehicleType);
         }
-        private static Car createElectricCar(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
+        private static Car createElectricCar(string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer, eVehicleType i_VehicleType)
         {
             ElectricEngine electricEngine = createElectricEngine(i_VehicleType);
 
-            return new Car(i_RegistrationNumber, i_ModelName, electricEngine, i_VehicleType);
+            return new Car(i_RegistrationNumber, i_ModelName, electricEngine, i_WheelsManufacturer, i_VehicleType);
         }
-        private static Truck createTruck(string i_RegistrationNumber, string i_ModelName, eVehicleType i_VehicleType)
+        private static Truck createTruck(string i_RegistrationNumber, string i_ModelName, string i_WheelsManufacturer, eVehicleType i_VehicleType)
         {
             FuelEngine fuelEngine = createFuelEngine(i_VehicleType);
 
-            return new Truck(i_RegistrationNumber, i_ModelName, fuelEngine, i_VehicleType);
+            return new Truck(i_RegistrationNumber, i_ModelName, fuelEngine, i_WheelsManufacturer, i_VehicleType);
         }
         private static FuelEngine createFuelEngine(eVehicleType i_VehicleType)
         {

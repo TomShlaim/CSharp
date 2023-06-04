@@ -128,7 +128,9 @@ No vehicles in the garage with the requested status!"
         }
         private static string getEnumValueValues(Type i_EnumType)
         {
-            return string.Join(", ", Enum.GetNames(i_EnumType));
+            string enumNames = string.Join(", ", Enum.GetNames(i_EnumType));
+
+            return string.Format("{0} or index of the string, starting from 0", enumNames);
         }
         private static string getFieldValidValuesMessage(string i_ValidValues)
         {
