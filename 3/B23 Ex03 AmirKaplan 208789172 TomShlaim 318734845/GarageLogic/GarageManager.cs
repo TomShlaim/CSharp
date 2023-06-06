@@ -64,7 +64,7 @@ namespace GarageLogic
                 {
                     registerationNumbersByVehicleStatus.AppendLine(registerationNumber);
                 }
-        }
+            }
            
 
             return registerationNumbersByVehicleStatus.ToString();
