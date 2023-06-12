@@ -1,0 +1,8 @@
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe.config
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.pdb
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.AssemblyReference.cache
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.SuggestedBindingRedirects.cache
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.CoreCompileInputs.cache
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.exe
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.pdb
