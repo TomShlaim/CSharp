@@ -11,6 +11,7 @@ namespace Ex04.Menus.Interfaces
         private readonly int r_Id;
         private readonly List<MenuItem> m_MenuItems = new List<MenuItem>();
         private readonly List<ILeafMenuItemClickListener> m_LeafMenuItemClickListeners = new List<ILeafMenuItemClickListener>();
+        private readonly eAction m_Action;
 
         public MenuItem(int i_Id)
         {
@@ -30,11 +31,11 @@ namespace Ex04.Menus.Interfaces
         }
         public void AddListener(ILeafMenuItemClickListener i_LeafMenuItemClickListener)
         {
-            m_LeafMenuItemClickListeners.Add(i_LeafMenuItemClickListener);
+                m_LeafMenuItemClickListeners.Add(i_LeafMenuItemClickListener);
         }
         public void RemoveListener(ILeafMenuItemClickListener i_LeafMenuItemClickListener)
         {
-            m_LeafMenuItemClickListeners.Remove(i_LeafMenuItemClickListener);
+                m_LeafMenuItemClickListeners.Remove(i_LeafMenuItemClickListener);
         }
         public void doWhenWasClicked()
         {
@@ -51,7 +52,7 @@ namespace Ex04.Menus.Interfaces
         {
             foreach(ILeafMenuItemClickListener leafMenuItemClickListener in m_LeafMenuItemClickListeners)
             {
-                leafMenuItemClickListener.ReportLeafMenuItemWasClick(r_Id);
+                leafMenuItemClickListener.ReportLeafMenuItemWasClick(r_Id, m_Action);
             }
         }
     }
