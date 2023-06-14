@@ -9,59 +9,42 @@ namespace Ex04.Menus.Interfaces
 {
     public class BranchItem : MenuItem
     {
-        public BranchItem(string i_Header) : base(i_Header, false) {}
+        public BranchItem(string i_Header) : base(i_Header) {}
 
-        public BranchItem(string i_Header, bool r_IsRoot) : base(i_Header, r_IsRoot)
+        public override void DoChosenAction()
         {
-        }
+            int chosenOptionIndex = chooseOption();
 
-        public override void DoAction()
-        {
-            int chosenOptionIndex;
-
-            Console.Clear();
-            this.Show();
-            chosenOptionIndex = getChosenOptionIndex(Console.ReadLine());
-            while(chosenOptionIndex != 0)
+            while (chosenOptionIndex != 0)
             {
-                this.MenuItems[chosenOptionIndex - 1].DoAction();
-                Console.Clear();
-                this.Show();
-                chosenOptionIndex = getChosenOptionIndex(Console.ReadLine());
+                this.MenuItems[chosenOptionIndex - 1].DoChosenAction();
+                chosenOptionIndex = chooseOption();
             }
 
             return;
         }
-
-        private int getChosenOptionIndex(string i_ChosenOption)
+        private int chooseOption()
         {
+            Console.Clear();
+            this.Show();
+            int chosenOptionIndex = getChosenOptionIndex();
 
-            while (!isValidOption(i_ChosenOption))
+            return chosenOptionIndex;
+        }
+        public void AddSubItems(List<MenuItem> i_MenuItems)
+        {
+            MenuItems.AddRange(i_MenuItems);
+        }
+        private int getChosenOptionIndex()
+        {
+            string chosenOption = Console.ReadLine();
+
+            while (!MenuValidator.IsValidOption(chosenOption, MenuItems.Count))
             {
-                i_ChosenOption = Console.ReadLine();
+                chosenOption = Console.ReadLine();
             }
   
-            return int.Parse(i_ChosenOption);
-        }
-
-        private bool isValidOption(string i_ChosenOption) 
-        {
-            bool validOption = int.TryParse(i_ChosenOption, out int optionIndex);
-
-            if(!validOption)
-            {
-                Console.WriteLine("Input must be an integer, try again.");
-            }
-            else
-            {
-                if (optionIndex < 0 || optionIndex > MenuItems.Count)
-                {
-                    validOption = false;
-                    Console.WriteLine("Input must be an integer in the range 0-{0}, try again.", MenuItems.Count.ToString());
-                }
-            }
-
-            return validOption;
+            return int.Parse(chosenOption);
         }
 
         public void Show()
@@ -99,7 +82,7 @@ namespace Ex04.Menus.Interfaces
         }
         private string getExitOrBackOption()
         {
-            string exitOrBackHeader = IsRoot ? "Exit" : "Back";
+            string exitOrBackHeader = this is MainMenu ? "Exit" : "Back";
 
             return getMenuOption(exitOrBackHeader, 0);
         }
@@ -109,7 +92,7 @@ namespace Ex04.Menus.Interfaces
         }
         private string getChooseActionMessage()
         {
-            string exitOrBack = IsRoot ? "exit" : "go back";
+            string exitOrBack = this is MainMenu ? "exit" : "go back";
 
             return string.Format("Please enter your choice (1-{0} or 0 to {1}):",MenuItems.Count, exitOrBack);
         }

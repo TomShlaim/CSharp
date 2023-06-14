@@ -8,14 +8,6 @@ namespace Ex04.Menus.Test
 {
     internal class MenuActions
     {
-        public enum eMenuAction
-        {
-            ShowDate,
-            ShowTime,
-            ShowVersion,
-            CountCapitals
-        }
-
         public static void ShowDate()
         {
             Console.WriteLine(DateTime.Now.ToString("dd/MM/yyyy"));

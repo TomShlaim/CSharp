@@ -12,7 +12,7 @@ namespace Ex04.Menus.Interfaces
         private readonly List<IActionItemChosenListener> m_ActionItemChosenListeners = new List<IActionItemChosenListener>();
         private Enum m_Action;
 
-        public ActionItem(string i_Header, Enum i_Action) : base(i_Header, false) 
+        public ActionItem(string i_Header, Enum i_Action) : base(i_Header) 
         {
             m_Action = i_Action;
         }
@@ -26,7 +26,7 @@ namespace Ex04.Menus.Interfaces
             m_ActionItemChosenListeners.Remove(i_LeafMenuItemClickListener);
         }
 
-        public override void DoAction()
+        public override void DoChosenAction()
         {
             Console.Clear();
             doWhenWasChosen();
