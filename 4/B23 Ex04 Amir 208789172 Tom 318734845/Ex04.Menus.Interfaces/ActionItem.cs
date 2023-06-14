@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
@@ -24,7 +25,14 @@ namespace Ex04.Menus.Interfaces
         {
             m_ActionItemChosenListeners.Remove(i_LeafMenuItemClickListener);
         }
-        public void doWhenWasChosen()
+
+        public override void DoAction()
+        {
+            Console.Clear();
+            doWhenWasChosen();
+            Thread.Sleep(2000);
+        }
+        private void doWhenWasChosen()
         {
             notifyLeafMenuItemClickListeners();
         }

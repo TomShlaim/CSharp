@@ -21,22 +21,37 @@ namespace Ex04.Menus.Test
         }
         private void createMenu()
         {
-            //I need to split this function
-            BranchItem showDateOrTime = new BranchItem("Show Date/Time");
-            ActionItem showDateActionItem = new ActionItem("Show Date", MenuActions.eMenuAction.ShowDate);
-            ActionItem showTimeActionItem = new ActionItem("Show Time", MenuActions.eMenuAction.ShowTime);
-
-            showDateOrTime.AddSubItems(new List<MenuItem> { showDateActionItem, showTimeActionItem });
-
-            BranchItem showVersionOrCountCapitalLetters = new BranchItem("Show Version/Count Capitals");
-            ActionItem showVersionActionItem = new ActionItem("Show Version", MenuActions.eMenuAction.ShowVersion);
-            ActionItem showCapitalLettersInSentenceActionItem = new ActionItem("Count Capitals", MenuActions.eMenuAction.CountCapitals);
-
-            showVersionOrCountCapitalLetters.AddSubItems(new List<MenuItem> { showVersionActionItem, showCapitalLettersInSentenceActionItem });
+            BranchItem showDateOrTime = getShowDateOrTimeLayer();
+            BranchItem showVersionOrCountCapitalLetters = getShowVersionOrCountCapitalLettersLayer();
 
             r_MainMenu.AddSubItems(new List<MenuItem> { showDateOrTime, showVersionOrCountCapitalLetters });
 
         }
+
+        private BranchItem getShowDateOrTimeLayer()
+        {
+            BranchItem showDateOrTime = new BranchItem("Show Date/Time");
+            ActionItem showDateActionItem = new ActionItem("Show Date", MenuActions.eMenuAction.ShowDate);
+            ActionItem showTimeActionItem = new ActionItem("Show Time", MenuActions.eMenuAction.ShowTime);
+            showDateActionItem.AddListener(this);
+            showTimeActionItem.AddListener(this);
+            showDateOrTime.AddSubItems(new List<MenuItem> { showDateActionItem, showTimeActionItem });
+  
+            return showDateOrTime;
+        }
+
+        private BranchItem getShowVersionOrCountCapitalLettersLayer()
+        {
+            BranchItem showVersionOrCountCapitalLetters = new BranchItem("Show Version/Count Capitals");
+            ActionItem showVersionActionItem = new ActionItem("Show Version", MenuActions.eMenuAction.ShowVersion);
+            ActionItem showCapitalLettersInSentenceActionItem = new ActionItem("Count Capitals", MenuActions.eMenuAction.CountCapitals);
+            showVersionActionItem.AddListener(this);
+            showCapitalLettersInSentenceActionItem.AddListener(this);
+            showVersionOrCountCapitalLetters.AddSubItems(new List<MenuItem> { showVersionActionItem, showCapitalLettersInSentenceActionItem });
+
+            return showVersionOrCountCapitalLetters;
+        }
+
         public void ReportActionItemWasChosen(Enum i_Action)
         {
             if (i_Action is MenuActions.eMenuAction i_MenuAction)

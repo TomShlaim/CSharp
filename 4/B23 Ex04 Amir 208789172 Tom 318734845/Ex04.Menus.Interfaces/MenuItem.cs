@@ -9,7 +9,6 @@ namespace Ex04.Menus.Interfaces
     public abstract class MenuItem
     {
         private string m_Header;
-        //Instead of root we maybe need a parent for getting back in menus
         private readonly bool r_IsRoot;
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
 
@@ -27,13 +26,18 @@ namespace Ex04.Menus.Interfaces
         {
             get { return r_IsRoot; }
         }
+
         public List<MenuItem> MenuItems
         {
             get { return r_MenuItems; }
         }
+
+        // Maybe move this method to 'BranchItem' ? Because this method is irrelevant to 'ActionItem'
         public void AddSubItems(List<MenuItem> i_MenuItems)
         {
             r_MenuItems.AddRange(i_MenuItems);
         }
+
+        public abstract void DoAction();
     }
 }

@@ -11,9 +11,9 @@ namespace Ex04.Menus.Test
         private static void Main(string[] args)
         {
             InterfaceMainMenuGenerator interfaceMainMenu = new InterfaceMainMenuGenerator();
-            interfaceMainMenu.MainMenu.Show();
+            interfaceMainMenu.MainMenu.DoAction();
 
-            Console.ReadLine();
+           // Console.ReadLine();
         }
     }
 }
