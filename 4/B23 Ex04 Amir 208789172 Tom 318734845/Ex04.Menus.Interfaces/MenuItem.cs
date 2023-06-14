@@ -9,6 +9,7 @@ namespace Ex04.Menus.Interfaces
     public abstract class MenuItem
     {
         private string m_Header;
+        //Instead of root we maybe need a parent for getting back in menus
         private readonly bool r_IsRoot;
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
 
