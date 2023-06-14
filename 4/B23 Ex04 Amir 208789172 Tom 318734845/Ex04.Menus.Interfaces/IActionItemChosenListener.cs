@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ex04.Menus.Events
+namespace Ex04.Menus.Interfaces
 {
-    internal class MenuItem
+    public interface IActionItemChosenListener
     {
+        void ReportActionItemWasChosen(Enum i_Action);
     }
 }

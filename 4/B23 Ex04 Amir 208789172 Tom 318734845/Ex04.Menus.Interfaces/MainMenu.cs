@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    internal class MainMenu
+    public class MainMenu : BranchItem
     {
-        private string m_Header;
-        private readonly List<MenuItem> m_menuItems;
-
-        public void Show()
-        {
-
-        }
+        public MainMenu(string i_Header) : base(i_Header, true) { }
     }
 }

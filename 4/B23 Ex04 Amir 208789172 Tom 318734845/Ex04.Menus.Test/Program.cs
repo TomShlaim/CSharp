@@ -10,22 +10,10 @@ namespace Ex04.Menus.Test
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello world");
+            InterfaceMainMenuGenerator interfaceMainMenu = new InterfaceMainMenuGenerator();
+            interfaceMainMenu.MainMenu.Show();
+
             Console.ReadLine();
-
-            //MainMenu mainMenu = new MainMenu("Drinks machine");
-            //MenuItem Soft = new MainItem();
-            //MenuItem cola = new MainItem(eMakeCola);
-            //Soft.Add(cola);
-            //cola.AddListener(this);
-            //MenuItem m = new MenuItem();
-            //m.AddListener(this)
-        }
-
-        
-        public void ShowDate()
-        {
-            //logic
         }
     }
 }

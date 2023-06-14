@@ -6,54 +6,33 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Interfaces
 {
-    internal class MenuItem
+    public abstract class MenuItem
     {
-        private readonly int r_Id;
-        private readonly List<MenuItem> m_MenuItems = new List<MenuItem>();
-        private readonly List<ILeafMenuItemClickListener> m_LeafMenuItemClickListeners = new List<ILeafMenuItemClickListener>();
-        private readonly eAction m_Action;
+        private string m_Header;
+        private readonly bool r_IsRoot;
+        private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
 
-        public MenuItem(int i_Id)
+        public MenuItem(string i_Header, bool r_IsRoot)
         {
-            r_Id = i_Id;
+            m_Header = i_Header;
+            this.r_IsRoot = r_IsRoot;
         }
-        public MenuItem(int i_Id, List<MenuItem> i_MenuItems)
+        public string Header
         {
-            m_MenuItems.AddRange(i_MenuItems);
+            get { return m_Header; }
+            set { m_Header = value; }
         }
-       private bool IsLeafMenuItem()
+        public bool IsRoot
         {
-            return m_MenuItems.Count == 0;
+            get { return r_IsRoot; }
         }
-        public void Show()
+        public List<MenuItem> MenuItems
         {
-
+            get { return r_MenuItems; }
         }
-        public void AddListener(ILeafMenuItemClickListener i_LeafMenuItemClickListener)
+        public void AddSubItems(List<MenuItem> i_MenuItems)
         {
-                m_LeafMenuItemClickListeners.Add(i_LeafMenuItemClickListener);
-        }
-        public void RemoveListener(ILeafMenuItemClickListener i_LeafMenuItemClickListener)
-        {
-                m_LeafMenuItemClickListeners.Remove(i_LeafMenuItemClickListener);
-        }
-        public void doWhenWasClicked()
-        {
-            if (this.IsLeafMenuItem())
-            {
-                notifyLeafMenuItemClickListeners();    
-            }
-            else
-            {
-                Show();
-            }
-        }
-        private void notifyLeafMenuItemClickListeners()
-        {
-            foreach(ILeafMenuItemClickListener leafMenuItemClickListener in m_LeafMenuItemClickListeners)
-            {
-                leafMenuItemClickListener.ReportLeafMenuItemWasClick(r_Id, m_Action);
-            }
+            r_MenuItems.AddRange(i_MenuItems);
         }
     }
 }

@@ -1,0 +1,7 @@
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\obj\Debug\Ex04.Menus.Events.csproj.AssemblyReference.cache
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\obj\Debug\Ex04.Menus.Events.csproj.CoreCompileInputs.cache
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\bin\Debug\Ex04.Menus.Events.dll.config
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\bin\Debug\Ex04.Menus.Events.dll
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\bin\Debug\Ex04.Menus.Events.pdb
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\obj\Debug\Ex04.Menus.Events.dll
+C:\Users\nikol\OneDrive\Desktop\CSharp\4\B23 Ex04 Amir 208789172 Tom 318734845\Ex04.Menus.Events\obj\Debug\Ex04.Menus.Events.pdb
