@@ -1,0 +1,15 @@
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe.config
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.pdb
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Events.dll
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.dll
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Events.pdb
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Events.dll.config
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.pdb
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.dll.config
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.AssemblyReference.cache
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.SuggestedBindingRedirects.cache
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.CoreCompileInputs.cache
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.CopyComplete
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.exe
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.pdb

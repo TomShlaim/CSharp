@@ -1,0 +1,7 @@
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\bin\Debug\Ex04.Menus.Interfaces.dll.config
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\bin\Debug\Ex04.Menus.Interfaces.dll
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\bin\Debug\Ex04.Menus.Interfaces.pdb
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\obj\Debug\Ex04.Menus.Interfaces.csproj.AssemblyReference.cache
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\obj\Debug\Ex04.Menus.Interfaces.csproj.CoreCompileInputs.cache
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\obj\Debug\Ex04.Menus.Interfaces.dll
+X:\hw\CSharp\4\B23 Ex04 AmirKaplan 208789172 TomShlaim 318734845\Ex04.Menus.Interfaces\obj\Debug\Ex04.Menus.Interfaces.pdb
