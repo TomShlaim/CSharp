@@ -1,0 +1,7 @@
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.csproj.AssemblyReference.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.GameSettingsForm.resources
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.csproj.GenerateResource.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.GeneratedMSBuildEditorConfig.editorconfig
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.AssemblyInfoInputs.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.AssemblyInfo.cs
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\XMixDrix\obj\Debug\net6.0-windows\XMixDrix.csproj.CoreCompileInputs.cache

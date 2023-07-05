@@ -1,0 +1,11 @@
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\bin\Debug\ReversedXMixDrixUI.exe.config
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\bin\Debug\ReversedXMixDrixUI.exe
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\bin\Debug\ReversedXMixDrixUI.pdb
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\TicTacToeMisereUI.csproj.AssemblyReference.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\TicTacToeMisereUI.csproj.SuggestedBindingRedirects.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\TicTacToeMisereUI.GameSettingsForm.resources
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\ReversedXMixDrixUI.Properties.Resources.resources
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\TicTacToeMisereUI.csproj.GenerateResource.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\TicTacToeMisereUI.csproj.CoreCompileInputs.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\ReversedXMixDrixUI.exe
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\ReversedXMixDrixUI\obj\Debug\ReversedXMixDrixUI.pdb
