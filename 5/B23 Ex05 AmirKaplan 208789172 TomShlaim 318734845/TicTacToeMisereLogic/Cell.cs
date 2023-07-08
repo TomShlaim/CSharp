@@ -8,6 +8,7 @@ namespace TicTacToeMisereLogic
 {
     public struct Cell
     {
+        private eBoardSymbol m_Symbol;
         private int m_Row;
         private int m_Column;
 
@@ -15,6 +16,7 @@ namespace TicTacToeMisereLogic
         {
             m_Row = i_Row;
             m_Column = i_Column;
+            m_Symbol = eBoardSymbol.Blank;
         }
 
         public Cell(string i_Cell)
@@ -23,6 +25,7 @@ namespace TicTacToeMisereLogic
 
             m_Row = int.Parse(cellIndexes[0]) - 1;
             m_Column = int.Parse(cellIndexes[1]) - 1;
+            m_Symbol = eBoardSymbol.Blank;
         }
 
         public int Row
@@ -39,6 +42,12 @@ namespace TicTacToeMisereLogic
             {
                 return m_Column;
             }
+        }
+
+        public eBoardSymbol Symbol
+        {
+            get { return m_Symbol; }
+            set { m_Symbol = value; }
         }
     }
 }

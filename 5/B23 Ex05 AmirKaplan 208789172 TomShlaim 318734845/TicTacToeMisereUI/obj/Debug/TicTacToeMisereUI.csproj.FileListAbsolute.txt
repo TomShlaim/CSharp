@@ -9,3 +9,7 @@ X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisere
 X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\obj\Debug\TicTacToeMisereUI.csproj.CoreCompileInputs.cache
 X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\obj\Debug\TicTacToeMisereUI.exe
 X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\obj\Debug\TicTacToeMisereUI.pdb
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\bin\Debug\TicTacToeMisereLogic.dll
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\bin\Debug\TicTacToeMisereLogic.pdb
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\bin\Debug\TicTacToeMisereLogic.dll.config
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereUI\obj\Debug\TicTacToeMisereUI.csproj.CopyComplete

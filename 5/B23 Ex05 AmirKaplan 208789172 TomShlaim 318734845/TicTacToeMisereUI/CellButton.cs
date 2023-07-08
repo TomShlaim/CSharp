@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TicTacToeMisereLogic;
 
 namespace TicTacToeMisereUI
 {
@@ -18,12 +19,24 @@ namespace TicTacToeMisereUI
             this.Location = new System.Drawing.Point(i_Xval, i_Yval);
             this.Size = new System.Drawing.Size(50, 50);
             m_Row = i_Row;
-            m_Column = i_Column;
+            m_Column = i_Column;  
         }
 
-        protected override void OnClick(EventArgs e)
+        public int Row {
+            get { return m_Row; }
+        }
+
+        public int Column { 
+            get { return m_Column; } 
+        }
+
+        internal void game_CellValueChanged(object sender, Cell i_CellChanged)
         {
-            base.OnClick(e);
+            if (this.m_Row == i_CellChanged.Row && this.m_Column == i_CellChanged.Column)
+            {
+                this.Text = ((char)i_CellChanged.Symbol).ToString();
+                this.Enabled = false;
+            }
 
         }
     }

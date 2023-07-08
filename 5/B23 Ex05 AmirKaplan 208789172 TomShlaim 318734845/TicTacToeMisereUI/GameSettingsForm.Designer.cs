@@ -181,7 +181,7 @@
             this.labelCols.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCols.Location = new System.Drawing.Point(280, 323);
             this.labelCols.Name = "labelCols";
-            this.labelCols.Size = new System.Drawing.Size(77, 31);
+            this.labelCols.Size = new System.Drawing.Size(91, 31);
             this.labelCols.TabIndex = 11;
             this.labelCols.Text = "Cols:";
             // 

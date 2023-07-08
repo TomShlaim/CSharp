@@ -1,0 +1,7 @@
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\obj\Debug\TicTacToeMisereLogic.csproj.AssemblyReference.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\obj\Debug\TicTacToeMisereLogic.csproj.CoreCompileInputs.cache
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\bin\Debug\TicTacToeMisereLogic.dll.config
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\bin\Debug\TicTacToeMisereLogic.dll
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\bin\Debug\TicTacToeMisereLogic.pdb
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\obj\Debug\TicTacToeMisereLogic.dll
+X:\hw\CSharp\5\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\TicTacToeMisereLogic\obj\Debug\TicTacToeMisereLogic.pdb

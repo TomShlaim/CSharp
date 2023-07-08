@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TicTacToeMisereLogic
 {
-    public class Board
+    internal class Board
     {
         private eBoardSymbol[,] m_BoardMatrix;
         private LinkedList<Cell> m_EmptyCells;
@@ -31,6 +32,7 @@ namespace TicTacToeMisereLogic
                 return m_EmptyCells;
             }
         }
+
         public bool IsFullBoard()
         {
             int boardSize = m_BoardMatrix.GetLength(0);
@@ -38,11 +40,11 @@ namespace TicTacToeMisereLogic
 
             return numOfOccupuiedCells == boardSize * boardSize;
         }
-        public void UpdateBoard(Cell i_Cell, eBoardSymbol i_BoardSymbol)
+        public void UpdateBoard(Cell i_Cell)
         {
             int rowIndex = i_Cell.Row, columnIndex = i_Cell.Column;
 
-            m_BoardMatrix[rowIndex, columnIndex] = i_BoardSymbol;
+            m_BoardMatrix[rowIndex, columnIndex] = i_Cell.Symbol;
             m_EmptyCells.Remove(new Cell(rowIndex, columnIndex));
         }
         public void ResetBoard()
