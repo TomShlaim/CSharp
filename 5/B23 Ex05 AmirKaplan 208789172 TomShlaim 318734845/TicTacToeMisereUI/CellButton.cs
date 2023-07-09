@@ -30,11 +30,11 @@ namespace TicTacToeMisereUI
             get { return m_Column; } 
         }
 
-        internal void game_CellValueChanged(object sender, Cell i_CellChanged)
+        internal void game_CellOccupied(object sender, Cell i_CellOccupied)
         {
-            if (this.m_Row == i_CellChanged.Row && this.m_Column == i_CellChanged.Column)
+            if (this.m_Row == i_CellOccupied.Row && this.m_Column == i_CellOccupied.Column)
             {
-                this.Text = ((char)i_CellChanged.Symbol).ToString();
+                this.Text = ((char)i_CellOccupied.Symbol).ToString();
                 this.Enabled = false;
             }
 

@@ -55,6 +55,7 @@ namespace TicTacToeMisereLogic
         {
             int boardSize = m_BoardMatrix.GetLength(0);
 
+            m_EmptyCells.Clear();
             for (int i = 0; i < boardSize; i++)
             {
                 for (int j = 0; j < boardSize; j++)

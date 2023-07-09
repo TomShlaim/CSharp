@@ -54,7 +54,7 @@ namespace TicTacToeMisereUI
             }
             this.DialogResult = DialogResult.OK;
             this.Hide();
-            BoardForm ticTacToeMisereGame = new BoardForm(boardSize, playerNames);
+            GameForm ticTacToeMisereGame = new GameForm(boardSize, playerNames);
             ticTacToeMisereGame.ShowDialog();
             this.Close();
         }
