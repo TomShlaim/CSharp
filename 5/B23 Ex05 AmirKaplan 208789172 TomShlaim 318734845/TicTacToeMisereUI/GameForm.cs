@@ -12,6 +12,7 @@ namespace TicTacToeMisereUI
         private int m_BoardSize;
         private CellButton[,] m_CellButtons;
         private PlayerLabel[] m_LabelPlayers;
+        private const int k_CellSepartorSize = 10;
 
         public GameForm(int i_BoardSize, List<string> i_PlayerNames)
         {
@@ -39,8 +40,9 @@ namespace TicTacToeMisereUI
             {
                 for (int j = 0; j < m_BoardSize; j++)
                 {
-                    m_CellButtons[i, j] = new CellButton(i, j, 52 * j + 7, 52 * i + 7);
+                    m_CellButtons[i, j] = new CellButton(i, j, CellButton.CellButtonSize * j + k_CellSepartorSize, CellButton.CellButtonSize * i + k_CellSepartorSize);
                     Controls.Add(m_CellButtons[i, j]);
+                    m_CellButtons[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     m_CellButtons[i, j].Click += cellButton_Click;
                     r_TicTacToeMisereGame.CellOccupied += m_CellButtons[i, j].game_CellOccupied;
                 }
@@ -64,11 +66,11 @@ namespace TicTacToeMisereUI
             m_LabelPlayers = new PlayerLabel[2];
 
             m_LabelPlayers[0] = new PlayerLabel();
-            m_LabelPlayers[0].Location = new System.Drawing.Point(Location.X + Width / 5, Location.Y + ClientSize.Height - 30);
+            m_LabelPlayers[0].Location = new System.Drawing.Point(CellButton.CellButtonSize + k_CellSepartorSize, Location.Y + ClientSize.Height - 30);
             m_LabelPlayers[0].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[0].Name, r_TicTacToeMisereGame.Players[0].Score);
 
             m_LabelPlayers[1] = new PlayerLabel();
-            m_LabelPlayers[1].Location = new System.Drawing.Point(Location.X + Width * 3 / 5, m_LabelPlayers[0].Location.Y);
+            m_LabelPlayers[1].Location = new System.Drawing.Point((m_BoardSize - 2) * (CellButton.CellButtonSize) + k_CellSepartorSize, m_LabelPlayers[0].Location.Y);
             m_LabelPlayers[1].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[1].Name, r_TicTacToeMisereGame.Players[1].Score);
 
             int startingPlayerIdx = r_TicTacToeMisereGame.CurrentTurnPlayerIndex;
@@ -78,7 +80,8 @@ namespace TicTacToeMisereUI
                 System.Drawing.FontStyle fontStyle = startingPlayerIdx == i ?
                     System.Drawing.FontStyle.Bold :
                     System.Drawing.FontStyle.Regular;
-                m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 6.875F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                m_LabelPlayers[i].Width = CellButton.CellButtonSize;
                 r_TicTacToeMisereGame.MoveCompleted += m_LabelPlayers[i].game_MoveCompleted;
                 Controls.Add(m_LabelPlayers[i]);
             }

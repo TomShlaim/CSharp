@@ -80,6 +80,7 @@
             // 
             this.textBoxPlayer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPlayer1.Location = new System.Drawing.Point(247, 113);
+            this.textBoxPlayer1.MaxLength = 12;
             this.textBoxPlayer1.Name = "textBoxPlayer1";
             this.textBoxPlayer1.Size = new System.Drawing.Size(222, 38);
             this.textBoxPlayer1.TabIndex = 3;
@@ -89,6 +90,7 @@
             this.textBoxPlayer2.Enabled = false;
             this.textBoxPlayer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPlayer2.Location = new System.Drawing.Point(247, 172);
+            this.textBoxPlayer2.MaxLength = 12;
             this.textBoxPlayer2.Name = "textBoxPlayer2";
             this.textBoxPlayer2.Size = new System.Drawing.Size(222, 38);
             this.textBoxPlayer2.TabIndex = 4;

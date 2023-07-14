@@ -12,11 +12,12 @@ namespace TicTacToeMisereUI
     {
         private int m_Row;
         private int m_Column;
+        private const int k_CellButtonSize=120;
 
         public CellButton(int i_Row, int i_Column, int i_Xval, int i_Yval)
         {
             Location = new System.Drawing.Point(i_Xval, i_Yval);
-            Size = new System.Drawing.Size(50, 50);
+            Size = new System.Drawing.Size(k_CellButtonSize, k_CellButtonSize);
             m_Row = i_Row;
             m_Column = i_Column;  
         }
@@ -29,6 +30,10 @@ namespace TicTacToeMisereUI
             get { return m_Column; } 
         }
 
+        public static int CellButtonSize
+        {
+            get { return k_CellButtonSize; }
+        }
         internal void game_CellOccupied(object sender, Cell i_CellOccupied)
         {
             if (m_Row == i_CellOccupied.Row && m_Column == i_CellOccupied.Column)
