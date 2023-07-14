@@ -146,9 +146,11 @@ namespace TicTacToeMisereLogic
                     OnGameTied();
                 }
             }
-
-            m_CurrentTurnPlayerIndex = getNextTurnPlayer();
-            OnMoveCompleted();
+            else
+            {
+                m_CurrentTurnPlayerIndex = getNextTurnPlayer();
+                OnMoveCompleted();
+            }
         }
 
         public int getNextTurnPlayer()
