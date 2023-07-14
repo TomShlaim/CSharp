@@ -8,7 +8,6 @@ namespace TicTacToeMisereUI
 {
     internal class GameForm : Form
     {
- 
         public readonly Game r_TicTacToeMisereGame;
         private int m_BoardSize;
         private CellButton[,] m_CellButtons;
@@ -28,11 +27,14 @@ namespace TicTacToeMisereUI
         }
         private void initializeComponents()
         {
-            int formWidth, formHeight, startingPlayerIdx = r_TicTacToeMisereGame.CurrentTurnPlayerIndex;
+            createBoard();
+            setPlayersLabels();
+        }
 
+        private void createBoard()
+        {
             m_CellButtons = new CellButton[m_BoardSize, m_BoardSize];
-            m_LabelPlayers = new PlayerLabel[2];
-     
+
             for (int i = 0; i < m_BoardSize; i++)
             {
                 for (int j = 0; j < m_BoardSize; j++)
@@ -44,53 +46,43 @@ namespace TicTacToeMisereUI
                 }
             }
 
-            formWidth = (m_CellButtons[0, m_BoardSize - 1].Location.X + m_CellButtons[0, m_BoardSize - 1].Width + 21) - (m_CellButtons[0, 0].Location.X - 7);
-            formHeight = (m_CellButtons[m_BoardSize - 1, 0].Location.Y + m_CellButtons[m_BoardSize - 1, 0].Height + 80) - (m_CellButtons[0, 0].Location.Y - 7);
+            int formWidth = (m_CellButtons[0, m_BoardSize - 1].Location.X + m_CellButtons[0, m_BoardSize - 1].Width + 21) - (m_CellButtons[0, 0].Location.X - 7);
+            int formHeight = (m_CellButtons[m_BoardSize - 1, 0].Location.Y + m_CellButtons[m_BoardSize - 1, 0].Height + 80) - (m_CellButtons[0, 0].Location.Y - 7);
+
+            Text = "TicTacToeMisere";
             Size = new System.Drawing.Size(formWidth, formHeight);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            StartPosition = FormStartPosition.CenterScreen;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            r_TicTacToeMisereGame.GameDecided += game_GameDecided;
+            r_TicTacToeMisereGame.GameTied += game_GameTied;
+        }
+        private void setPlayersLabels()
+        {
+            m_LabelPlayers = new PlayerLabel[2];
 
-            /* TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
-             tableLayoutPanel.Dock = DockStyle.Bottom;
-             tableLayoutPanel.ColumnCount = 2;
-             tableLayoutPanel.AutoSize = true;
-             tableLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            */
-
-            // LabelPlayer1:
             m_LabelPlayers[0] = new PlayerLabel();
             m_LabelPlayers[0].Location = new System.Drawing.Point(Location.X + Width / 5, Location.Y + ClientSize.Height - 30);
-            //m_LabelPlayer1.Anchor = AnchorStyles.Bottom;
-            // m_LabelPlayer1.Size = new System.Drawing.Size(91, 31);
-            //m_LabelPlayer1.TabIndex = 10;
             m_LabelPlayers[0].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[0].Name, r_TicTacToeMisereGame.Players[0].Score);
-            //m_LabelPlayer1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 
-            // LabelPlayer2:
             m_LabelPlayers[1] = new PlayerLabel();
             m_LabelPlayers[1].Location = new System.Drawing.Point(Location.X + Width * 3 / 5, m_LabelPlayers[0].Location.Y);
-            // m_LabelPlayer2.Anchor = AnchorStyles.Bottom;
-            //  m_LabelPlayer2.Size = new System.Drawing.Size(91, 31);
-            //m_LabelPlayer1.TabIndex = 10;
             m_LabelPlayers[1].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[1].Name, r_TicTacToeMisereGame.Players[1].Score);
-            //m_LabelPlayer1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 
-            for(int i = 0; i < m_LabelPlayers.Length; i++)
+            int startingPlayerIdx = r_TicTacToeMisereGame.CurrentTurnPlayerIndex;
+
+            for (int i = 0; i < m_LabelPlayers.Length; i++)
             {
-                System.Drawing.FontStyle fontStyle = startingPlayerIdx == i ? 
-                    System.Drawing.FontStyle.Bold : 
+                System.Drawing.FontStyle fontStyle = startingPlayerIdx == i ?
+                    System.Drawing.FontStyle.Bold :
                     System.Drawing.FontStyle.Regular;
                 m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 r_TicTacToeMisereGame.MoveCompleted += m_LabelPlayers[i].game_MoveCompleted;
                 Controls.Add(m_LabelPlayers[i]);
             }
-
-            Text = "TicTacToeMisere";
-            StartPosition = FormStartPosition.CenterScreen;
-            r_TicTacToeMisereGame.GameDecided += game_GameDecided;
-            r_TicTacToeMisereGame.GameTied += game_GameTied;
         }
-
-
         private void game_GameDecided(object sender, int i_WinnerPlayerIdx)
         {
             updatePlayerLabelText(i_WinnerPlayerIdx);
