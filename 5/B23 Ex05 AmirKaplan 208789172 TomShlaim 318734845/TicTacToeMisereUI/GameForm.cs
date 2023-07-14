@@ -93,31 +93,22 @@ namespace TicTacToeMisereUI
 
         private void game_GameDecided(object sender, int i_WinnerPlayerIdx)
         {
-            MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
-
             updatePlayerLabelText(i_WinnerPlayerIdx);
-
-            DialogResult result = MessageBox.Show(string.Format(
+            showGameFinishedDialog(string.Format(
 @"The winner is {0}!
-Would you like to play another round?", r_TicTacToeMisereGame.Players[i_WinnerPlayerIdx].Name), "A Win!", messageBoxButtons);
-
-            if (result == DialogResult.No)
-            {
-                Close();
-            }
-            else if (result == DialogResult.Yes)
-            {
-                r_TicTacToeMisereGame.Rematch();
-                clearBoard();    
-            }
+Would you like to play another round?", r_TicTacToeMisereGame.Players[i_WinnerPlayerIdx].Name), "A Win!");
         }
 
         private void game_GameTied(object sender, EventArgs e)
         {
-            MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show(string.Format(
+            showGameFinishedDialog(string.Format(
 @"A Tie!
-Would you like to play another round?"), "A Tie!", messageBoxButtons);
+Would you like to play another round?"), "A Tie!");
+        }
+        private void showGameFinishedDialog(string i_GameFinishedMessage, string i_GameResult)
+        {
+            MessageBoxButtons messageBoxButtons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(i_GameFinishedMessage, i_GameResult, messageBoxButtons);
 
             if (result == DialogResult.No)
             {
