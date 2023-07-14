@@ -15,9 +15,8 @@ namespace TicTacToeMisereUI
 
         public CellButton(int i_Row, int i_Column, int i_Xval, int i_Yval)
         {
-            //this.Margin = new Padding(16);
-            this.Location = new System.Drawing.Point(i_Xval, i_Yval);
-            this.Size = new System.Drawing.Size(50, 50);
+            Location = new System.Drawing.Point(i_Xval, i_Yval);
+            Size = new System.Drawing.Size(50, 50);
             m_Row = i_Row;
             m_Column = i_Column;  
         }
@@ -32,10 +31,10 @@ namespace TicTacToeMisereUI
 
         internal void game_CellOccupied(object sender, Cell i_CellOccupied)
         {
-            if (this.m_Row == i_CellOccupied.Row && this.m_Column == i_CellOccupied.Column)
+            if (m_Row == i_CellOccupied.Row && m_Column == i_CellOccupied.Column)
             {
-                this.Text = ((char)i_CellOccupied.Symbol).ToString();
-                this.Enabled = false;
+                Text = ((char)i_CellOccupied.Symbol).ToString();
+                Enabled = false;
             }
 
         }
