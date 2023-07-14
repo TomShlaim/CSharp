@@ -18,16 +18,6 @@ namespace TicTacToeMisereLogic
             m_Column = i_Column;
             m_Symbol = eBoardSymbol.Blank;
         }
-
-        public Cell(string i_Cell)
-        {
-            List<string> cellIndexes = i_Cell.Split(',').ToList<string>();
-
-            m_Row = int.Parse(cellIndexes[0]) - 1;
-            m_Column = int.Parse(cellIndexes[1]) - 1;
-            m_Symbol = eBoardSymbol.Blank;
-        }
-
         public int Row
         {
             get

@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\amirkaplan\\.nuget\\packages\\": {}
+    "C:\\Users\\nikol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\hw\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\XMixDrix.csproj",
+      "projectUniqueName": "C:\\Users\\nikol\\OneDrive\\Desktop\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\XMixDrix.csproj",
       "projectName": "XMixDrix",
-      "projectPath": "X:\\hw\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\XMixDrix.csproj",
-      "packagesPath": "C:\\Users\\amirkaplan\\.nuget\\packages\\",
-      "outputPath": "X:\\hw\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\obj\\",
+      "projectPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\XMixDrix.csproj",
+      "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nikol\\OneDrive\\Desktop\\CSharp\\5\\B23 Ex05 AmirKaplan 208789172 TomShlaim 318734845\\XMixDrix\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\amirkaplan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -131,11 +131,13 @@ namespace TicTacToeMisereLogic
             i_Cell.Symbol = m_Players[m_CurrentTurnPlayerIndex].Symbol;
             m_Board.UpdateBoard(i_Cell);
             OnCellOccupied(i_Cell);
+
             if (IsGameOver())
             {
                 if (isGameDecided())
                 {
                     List<Player> winningPlayers = getWinningPlayers();
+
                     updateWinningPlayers(winningPlayers);
                     OnGameDecided(m_Players.FindIndex(player => player.Name == winningPlayers[0].Name));
                 }
@@ -144,6 +146,7 @@ namespace TicTacToeMisereLogic
                     OnGameTied();
                 }
             }
+
             m_CurrentTurnPlayerIndex = getNextTurnPlayer();
             OnMoveCompleted();
         }
@@ -160,6 +163,7 @@ namespace TicTacToeMisereLogic
 
             freeSymbols.Remove(eBoardSymbol.Blank);
             addPersonPlayer(i_PlayerNames[0], freeSymbols, randIndexGenerator);
+
             if (i_NumOfPlayers == 1)
             {
                 addComputerPlayer(freeSymbols, randIndexGenerator);
@@ -180,18 +184,16 @@ namespace TicTacToeMisereLogic
 
         private void addPersonPlayer(string i_PlayerName, List<eBoardSymbol> i_FreeSymbols, Random i_RandIndexGenerator)
         {
-            eBoardSymbol playerSymbol;
+            eBoardSymbol playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
 
-            playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
             m_Players.Add(new Player(i_PlayerName, playerSymbol, false));
             updateFreeSymbols(i_FreeSymbols, playerSymbol);
         }
 
         private void addComputerPlayer(List<eBoardSymbol> i_FreeSymbols, Random i_RandIndexGenerator)
         {
-            eBoardSymbol playerSymbol;
+            eBoardSymbol playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
 
-            playerSymbol = i_FreeSymbols[i_RandIndexGenerator.Next(i_FreeSymbols.Count())];
             m_Players.Add(new Player("Computer", playerSymbol, true));
             updateFreeSymbols(i_FreeSymbols, playerSymbol);
         }     
