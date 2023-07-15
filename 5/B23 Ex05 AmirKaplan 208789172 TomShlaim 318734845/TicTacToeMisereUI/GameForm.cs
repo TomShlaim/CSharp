@@ -48,7 +48,7 @@ namespace TicTacToeMisereUI
                 }
             }
 
-            int formWidth = CellButton.CellButtonSize * (m_BoardSize + 1) - k_CellSepartorSize - 5;
+            int formWidth = CellButton.CellButtonSize * (m_BoardSize + 1) - k_CellSepartorSize*2;
             int formHeight = CellButton.CellButtonSize * (m_BoardSize + 1) + 20; 
 
             Text = "TicTacToeMisere";
@@ -69,7 +69,7 @@ namespace TicTacToeMisereUI
             m_LabelPlayers[0].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[0].Name, r_TicTacToeMisereGame.Players[0].Score);
 
             m_LabelPlayers[1] = new PlayerLabel();
-            m_LabelPlayers[1].Location = new System.Drawing.Point((m_BoardSize - 2) * (CellButton.CellButtonSize), m_LabelPlayers[0].Location.Y);
+            m_LabelPlayers[1].Location = new System.Drawing.Point((m_BoardSize - 2) * (CellButton.CellButtonSize) + k_CellSepartorSize, m_LabelPlayers[0].Location.Y);
             m_LabelPlayers[1].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[1].Name, r_TicTacToeMisereGame.Players[1].Score);
 
             int startingPlayerIdx = r_TicTacToeMisereGame.CurrentTurnPlayerIndex;
@@ -79,8 +79,8 @@ namespace TicTacToeMisereUI
                 System.Drawing.FontStyle fontStyle = startingPlayerIdx == i ?
                     System.Drawing.FontStyle.Bold :
                     System.Drawing.FontStyle.Regular;
-                m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 6.875F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                m_LabelPlayers[i].Width = CellButton.CellButtonSize * 2;
+                m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                m_LabelPlayers[i].Width = CellButton.CellButtonSize * 2 + 2;
                 r_TicTacToeMisereGame.MoveCompleted += m_LabelPlayers[i].game_MoveCompleted;
                 Controls.Add(m_LabelPlayers[i]);
             }
