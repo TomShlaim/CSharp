@@ -12,7 +12,7 @@ namespace TicTacToeMisereUI
     {
         private int m_Row;
         private int m_Column;
-        private const int k_CellButtonSize=120;
+        private const int k_CellButtonSize = 50;
 
         public CellButton(int i_Row, int i_Column, int i_Xval, int i_Yval)
         {

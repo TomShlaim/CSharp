@@ -42,22 +42,21 @@ namespace TicTacToeMisereUI
                 {
                     m_CellButtons[i, j] = new CellButton(i, j, CellButton.CellButtonSize * j + k_CellSepartorSize, CellButton.CellButtonSize * i + k_CellSepartorSize);
                     Controls.Add(m_CellButtons[i, j]);
-                    m_CellButtons[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    m_CellButtons[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     m_CellButtons[i, j].Click += cellButton_Click;
                     r_TicTacToeMisereGame.CellOccupied += m_CellButtons[i, j].game_CellOccupied;
                 }
             }
 
-            int formWidth = (m_CellButtons[0, m_BoardSize - 1].Location.X + m_CellButtons[0, m_BoardSize - 1].Width + 21) - (m_CellButtons[0, 0].Location.X - 7);
-            int formHeight = (m_CellButtons[m_BoardSize - 1, 0].Location.Y + m_CellButtons[m_BoardSize - 1, 0].Height + 80) - (m_CellButtons[0, 0].Location.Y - 7);
+            int formWidth = CellButton.CellButtonSize * (m_BoardSize + 1) - k_CellSepartorSize - 5;
+            int formHeight = CellButton.CellButtonSize * (m_BoardSize + 1) + 20; 
 
             Text = "TicTacToeMisere";
             Size = new System.Drawing.Size(formWidth, formHeight);
             Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             StartPosition = FormStartPosition.CenterScreen;
-            MaximizeBox = false;
-            MinimizeBox = false;
             r_TicTacToeMisereGame.GameDecided += game_GameDecided;
             r_TicTacToeMisereGame.GameTied += game_GameTied;
         }
@@ -66,11 +65,11 @@ namespace TicTacToeMisereUI
             m_LabelPlayers = new PlayerLabel[2];
 
             m_LabelPlayers[0] = new PlayerLabel();
-            m_LabelPlayers[0].Location = new System.Drawing.Point(CellButton.CellButtonSize + k_CellSepartorSize, Location.Y + ClientSize.Height - 30);
+            m_LabelPlayers[0].Location = new System.Drawing.Point(k_CellSepartorSize, Location.Y + ClientSize.Height - 20);
             m_LabelPlayers[0].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[0].Name, r_TicTacToeMisereGame.Players[0].Score);
 
             m_LabelPlayers[1] = new PlayerLabel();
-            m_LabelPlayers[1].Location = new System.Drawing.Point((m_BoardSize - 2) * (CellButton.CellButtonSize) + k_CellSepartorSize, m_LabelPlayers[0].Location.Y);
+            m_LabelPlayers[1].Location = new System.Drawing.Point((m_BoardSize - 2) * (CellButton.CellButtonSize), m_LabelPlayers[0].Location.Y);
             m_LabelPlayers[1].Text = string.Format("{0}: {1}", r_TicTacToeMisereGame.Players[1].Name, r_TicTacToeMisereGame.Players[1].Score);
 
             int startingPlayerIdx = r_TicTacToeMisereGame.CurrentTurnPlayerIndex;
@@ -81,7 +80,7 @@ namespace TicTacToeMisereUI
                     System.Drawing.FontStyle.Bold :
                     System.Drawing.FontStyle.Regular;
                 m_LabelPlayers[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 6.875F, fontStyle, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                m_LabelPlayers[i].Width = CellButton.CellButtonSize;
+                m_LabelPlayers[i].Width = CellButton.CellButtonSize * 2;
                 r_TicTacToeMisereGame.MoveCompleted += m_LabelPlayers[i].game_MoveCompleted;
                 Controls.Add(m_LabelPlayers[i]);
             }
