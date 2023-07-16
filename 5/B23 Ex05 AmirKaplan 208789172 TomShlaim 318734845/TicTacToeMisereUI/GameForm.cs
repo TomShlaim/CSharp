@@ -62,8 +62,8 @@ namespace TicTacToeMisereUI
             int formHeight = CellButton.CellButtonSize * (m_BoardSize + 1) + 20;
 
             Text = "TicTacToeMisere";
-            Size = new System.Drawing.Size(formWidth, formHeight);
-            Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            Size = new Size(formWidth, formHeight);
+            Font = new Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             FormBorderStyle = FormBorderStyle.FixedSingle;
             StartPosition = FormStartPosition.CenterScreen;
         }
