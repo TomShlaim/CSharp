@@ -139,7 +139,7 @@ namespace TicTacToeMisereLogic
                     List<Player> winningPlayers = getWinningPlayers();
 
                     updateWinningPlayers(winningPlayers);
-                    OnGameDecided(m_Players.FindIndex(player => player.Name == winningPlayers[0].Name));
+                    OnGameDecided(m_Players.FindIndex(player => player.Symbol == winningPlayers[0].Symbol));
                 }
                 else
                 {

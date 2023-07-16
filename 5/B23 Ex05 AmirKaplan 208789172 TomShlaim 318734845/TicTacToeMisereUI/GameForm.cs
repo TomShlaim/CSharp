@@ -88,7 +88,7 @@ namespace TicTacToeMisereUI
                                       FontStyle.Bold :
                                       FontStyle.Regular;
 
-                playerLabel.Font = new Font("Microsoft Sans Serif", 6.25F, fontStyle, GraphicsUnit.Point, ((byte)(0)));
+                playerLabel.Font = new Font("Microsoft Sans Serif", 6F, fontStyle, GraphicsUnit.Point, ((byte)(0)));
                 r_TicTacToeMisereGame.MoveCompleted += playerLabel.game_MoveCompleted;
                 Controls.Add(playerLabel);
                 counter++;
